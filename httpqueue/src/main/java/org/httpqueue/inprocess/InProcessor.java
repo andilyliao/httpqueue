@@ -1,8 +1,10 @@
 package org.httpqueue.inprocess;
 
 import org.httpqueue.inprocess.intf.IInProcessor;
+import org.httpqueue.inprocess.task.InputPublish;
 import org.httpqueue.inprocess.task.intf.IInputCreate;
 import org.httpqueue.inprocess.task.InputCreate;
+import org.httpqueue.inprocess.task.intf.IInputPublish;
 import org.httpqueue.protocolbean.InputHead;
 import org.httpqueue.protocolbean.Mode;
 
@@ -15,11 +17,11 @@ public class InProcessor implements IInProcessor {
     @Override
     public void process(String queueName,InputHead inputHead, String body) throws Exception {
         int type=inputHead.getTy();
+        int hashdisk=inputHead.getH();
         switch (type){
             case Mode.INPUTTYPE_CREATEQUEUE:
                 IInputCreate inputCreate=new InputCreate();
                 int mode=inputHead.getM();
-                int hashdisk=inputHead.getH();
                 switch (mode){
                     case Mode.MODE_DIRECT:
                         switch (hashdisk){
@@ -53,6 +55,38 @@ public class InProcessor implements IInProcessor {
                 }
                 break;
             case Mode.INPUTTYPE_PUBLISH:
+                IInputPublish inputPublish=new InputPublish();
+                int hastransaction=inputHead.getTr();
+                int ttl=inputHead.getT();
+                int seq=inputHead.getS();
+                switch (hashdisk){
+                    case Mode.HASHDISK_WITHDISK:
+                        switch (hastransaction){
+                            case Mode.HASTRANSACTION_NOTRANSACTION:
+                                inputPublish.inputMessageWithDisk(queueName,body,ttl);
+                                break;
+                            case Mode.HASTRANSACTION_TRANSACTION:
+                                inputPublish.inputMessageWithDisk(queueName,body,ttl,seq);
+                                break;
+                            default:
+                                throw new Exception("Header doesn't has hastransaction param");
+                        }
+                        break;
+                    case Mode.HASHDISK_WITHOUTDISK:
+                        switch (hastransaction){
+                            case Mode.HASTRANSACTION_NOTRANSACTION:
+                                inputPublish.inputMessageWithoutDisk(queueName,body,ttl);
+                                break;
+                            case Mode.HASTRANSACTION_TRANSACTION:
+                                inputPublish.inputMessageWithoutDisk(queueName,body,ttl,seq);
+                                break;
+                            default:
+                                throw new Exception("Header doesn't has hastransaction param");
+                        }
+                        break;
+                    default:
+                        throw new Exception("Header doesn't has hashdisk param");
+                }
                 break;
             default:
                 throw new Exception("Header doesn't has type param");
