@@ -13,7 +13,7 @@ import org.httpqueue.protocolbean.Mode;
 
 public class InProcessor implements IInProcessor {
     @Override
-    public void process(InputHead inputHead, String body) throws Exception {
+    public void process(String queueName,InputHead inputHead, String body) throws Exception {
         int type=inputHead.getTy();
         switch (type){
             case Mode.INPUTTYPE_CREATEQUEUE:
@@ -24,18 +24,29 @@ public class InProcessor implements IInProcessor {
                     case Mode.MODE_DIRECT:
                         switch (hashdisk){
                             case Mode.HASHDISK_WITHDISK:
+                                inputCreate.createDirectWithDisk(queueName);
                                 break;
                             case Mode.HASHDISK_WITHOUTDISK:
+                                inputCreate.createDirectWithoutDisk(queueName);
                                 break;
                             default:
                                 throw new Exception("Header doesn't has hashdisk param");
                         }
                         break;
                     case Mode.MODE_FANOUT:
-
+                        switch (hashdisk){
+                            case Mode.HASHDISK_WITHDISK:
+                                inputCreate.createFanoutWithDisk(queueName);
+                                break;
+                            case Mode.HASHDISK_WITHOUTDISK:
+                                inputCreate.createFanoutWithoutDisk(queueName);
+                                break;
+                            default:
+                                throw new Exception("Header doesn't has hashdisk param");
+                        }
                         break;
                     case Mode.MODE_TOPIC:
-
+                        inputCreate.createTopic(queueName);
                         break;
                     default:
                         throw new Exception("Header doesn't has mode param");

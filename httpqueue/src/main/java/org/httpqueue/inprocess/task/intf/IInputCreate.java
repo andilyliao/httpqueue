@@ -4,9 +4,9 @@ package org.httpqueue.inprocess.task.intf;
  * Created by andilyliao on 16-4-1.
  */
 public interface IInputCreate {
-    public void createDirectWithoutDisk()throws Exception;
-    public void createDirectWithDisk()throws Exception;
-    public void createTopic()throws Exception;
-    public void createFanoutWithoutDisk()throws Exception;
-    public void createFanoutWithDisk()throws Exception;
+    public void createDirectWithoutDisk(String queueName)throws Exception;
+    public void createDirectWithDisk(String queueName)throws Exception;
+    public void createTopic(String queueName)throws Exception;
+    public void createFanoutWithoutDisk(String queueName)throws Exception;
+    public void createFanoutWithDisk(String queueName)throws Exception;
 }

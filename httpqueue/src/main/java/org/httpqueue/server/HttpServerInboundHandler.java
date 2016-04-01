@@ -27,13 +27,14 @@ public class HttpServerInboundHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg)
             throws Exception {
         String res = "ok";
+        String queueName ="testQueue";
         try {
             //curl -post http://localhost:8844/queue -d '{"head":{"ty":1,"m":0,"t":100,"d":0,"tr":0,"s":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
             //curl -post http://localhost:8844/queue -d '{"head":{"ty":1,"m":0,"t":100,"d":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
             if (msg instanceof HttpRequest) {
                 request = (HttpRequest) msg;
                 String uri = request.uri();
-                String queueName = uri.substring(1, uri.length());
+                queueName = uri.substring(1, uri.length());
                 log.debug("Queue Name is: " + queueName);
             }
             if (msg instanceof HttpContent) {
@@ -56,7 +57,7 @@ public class HttpServerInboundHandler extends ChannelInboundHandlerAdapter {
                 int seq = h.getS();
                 log.debug("Type is "+type+"mode is: " + mode + " ttl is: " + ttl + " hashdisk is: " + hashdisk + " hastransaction is: "+hastransaction+" seq is: " + seq);
                 IInProcessor inProcessor=new InProcessor();
-                inProcessor.process(h,body);
+                inProcessor.process(queueName,h,body);
             }
         }catch (Exception e){
             res = "error";
