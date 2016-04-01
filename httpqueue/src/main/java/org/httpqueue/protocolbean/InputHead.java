@@ -4,7 +4,7 @@ package org.httpqueue.protocolbean;
  * Created by andilyliao on 16-3-31.
  */
 //{head:{m:0,t:100,d:0,tr:0,s:0}
-public class InputHead {
+public class InputHead  {
     //任务类型
     private int ty;
     //消息方式
