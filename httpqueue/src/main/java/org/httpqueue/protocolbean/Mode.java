@@ -19,8 +19,13 @@ public class Mode {
     //发送方任务类型 0：创建队列 1：发送消息
     public final static int INPUTTYPE_CREATEQUEUE=0;
     public final static int INPUTTYPE_PUBLISH=1;
-    //接收方任务类型 0：创建订阅队列 1：接收消息 2:注册监听队列
-    public final static int OUTPUTTYPE_CREATETOPIC=0;
+    //接收方任务类型 0:注册监听队列 1：接收消息
+    public final static int OUTPUTTYPE_REGIST=0;
     public final static int OUTPUTTYPE_CONSUME=1;
-    public final static int REGIST=2;
+    //返回值状态 0：正确 1：存在错误
+    public final static int RESSTATUS_OK=0;
+    public final static int RESSTATUS_ERROR=1;
+    //返回错误码 0：无错误 1：存在系统错误
+    public final static int RESCODE_OK=0;
+    public final static int RESCODE_SYSTEMERROR=1;
 }

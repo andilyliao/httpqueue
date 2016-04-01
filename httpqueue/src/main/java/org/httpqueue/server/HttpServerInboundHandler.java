@@ -12,6 +12,8 @@ import org.httpqueue.inprocess.intf.IInProcessor;
 import org.httpqueue.inprocess.InProcessor;
 import org.httpqueue.protocolbean.InputHead;
 import org.httpqueue.protocolbean.JsonMessage;
+import org.httpqueue.protocolbean.Mode;
+import org.httpqueue.protocolbean.Result;
 
 import static io.netty.handler.codec.http.HttpHeaderNames.*;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
@@ -26,7 +28,9 @@ public class HttpServerInboundHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg)
             throws Exception {
-        String res = "ok";
+        Result res=new Result();
+        res.setCode(Mode.RESCODE_OK);
+        res.setStatus(Mode.RESSTATUS_OK);
         String queueName ="testQueue";
         try {
             //curl -post http://localhost:8844/queue -d '{"head":{"ty":1,"m":0,"t":100,"d":0,"tr":0,"s":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
@@ -60,11 +64,13 @@ public class HttpServerInboundHandler extends ChannelInboundHandlerAdapter {
                 inProcessor.process(queueName,h,body);
             }
         }catch (Exception e){
-            res = "error";
+            res.setCode(Mode.RESCODE_SYSTEMERROR);
+            res.setStatus(Mode.RESSTATUS_ERROR);
             log.error("system error:",e);
         }
+        String result=JSON.toJSONString(res);
         FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1,
-                OK, Unpooled.wrappedBuffer(res.getBytes("UTF-8")));
+                OK, Unpooled.wrappedBuffer(result.getBytes("UTF-8")));
         response.headers().set(CONTENT_TYPE, "text/plain");
         response.headers().setInt(CONTENT_LENGTH,
                 response.content().readableBytes());

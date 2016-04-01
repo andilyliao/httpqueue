@@ -1,6 +1,11 @@
 package org.httpqueue.outprocess;
 
 import org.httpqueue.outprocess.intf.IOutProcessor;
+import org.httpqueue.outprocess.task.OutputConsume;
+import org.httpqueue.outprocess.task.OutputRegist;
+import org.httpqueue.outprocess.task.intf.IOutputConsume;
+import org.httpqueue.outprocess.task.intf.IOutputRegist;
+import org.httpqueue.protocolbean.Mode;
 import org.httpqueue.protocolbean.OutputHead;
 
 /**
@@ -9,7 +14,45 @@ import org.httpqueue.protocolbean.OutputHead;
 public class OutProcessor implements IOutProcessor {
     @Override
     public String process(String queueName, OutputHead outputHead) throws Exception {
-
-        return "";
+        int type=outputHead.getTy();
+        int hashdisk=outputHead.getH();
+        String body="";
+        switch(type){
+            case Mode.OUTPUTTYPE_REGIST:
+                IOutputRegist iOutputRegist=new OutputRegist();
+                int mode=iOutputRegist.getQueMode(queueName);
+                switch (mode) {
+                    case Mode.MODE_DIRECT:
+                        iOutputRegist.registDirect(queueName);
+                        break;
+                    case Mode.MODE_FANOUT:
+                        iOutputRegist.registFanout(queueName);
+                        break;
+                    case Mode.MODE_TOPIC:
+                        iOutputRegist.registTopic(queueName);
+                        break;
+                    default:
+                        throw new Exception("This queue doesn't has right mode value,please check db");
+                }
+                break;
+            case Mode.OUTPUTTYPE_CONSUME:
+                int offset=outputHead.getO();
+                int seq=outputHead.getS();
+                IOutputConsume iOutputConsume=new OutputConsume();
+                switch (hashdisk){
+                    case Mode.HASHDISK_WITHDISK:
+                        body=iOutputConsume.consumeMessageWithDisk(queueName,offset,seq);
+                        break;
+                    case Mode.HASHDISK_WITHOUTDISK:
+                        body=iOutputConsume.consumeMessageWithoutDisk(queueName,offset,seq);
+                        break;
+                    default:
+                        throw new Exception("Header doesn't has hashdisk param");
+                }
+                break;
+            default:
+                throw new Exception("Header doesn't has type param");
+        }
+        return body;
     }
 }

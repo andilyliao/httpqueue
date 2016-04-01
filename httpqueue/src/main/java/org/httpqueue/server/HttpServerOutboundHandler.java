@@ -12,7 +12,9 @@ import org.apache.commons.logging.LogFactory;
 import org.httpqueue.outprocess.OutProcessor;
 import org.httpqueue.outprocess.intf.IOutProcessor;
 import org.httpqueue.protocolbean.JsonMessage;
+import org.httpqueue.protocolbean.Mode;
 import org.httpqueue.protocolbean.OutputHead;
+import org.httpqueue.protocolbean.Result;
 
 import static io.netty.handler.codec.http.HttpHeaderNames.*;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
@@ -27,7 +29,10 @@ public class HttpServerOutboundHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg)
             throws Exception {
-        String res = "";
+        Result res=new Result();
+        res.setCode(Mode.RESCODE_OK);
+        res.setStatus(Mode.RESSTATUS_OK);
+        String body="";
         String queueName ="testQueue";
         try {
             //curl -post http://localhost:8845/queue -d '{"head":{"ty":1,"h":0,"o":100,"s":10}}'
@@ -53,13 +58,17 @@ public class HttpServerOutboundHandler extends ChannelInboundHandlerAdapter {
                 int seq = h.getS();
                 log.debug("Type is "+type+ " hashdisk is: " + hashdisk + " offset is: "+offset+" seq is: " + seq);
                 IOutProcessor outProcessor=new OutProcessor();
-                res=outProcessor.process(queueName,h);
+                body=outProcessor.process(queueName,h);
+                res.setBody(body);
             }
         }catch (Exception e){
+            res.setCode(Mode.RESCODE_SYSTEMERROR);
+            res.setStatus(Mode.RESSTATUS_ERROR);
             log.error("system error:",e);
         }
+        String result=JSON.toJSONString(res);
         FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1,
-                OK, Unpooled.wrappedBuffer(res.getBytes("UTF-8")));
+                OK, Unpooled.wrappedBuffer(result.getBytes("UTF-8")));
         response.headers().set(CONTENT_TYPE, "text/plain");
         response.headers().setInt(CONTENT_LENGTH,
                 response.content().readableBytes());

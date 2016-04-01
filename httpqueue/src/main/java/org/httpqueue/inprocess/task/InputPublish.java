@@ -26,4 +26,12 @@ public class InputPublish implements IInputPublish {
     public void inputMessageWithoutDisk(String queName, String body, int ttl) throws Exception {
 
     }
+
+    /**
+     * 用户发布消息后，通知消费者开始轮循
+     * @throws Exception
+     */
+    private void pubNotify() throws Exception{
+
+    }
 }
