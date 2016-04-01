@@ -4,7 +4,9 @@ package org.httpqueue.protocolbean;
  * Created by andilyliao on 16-3-31.
  */
 //{head:{m:0,t:100,d:0,tr:0,s:0}
-public class Head {
+public class InputHead {
+    //任务类型
+    private int ty;
     //消息方式
     private int m;
     //消息缓存驻留时间
@@ -55,5 +57,13 @@ public class Head {
 
     public void setS(int s) {
         this.s = s;
+    }
+
+    public int getTy() {
+        return ty;
+    }
+
+    public void setTy(int ty) {
+        this.ty = ty;
     }
 }

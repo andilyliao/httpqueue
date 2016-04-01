@@ -10,7 +10,7 @@ import io.netty.handler.codec.http.*;
 import org.apache.log4j.Logger;
 import org.httpqueue.inprocess.IInProcessor;
 import org.httpqueue.inprocess.InProcessor;
-import org.httpqueue.protocolbean.Head;
+import org.httpqueue.protocolbean.InputHead;
 import org.httpqueue.protocolbean.JsonMessage;
 
 import static io.netty.handler.codec.http.HttpHeaderNames.*;
@@ -28,8 +28,8 @@ public class HttpServerInboundHandler extends ChannelInboundHandlerAdapter {
             throws Exception {
         String res = "ok";
         try {
-            //curl -post http://localhost:8844/queue -d '{"head":{"m":0,"t":100,"d":0,"tr":0,"s":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
-            //curl -post http://localhost:8844/queue -d '{"head":{"m":0,"t":100,"d":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
+            //curl -post http://localhost:8844/queue -d '{"head":{"ty":1,"m":0,"t":100,"d":0,"tr":0,"s":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
+            //curl -post http://localhost:8844/queue -d '{"head":{"ty":1,"m":0,"t":100,"d":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
             if (msg instanceof HttpRequest) {
                 request = (HttpRequest) msg;
                 String uri = request.uri();
@@ -45,15 +45,16 @@ public class HttpServerInboundHandler extends ChannelInboundHandlerAdapter {
                 JsonMessage jm = JSON.parseObject(message, JsonMessage.class);
                 String head = jm.getHead();
                 String body = jm.getBody();
-                log.debug("Head message is: " + head);
+                log.debug("InputHead message is: " + head);
                 log.debug("Body message is: " + body);
-                Head h = JSON.parseObject(head, Head.class);
+                InputHead h = JSON.parseObject(head, InputHead.class);
+                int type=h.getTy();
                 int mode = h.getM();
                 int ttl = h.getT();
                 int hashdisk = h.getH();
                 int hastransaction = h.getTr();
                 int seq = h.getS();
-                log.debug("mode is: " + mode + " ttl is: " + ttl + " hashdisk is: " + hashdisk + " hastransaction is: "+hastransaction+" seq is: " + seq);
+                log.debug("Type is "+type+"mode is: " + mode + " ttl is: " + ttl + " hashdisk is: " + hashdisk + " hastransaction is: "+hastransaction+" seq is: " + seq);
                 IInProcessor inProcessor=new InProcessor();
                 inProcessor.process(h,body);
             }
