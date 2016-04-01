@@ -1,4 +1,4 @@
-package org.httpqueue.inprocess;
+package org.httpqueue.inprocess.intf;
 
 import org.httpqueue.protocolbean.InputHead;
 

@@ -8,7 +8,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.*;
 import org.apache.log4j.Logger;
-import org.httpqueue.inprocess.IInProcessor;
+import org.httpqueue.inprocess.intf.IInProcessor;
 import org.httpqueue.inprocess.InProcessor;
 import org.httpqueue.protocolbean.InputHead;
 import org.httpqueue.protocolbean.JsonMessage;
