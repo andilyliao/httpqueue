@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="daa7c68c-8bbd-469e-b698-28c88a300389" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/protocolbean/FanoutQUEUE.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/protocolbean/TopicQueue.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/util/CommonConst.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/MemoryOPS.java" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/MemoryOPS.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/httpqueue/protocolbean/DirectQueue.java" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/protocolbean/DirectQueue.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/intf/IMemoryOPS.java" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/intf/IMemoryOPS.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/httpqueue/util/CommonConst.java" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/util/CommonConst.java" />
     </list>
     <ignored path="httpqueue.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,7 +33,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/intf/IMemoryOPS.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="71" selection-start-line="7" selection-start-column="71" selection-end-line="7" selection-end-column="71" />
+              <caret line="9" column="62" selection-start-line="9" selection-start-column="62" selection-end-line="9" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -53,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MemoryOPS.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MemoryOPS.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/MemoryOPS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.78347576">
+              <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -65,21 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DirectQueue.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/protocolbean/DirectQueue.java">
+      <file leaf-file-name="CommonConst.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/util/CommonConst.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="74" selection-start-line="6" selection-start-column="4" selection-end-line="7" selection-end-column="74" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FanoutQUEUE.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/protocolbean/FanoutQUEUE.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18945868">
-              <caret line="7" column="74" selection-start-line="7" selection-start-column="74" selection-end-line="7" selection-end-column="74" />
+              <caret line="10" column="60" selection-start-line="10" selection-start-column="60" selection-end-line="10" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -197,15 +185,15 @@
         <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/server/HttpServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/util/redis/JedisListenter.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/util/ClustorProperties.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/intf/IMemoryOPS.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/util/redis/RedisShard.java" />
         <option value="$PROJECT_DIR$/src/main/resources/httpqueue.properties" />
         <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/util/PropertiesStr.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/protocolbean/DirectQueue.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/util/CommonConst.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/MemoryOPS.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/protocolbean/FanoutQUEUE.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/protocolbean/TopicQueue.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/intf/IMemoryOPS.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/util/CommonConst.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/MemoryOPS.java" />
       </list>
     </option>
   </component>
@@ -365,6 +353,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="httpqueue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="httpqueue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="httpqueue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1114,7 +1132,7 @@
       <workItem from="1459387055021" duration="3370000" />
       <workItem from="1459420024011" duration="6444000" />
       <workItem from="1459477023602" duration="15012000" />
-      <workItem from="1459561958784" duration="9580000" />
+      <workItem from="1459561958784" duration="10046000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1459477229789</created>
@@ -1200,11 +1218,17 @@
       <option name="project" value="LOCAL" />
       <updated>1459570081479</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="add">
+      <created>1459571718242</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1459571718242</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41108000" />
+    <option name="totallyTimeSpent" value="41574000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="1056" extended-state="6" />
@@ -1455,6 +1479,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.027065527">
           <caret line="2" column="29" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1595,14 +1620,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/intf/IMemoryOPS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="71" selection-start-line="7" selection-start-column="71" selection-end-line="7" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/httpqueue.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18945868">
@@ -1653,24 +1670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/util/CommonConst.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21652421">
-          <caret line="8" column="57" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/MemoryOPS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/protocolbean/DirectQueue.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1700,6 +1699,32 @@
         <state vertical-scroll-proportion="0.18945868">
           <caret line="7" column="74" selection-start-line="7" selection-start-column="74" selection-end-line="7" selection-end-column="74" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/intf/IMemoryOPS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="62" selection-start-line="9" selection-start-column="62" selection-end-line="9" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/util/CommonConst.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="60" selection-start-line="10" selection-start-column="60" selection-end-line="10" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/MemoryOPS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.78347576">
+          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
