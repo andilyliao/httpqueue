@@ -12,5 +12,6 @@ public interface IReadMemory {
     public MessageBody outputDirect(String queName,int offset,int seq)throws Exception;//返回消息内容
     public MessageBody outputFanout(String clientID, String queName, int offset, int seq)throws Exception;//返回消息内容
     public MessageBody outputTopic(String clientID,String queName,int offset,int seq)throws Exception;//返回消息内容
+    public int getQueMode(String queName)throws Exception;
 
 }

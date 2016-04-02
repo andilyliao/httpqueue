@@ -7,5 +7,5 @@ import org.httpqueue.protocolbean.OutputHead;
  * Created by andilyliao on 16-3-31.
  */
 public interface IOutProcessor {
-    public MessageBody process(String queueName, OutputHead outputHead) throws Exception;
+    public MessageBody process(String clientID,String queueName, OutputHead outputHead) throws Exception;
 }

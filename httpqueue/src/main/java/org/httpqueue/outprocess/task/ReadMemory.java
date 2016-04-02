@@ -127,4 +127,17 @@ public class ReadMemory implements IReadMemory {
         }
         return new MessageBody(reoffset,body);
     }
+
+    @Override
+    public int getQueMode(String queName) throws Exception {
+        ShardedJedis jedis=RedisShard.getJedisObject();
+        try{
+            return Integer.parseInt(jedis.hget(queName, CommonConst.TYPE));
+        }catch(Exception e){
+            log.error("system error:",e);
+        }finally {
+            RedisShard.returnJedisObject(jedis);
+        }
+        throw new Exception("system error:");
+    }
 }

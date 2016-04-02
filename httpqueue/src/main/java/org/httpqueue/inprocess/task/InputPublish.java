@@ -11,21 +11,7 @@ public class InputPublish implements IInputPublish {
 
     @Override
     public void inputMessageWithDisk(String queName, String body,  int seq) throws Exception {
-        IMemoryOPS iMemoryOPS=new MemoryOPS();
-        int quemode=iMemoryOPS.getQueMode(queName);
-        switch (quemode){
-            case Mode.MODE_DIRECT:
-                iMemoryOPS.inputDirectMessage(queName,body,seq);
-                break;
-            case Mode.MODE_FANOUT:
-                iMemoryOPS.inputFanoutMessage(queName,body,seq);
-                break;
-            case Mode.MODE_TOPIC:
-                iMemoryOPS.inputTopicMessage(queName,body,seq);
-                break;
-            default:
-                throw new Exception("Que: "+queName+" doesn't have mode param!");
-        }
+        inputMessageWithoutDisk(queName,body,seq);
         //TODO
     }
 

@@ -12,6 +12,8 @@ public class OutputHead {
     private int o;
     //事务中数据序号
     private int s;
+    //客户端ID
+    private String id;
 
     public int getTy() {
         return ty;
@@ -43,5 +45,13 @@ public class OutputHead {
 
     public void setS(int s) {
         this.s = s;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

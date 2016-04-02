@@ -32,7 +32,7 @@ public class HttpServerOutboundHandler extends ChannelInboundHandlerAdapter {
         MessageBody body=null;
         String queueName ="testQueue";
         try {
-            //curl -post http://localhost:8845/queue -d '{"head":{"ty":1,"h":0,"o":100,"s":10}}'
+            //curl -post http://localhost:8845/queue -d '{"head":{"id":"uuid","ty":1,"h":0,"o":100,"s":10}}'
             if (msg instanceof HttpRequest) {
                 request = (HttpRequest) msg;
                 String uri = request.uri();
@@ -53,9 +53,10 @@ public class HttpServerOutboundHandler extends ChannelInboundHandlerAdapter {
                 int hashdisk = h.getH();
                 int offset=h.getO();
                 int seq = h.getS();
-                log.debug("Type is "+type+ " hashdisk is: " + hashdisk + " offset is: "+offset+" seq is: " + seq);
+                String clientID=h.getId();
+                log.debug("Id is "+clientID+" type is "+type+ " hashdisk is: " + hashdisk + " offset is: "+offset+" seq is: " + seq);
                 IOutProcessor outProcessor=new OutProcessor();
-                body=outProcessor.process(queueName,h);
+                body=outProcessor.process(clientID,queueName,h);
                 String bodystr=JSON.toJSONString(body);
                 res.setBody(bodystr);
             }

@@ -14,7 +14,7 @@ import org.httpqueue.protocolbean.OutputHead;
  */
 public class OutProcessor implements IOutProcessor {
     @Override
-    public MessageBody process(String queueName, OutputHead outputHead) throws Exception {
+    public MessageBody process(String clientID,String queueName, OutputHead outputHead) throws Exception {
         int type=outputHead.getTy();
         int hashdisk=outputHead.getH();
         MessageBody body=new MessageBody();
@@ -27,10 +27,10 @@ public class OutProcessor implements IOutProcessor {
                         iOutputRegist.registDirect(queueName);
                         break;
                     case Mode.MODE_FANOUT:
-                        iOutputRegist.registFanout(queueName);
+                        iOutputRegist.registFanout(clientID,queueName);
                         break;
                     case Mode.MODE_TOPIC:
-                        iOutputRegist.registTopic(queueName);
+                        iOutputRegist.registTopic(clientID,queueName);
                         break;
                     default:
                         throw new Exception("This queue doesn't has right mode value,please check db");
@@ -42,10 +42,10 @@ public class OutProcessor implements IOutProcessor {
                 IOutputConsume iOutputConsume=new OutputConsume();
                 switch (hashdisk){
                     case Mode.HASHDISK_WITHDISK:
-                        body=iOutputConsume.consumeMessageWithDisk(queueName,offset,seq);
+                        body=iOutputConsume.consumeMessageWithDisk(clientID,queueName,offset,seq);
                         break;
                     case Mode.HASHDISK_WITHOUTDISK:
-                        body=iOutputConsume.consumeMessageWithoutDisk(queueName,offset,seq);
+                        body=iOutputConsume.consumeMessageWithoutDisk(clientID,queueName,offset,seq);
                         break;
                     default:
                         throw new Exception("Header doesn't has hashdisk param");
