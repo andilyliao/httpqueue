@@ -9,6 +9,7 @@ import org.httpqueue.protocolbean.MessageBody;
 public class OutputConsume implements IOutputConsume {
     @Override
     public MessageBody consumeMessageWithDisk(String queName, int offset, int seq) throws Exception {
+        //TODO
         return new MessageBody();
     }
 

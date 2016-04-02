@@ -9,12 +9,12 @@ public class InputPublish implements IInputPublish {
 
     @Override
     public void inputMessageWithDisk(String queName, String body,  int seq) throws Exception {
-
+        //TODO
     }
 
     @Override
     public void inputMessageWithDisk(String queName, String body) throws Exception {
-
+        //TODO
     }
 
     @Override
@@ -24,14 +24,6 @@ public class InputPublish implements IInputPublish {
 
     @Override
     public void inputMessageWithoutDisk(String queName, String body) throws Exception {
-
-    }
-
-    /**
-     * 用户发布消息后，通知消费者开始轮循
-     * @throws Exception
-     */
-    private void pubNotify() throws Exception{
 
     }
 }

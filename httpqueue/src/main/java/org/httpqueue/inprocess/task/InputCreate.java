@@ -14,7 +14,7 @@ public class InputCreate implements IInputCreate {
 
     @Override
     public void createDirectWithDisk(String queueName,int ttl) throws Exception {
-
+        //TODO
     }
 
     @Override
@@ -29,6 +29,6 @@ public class InputCreate implements IInputCreate {
 
     @Override
     public void createFanoutWithDisk(String queueName,int ttl) throws Exception {
-
+        //TODO
     }
 }
