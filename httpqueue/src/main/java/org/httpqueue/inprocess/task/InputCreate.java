@@ -8,12 +8,12 @@ import org.httpqueue.inprocess.task.intf.IInputCreate;
 public class InputCreate implements IInputCreate {
 
     @Override
-    public void createDirectWithoutDisk(String queueName) throws Exception {
+    public void createDirectWithoutDisk(String queueName,int ttl) throws Exception {
 
     }
 
     @Override
-    public void createDirectWithDisk(String queueName) throws Exception {
+    public void createDirectWithDisk(String queueName,int ttl) throws Exception {
 
     }
 
@@ -23,12 +23,12 @@ public class InputCreate implements IInputCreate {
     }
 
     @Override
-    public void createFanoutWithoutDisk(String queueName) throws Exception {
+    public void createFanoutWithoutDisk(String queueName,int ttl) throws Exception {
 
     }
 
     @Override
-    public void createFanoutWithDisk(String queueName) throws Exception {
+    public void createFanoutWithDisk(String queueName,int ttl) throws Exception {
 
     }
 }

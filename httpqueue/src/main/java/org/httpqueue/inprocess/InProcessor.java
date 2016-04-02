@@ -22,14 +22,15 @@ public class InProcessor implements IInProcessor {
             case Mode.INPUTTYPE_CREATEQUEUE:
                 IInputCreate inputCreate=new InputCreate();
                 int mode=inputHead.getM();
+                int ttl=inputHead.getT();
                 switch (mode){
                     case Mode.MODE_DIRECT:
                         switch (hashdisk){
                             case Mode.HASHDISK_WITHDISK:
-                                inputCreate.createDirectWithDisk(queueName);
+                                inputCreate.createDirectWithDisk(queueName,ttl);
                                 break;
                             case Mode.HASHDISK_WITHOUTDISK:
-                                inputCreate.createDirectWithoutDisk(queueName);
+                                inputCreate.createDirectWithoutDisk(queueName,ttl);
                                 break;
                             default:
                                 throw new Exception("Header doesn't has hashdisk param");
@@ -38,10 +39,10 @@ public class InProcessor implements IInProcessor {
                     case Mode.MODE_FANOUT:
                         switch (hashdisk){
                             case Mode.HASHDISK_WITHDISK:
-                                inputCreate.createFanoutWithDisk(queueName);
+                                inputCreate.createFanoutWithDisk(queueName,ttl);
                                 break;
                             case Mode.HASHDISK_WITHOUTDISK:
-                                inputCreate.createFanoutWithoutDisk(queueName);
+                                inputCreate.createFanoutWithoutDisk(queueName,ttl);
                                 break;
                             default:
                                 throw new Exception("Header doesn't has hashdisk param");
@@ -57,16 +58,15 @@ public class InProcessor implements IInProcessor {
             case Mode.INPUTTYPE_PUBLISH:
                 IInputPublish inputPublish=new InputPublish();
                 int hastransaction=inputHead.getTr();
-                int ttl=inputHead.getT();
                 int seq=inputHead.getS();
                 switch (hashdisk){
                     case Mode.HASHDISK_WITHDISK:
                         switch (hastransaction){
                             case Mode.HASTRANSACTION_NOTRANSACTION:
-                                inputPublish.inputMessageWithDisk(queueName,body,ttl);
+                                inputPublish.inputMessageWithDisk(queueName,body);
                                 break;
                             case Mode.HASTRANSACTION_TRANSACTION:
-                                inputPublish.inputMessageWithDisk(queueName,body,ttl,seq);
+                                inputPublish.inputMessageWithDisk(queueName,body,seq);
                                 break;
                             default:
                                 throw new Exception("Header doesn't has hastransaction param");
@@ -75,10 +75,10 @@ public class InProcessor implements IInProcessor {
                     case Mode.HASHDISK_WITHOUTDISK:
                         switch (hastransaction){
                             case Mode.HASTRANSACTION_NOTRANSACTION:
-                                inputPublish.inputMessageWithoutDisk(queueName,body,ttl);
+                                inputPublish.inputMessageWithoutDisk(queueName,body);
                                 break;
                             case Mode.HASTRANSACTION_TRANSACTION:
-                                inputPublish.inputMessageWithoutDisk(queueName,body,ttl,seq);
+                                inputPublish.inputMessageWithoutDisk(queueName,body,seq);
                                 break;
                             default:
                                 throw new Exception("Header doesn't has hastransaction param");

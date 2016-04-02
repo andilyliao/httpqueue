@@ -8,22 +8,22 @@ import org.httpqueue.inprocess.task.intf.IInputPublish;
 public class InputPublish implements IInputPublish {
 
     @Override
-    public void inputMessageWithDisk(String queName, String body, int ttl,  int seq) throws Exception {
+    public void inputMessageWithDisk(String queName, String body,  int seq) throws Exception {
 
     }
 
     @Override
-    public void inputMessageWithDisk(String queName, String body, int ttl) throws Exception {
+    public void inputMessageWithDisk(String queName, String body) throws Exception {
 
     }
 
     @Override
-    public void inputMessageWithoutDisk(String queName, String body, int ttl,  int seq) throws Exception {
+    public void inputMessageWithoutDisk(String queName, String body,  int seq) throws Exception {
 
     }
 
     @Override
-    public void inputMessageWithoutDisk(String queName, String body, int ttl) throws Exception {
+    public void inputMessageWithoutDisk(String queName, String body) throws Exception {
 
     }
 
