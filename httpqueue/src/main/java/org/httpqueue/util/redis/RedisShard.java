@@ -48,8 +48,17 @@ public class RedisShard {
             hashmod++;
         }
     }
+    public static Jedis getJedis(int hashmod){
+        return redispools.get(hashmod).getResource();
+    }
+
+    public static Jedis getJedis(JedisPool jedispool){
+        return jedispool.getResource();
+    }
+    public static Map<Integer,JedisPool> getAllJedisPool(){
+        return redispools;
+    }
     public static JedisPool getJedisPool(int hashmod){
         return redispools.get(hashmod);
     }
-
 }
