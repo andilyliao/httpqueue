@@ -33,3 +33,5 @@ offset格式：
 3.3、消费者注册topic队列，需要建立自己的offset，并返回pubset
 offset格式：
      String类型   key：queueName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID
+
+4、销毁队列，后续需要继续做
