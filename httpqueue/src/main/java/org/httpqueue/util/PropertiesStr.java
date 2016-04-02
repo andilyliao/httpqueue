@@ -15,6 +15,8 @@ public class PropertiesStr {
     public static int outBound;
     //redis链接
     public static HashMap<String,Integer> redisclustor;
+    //topic消息过期时间
+    public static int topicttl=10;
     /**
      * redis池
      */
@@ -37,6 +39,7 @@ public class PropertiesStr {
         PropertiesStr.maxIdle=Integer.parseInt(prop.getProperty("maxIdle"));
         PropertiesStr.maxWaitMillis=Integer.parseInt(prop.getProperty("maxWaitMillis"));
         PropertiesStr.redisTimeout=Integer.parseInt(prop.getProperty("redisTimeout"));
+        PropertiesStr.topicttl=Integer.parseInt(prop.getProperty("topicttl"));
 
 
     }

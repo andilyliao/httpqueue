@@ -10,4 +10,14 @@ public class CommonConst {
     //queue模式字符串字面量
     public static final String TYPE="TYPE";//Mode中queue模式作为值
 
+    /**
+     * 通过pubset或者offset以及事务seq，获取当前记录位置
+     * @param puboffset
+     * @param seq
+     * @return
+     */
+    public static long puboffsetAndSeq(long puboffset,int seq){
+        return puboffset*100000+seq;
+    }
+
 }
