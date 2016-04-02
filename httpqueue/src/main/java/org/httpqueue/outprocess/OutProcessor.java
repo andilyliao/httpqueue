@@ -5,6 +5,7 @@ import org.httpqueue.outprocess.task.OutputConsume;
 import org.httpqueue.outprocess.task.OutputRegist;
 import org.httpqueue.outprocess.task.intf.IOutputConsume;
 import org.httpqueue.outprocess.task.intf.IOutputRegist;
+import org.httpqueue.protocolbean.MessageBody;
 import org.httpqueue.protocolbean.Mode;
 import org.httpqueue.protocolbean.OutputHead;
 
@@ -13,10 +14,10 @@ import org.httpqueue.protocolbean.OutputHead;
  */
 public class OutProcessor implements IOutProcessor {
     @Override
-    public String process(String queueName, OutputHead outputHead) throws Exception {
+    public MessageBody process(String queueName, OutputHead outputHead) throws Exception {
         int type=outputHead.getTy();
         int hashdisk=outputHead.getH();
-        String body="";
+        MessageBody body=new MessageBody();
         switch(type){
             case Mode.OUTPUTTYPE_REGIST:
                 IOutputRegist iOutputRegist=new OutputRegist();

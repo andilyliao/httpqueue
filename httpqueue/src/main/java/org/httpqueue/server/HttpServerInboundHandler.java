@@ -51,7 +51,7 @@ public class HttpServerInboundHandler extends ChannelInboundHandlerAdapter {
                 String head = jm.getHead();
                 String body = jm.getBody();
                 log.debug("InputHead message is: " + head);
-                log.debug("Body message is: " + body);
+                log.debug("MessageBody message is: " + body);
                 InputHead h = JSON.parseObject(head, InputHead.class);
                 int type=h.getTy();
                 int mode = h.getM();

@@ -2,6 +2,7 @@ package org.httpqueue.outprocess;
 
 import org.httpqueue.outprocess.intf.IReadMemory;
 import org.httpqueue.protocolbean.DirectQueue;
+import org.httpqueue.protocolbean.MessageBody;
 import org.httpqueue.protocolbean.Mode;
 import org.httpqueue.util.CommonConst;
 import org.httpqueue.util.redis.RedisShard;
@@ -37,18 +38,59 @@ public class ReadMemory implements IReadMemory {
     }
 
     @Override
-    public String outputDirect(String queName, int offset, int seq) throws Exception {
-
-        return null;
+    public MessageBody outputDirect(String queName, int offset, int seq) throws Exception {
+        ShardedJedis jedis=RedisShard.getJedisObject();
+        if(!jedis.exists(queName)){
+            RedisShard.returnJedisObject(jedis);
+            throw new Exception("This queue isn't exsit,please check! queueName is: "+queName);
+        }
+        int type=Integer.parseInt(jedis.hget(queName, CommonConst.TYPE));
+        if(type!=Mode.MODE_DIRECT){
+            RedisShard.returnJedisObject(jedis);
+            throw new Exception("This queue isn't a direct queue,please check! queueName is: "+queName);
+        }
+        String key=queName+CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
+        String body=jedis.get(key);
+        long reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET);
+        RedisShard.returnJedisObject(jedis);
+        return new MessageBody(reoffset,body);
     }
 
     @Override
-    public String outputFanout(String clientID, String queName, int offset, int seq) throws Exception {
-        return null;
+    public MessageBody outputFanout(String clientID, String queName, int offset, int seq) throws Exception {
+        ShardedJedis jedis=RedisShard.getJedisObject();
+        if(!jedis.exists(queName)){
+            RedisShard.returnJedisObject(jedis);
+            throw new Exception("This queue isn't exsit,please check! queueName is: "+queName);
+        }
+        int type=Integer.parseInt(jedis.hget(queName, CommonConst.TYPE));
+        if(type!=Mode.MODE_FANOUT){
+            RedisShard.returnJedisObject(jedis);
+            throw new Exception("This queue isn't a direct queue,please check! queueName is: "+queName);
+        }
+        String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
+        String body=jedis.get(key);
+        long reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
+        RedisShard.returnJedisObject(jedis);
+        return new MessageBody(reoffset,body);
     }
 
     @Override
-    public String outputTopic(String clientID, String queName, int offset, int seq) throws Exception {
-        return null;
+    public MessageBody outputTopic(String clientID, String queName, int offset, int seq) throws Exception {
+        ShardedJedis jedis=RedisShard.getJedisObject();
+        if(!jedis.exists(queName)){
+            RedisShard.returnJedisObject(jedis);
+            throw new Exception("This queue isn't exsit,please check! queueName is: "+queName);
+        }
+        int type=Integer.parseInt(jedis.hget(queName, CommonConst.TYPE));
+        if(type!=Mode.MODE_TOPIC){
+            RedisShard.returnJedisObject(jedis);
+            throw new Exception("This queue isn't a direct queue,please check! queueName is: "+queName);
+        }
+        String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
+        String body=jedis.get(key);
+        long reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
+        RedisShard.returnJedisObject(jedis);
+        return new MessageBody(reoffset,body);
     }
 }

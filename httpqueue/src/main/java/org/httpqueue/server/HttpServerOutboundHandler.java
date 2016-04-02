@@ -11,10 +11,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.httpqueue.outprocess.OutProcessor;
 import org.httpqueue.outprocess.intf.IOutProcessor;
-import org.httpqueue.protocolbean.JsonMessage;
-import org.httpqueue.protocolbean.Mode;
-import org.httpqueue.protocolbean.OutputHead;
-import org.httpqueue.protocolbean.Result;
+import org.httpqueue.protocolbean.*;
 
 import static io.netty.handler.codec.http.HttpHeaderNames.*;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
@@ -32,7 +29,7 @@ public class HttpServerOutboundHandler extends ChannelInboundHandlerAdapter {
         Result res=new Result();
         res.setCode(Mode.RESCODE_OK);
         res.setStatus(Mode.RESSTATUS_OK);
-        String body="";
+        MessageBody body=null;
         String queueName ="testQueue";
         try {
             //curl -post http://localhost:8845/queue -d '{"head":{"ty":1,"h":0,"o":100,"s":10}}'
@@ -59,7 +56,8 @@ public class HttpServerOutboundHandler extends ChannelInboundHandlerAdapter {
                 log.debug("Type is "+type+ " hashdisk is: " + hashdisk + " offset is: "+offset+" seq is: " + seq);
                 IOutProcessor outProcessor=new OutProcessor();
                 body=outProcessor.process(queueName,h);
-                res.setBody(body);
+                String bodystr=JSON.toJSONString(body);
+                res.setBody(bodystr);
             }
         }catch (Exception e){
             res.setCode(Mode.RESCODE_SYSTEMERROR);
