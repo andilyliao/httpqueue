@@ -24,6 +24,7 @@ public class RedisShard {
         jedisPoolConfig.setTestOnBorrow(true);
         return jedisPoolConfig;
     }
+    //分布式
     public static void initRedisShard() {
         List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>();
         for (String host: redisclustor.keySet()) {
@@ -31,21 +32,27 @@ public class RedisShard {
         }
         shardedredispool = new ShardedJedisPool(jedisPoolConfig(), shards);
     }
+    public static void distoryRedisShard(){
+        shardedredispool.destroy();
+    }
     public static ShardedJedis getJedisObject(){
         return shardedredispool.getResource();
     }
     public static void returnJedisObject(ShardedJedis jedis){
-        shardedredispool.returnResource(jedis);
+        shardedredispool.returnResourceObject(jedis);
     }
-    public static void distoryRedisShard(){
-        shardedredispool.destroy();
-    }
+    //单机
     public static void initJedisPool(){
         redispools=new HashMap<Integer,JedisPool>();
         int hashmod=0;
         for (String host: redisclustor.keySet()) {
             redispools.put(hashmod,new JedisPool(jedisPoolConfig(),host, redisclustor.get("host")));
             hashmod++;
+        }
+    }
+    public static void distoryRedisPools(){
+        for (Integer i: redispools.keySet()) {
+            redispools.get(i).destroy();
         }
     }
     public static Jedis getJedis(int hashmod){
