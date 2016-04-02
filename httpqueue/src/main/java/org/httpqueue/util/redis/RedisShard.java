@@ -1,6 +1,5 @@
 package org.httpqueue.util.redis;
 
-import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.httpqueue.util.PropertiesStr;
 import redis.clients.jedis.*;
 

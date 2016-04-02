@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="daa7c68c-8bbd-469e-b698-28c88a300389" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/MemoryOPS.java" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/MemoryOPS.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/httpqueue/util/redis/RedisShard.java" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/util/redis/RedisShard.java" />
     </list>
     <ignored path="httpqueue.iws" />
@@ -53,14 +52,14 @@
       <file leaf-file-name="RedisShard.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/util/redis/RedisShard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.75641024">
-              <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.054131053">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1518#1519#0" expanded="true" />
-                <element signature="e#1560#1561#0" expanded="true" />
-                <element signature="e#1922#1923#0" expanded="true" />
-                <element signature="e#1968#1969#0" expanded="true" />
+                <element signature="e#1456#1457#0" expanded="true" />
+                <element signature="e#1498#1499#0" expanded="true" />
+                <element signature="e#1860#1861#0" expanded="true" />
+                <element signature="e#1906#1907#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1111,7 +1110,7 @@
       <workItem from="1459387055021" duration="3370000" />
       <workItem from="1459420024011" duration="6444000" />
       <workItem from="1459477023602" duration="15012000" />
-      <workItem from="1459561958784" duration="5777000" />
+      <workItem from="1459561958784" duration="5818000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1459477229789</created>
@@ -1173,11 +1172,17 @@
       <option name="project" value="LOCAL" />
       <updated>1459567403859</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="add">
+      <created>1459567915298</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1459567915298</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37305000" />
+    <option name="totallyTimeSpent" value="37346000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="1056" extended-state="6" />
@@ -1648,14 +1653,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/util/redis/RedisShard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75641024">
-          <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.054131053">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1518#1519#0" expanded="true" />
-            <element signature="e#1560#1561#0" expanded="true" />
-            <element signature="e#1922#1923#0" expanded="true" />
-            <element signature="e#1968#1969#0" expanded="true" />
+            <element signature="e#1456#1457#0" expanded="true" />
+            <element signature="e#1498#1499#0" expanded="true" />
+            <element signature="e#1860#1861#0" expanded="true" />
+            <element signature="e#1906#1907#0" expanded="true" />
           </folding>
         </state>
       </provider>
