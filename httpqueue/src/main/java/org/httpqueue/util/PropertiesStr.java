@@ -13,6 +13,10 @@ public class PropertiesStr {
     public static int inBound;
     //消费者链接的地址
     public static int outBound;
+    //运维管理链接的地址
+    public static int manager;
+    //通知消息链接的地址
+    public static int notify;
     //redis链接
     public static HashMap<String,Integer> redisclustor;
     //topic消息过期时间
@@ -30,6 +34,8 @@ public class PropertiesStr {
         prop.load(in);
         PropertiesStr.inBound=Integer.parseInt(prop.getProperty("InBound"));
         PropertiesStr.outBound=Integer.parseInt(prop.getProperty("OutBound"));
+        PropertiesStr.manager=Integer.parseInt(prop.getProperty("Manager"));
+        PropertiesStr.notify=Integer.parseInt(prop.getProperty("Notify"));
         String[] redishostsandports=prop.getProperty("redishost").split(",");
         for(int i=0;i<redishostsandports.length;i++){
             String[] onehostport=redishostsandports[i].split(":");
