@@ -35,4 +35,20 @@ public class ReadMemory implements IReadMemory {
         RedisShard.returnJedisObject(jedis);
         return Integer.parseInt(pubset);
     }
+
+    @Override
+    public String outputDirect(String queName, int offset, int seq) throws Exception {
+
+        return null;
+    }
+
+    @Override
+    public String outputFanout(String clientID, String queName, int offset, int seq) throws Exception {
+        return null;
+    }
+
+    @Override
+    public String outputTopic(String clientID, String queName, int offset, int seq) throws Exception {
+        return null;
+    }
 }

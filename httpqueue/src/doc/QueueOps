@@ -4,25 +4,27 @@ offset：消费消息计数器
 
 1、每个消息队列都需要有建立和注册过程，由生产者建立，由消费者注册使用
 
-2.1、direct队列建立的时候，需要建立元数据以及pubset和offset
+2.1、direct队列建立的时候，需要建立元数据以及pubset和offset，并且建立用来判断消费者是否取数据的变量
 元数据格式：
     hash类型  key:queueName
     field一共有3个：CommonConst.TYPE、 DirectQueue.HASDISK、DirectQueue.TTL
 pubset格式：String类型  key：queueName+ CommonConst.splitor+CommonConst.PUBSET
 offset格式：String类型  key：queueName+ CommonConst.splitor+CommonConst.OFFSET
+消费者是否取数据的变量: String类型  key：queueName+ CommonConst.splitor+CommonConst.RECIVE
 
-2.2、fanout队列建立的时候，需要建立元数据以及pubset,fanout建立队列的时候没有offset，消费者注册的时候自行建立自己的offset
+2.2、fanout队列建立的时候，需要建立元数据以及pubset,fanout建立队列的时候没有offset，消费者注册的时候自行建立自己的offset，并且建立用来判断消费者是否取数据的变量
 元数据格式：
     hash类型  key:queueName
     field一共有3个：CommonConst.TYPE、 DirectQueue.HASDISK、DirectQueue.TTL
 pubset格式：String类型  key：queueName+ CommonConst.splitor+CommonConst.PUBSET
+消费者是否取数据的变量: String类型  key：queueName+ CommonConst.splitor+CommonConst.RECIVE
 
-2.3、topic队列建立的时候，需要建立元数据以及pubset,fanout建立队列的时候没有offset，消费者注册的时候自行建立自己的offset
+2.3、topic队列建立的时候，需要建立元数据以及pubset,fanout建立队列的时候没有offset，消费者注册的时候自行建立自己的offset，并且建立用来判断消费者是否取数据的变量
 元数据格式：
     hash类型  key:queueName
     field仅有一个：CommonConst.TYPE
 pubset格式：String类型  key：queueName+ CommonConst.splitor+CommonConst.PUBSET
-
+消费者是否取数据的变量: String类型  key：queueName+ CommonConst.splitor+CommonConst.RECIVE
 
 3.1、消费者注册direct队列，没有什么作为，后面加入监控部分
 
@@ -41,3 +43,8 @@ offset格式：
 5.2、生产者发布消息，消息格式为：
     String类型   key：queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(pubset,seq)
     并且要设置ttl，topic的ttl由系统默认配置，其他模式的队列由建立队列的时候设定
+
+5.3、生产者生产消息后，需要判断消费者是否还在取数据，如果还在取数据不管，如果有任何一个消费者不再了不再取数据需要通知客户端过来取数据，通知方式是广播方式
+通知队列的队列名格式：
+
+6.1、消费者消费消息，持续轮循消费，当消费者通过自己的配置次数满足n次没有获得消息了，就设置“消费者是否取数据的变量”为不接收消息，待下一个通知到来继续消费

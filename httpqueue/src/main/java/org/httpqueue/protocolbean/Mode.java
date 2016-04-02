@@ -28,4 +28,7 @@ public class Mode {
     //返回错误码 0：无错误 1：存在系统错误
     public final static int RESCODE_OK=0;
     public final static int RESCODE_SYSTEMERROR=1;
+    //消费者是否正在获取数据状态 0：都在获取数据  1：已经有消费者不再获取数据
+    public final static int RECIVE_YES=0;
+    public final static int RECIVE_NO=1;
 }

@@ -24,6 +24,7 @@ public class MemoryOPS implements IMemoryOPS {
         jedis.hset(queueName, DirectQueue.TTL,ttl+"");
         jedis.set(queueName+ CommonConst.splitor+CommonConst.PUBSET,"0");
         jedis.set(queueName+ CommonConst.splitor+CommonConst.OFFSET,"0");
+        jedis.set(queueName+ CommonConst.splitor+CommonConst.RECIVE,Mode.RECIVE_YES+"");
         RedisShard.returnJedisObject(jedis);
     }
 
@@ -38,8 +39,8 @@ public class MemoryOPS implements IMemoryOPS {
         jedis.hset(queueName, DirectQueue.HASDISK,hasdisk+"");
         jedis.hset(queueName, DirectQueue.TTL,ttl+"");
         jedis.set(queueName+ CommonConst.splitor+CommonConst.PUBSET,"0");
+        jedis.set(queueName+ CommonConst.splitor+CommonConst.RECIVE,Mode.RECIVE_YES+"");
         RedisShard.returnJedisObject(jedis);
-
     }
 
     @Override
@@ -51,6 +52,7 @@ public class MemoryOPS implements IMemoryOPS {
         }
         jedis.hset(queueName, CommonConst.TYPE, Mode.MODE_TOPIC+"");
         jedis.set(queueName+ CommonConst.splitor+CommonConst.PUBSET,"0");
+        jedis.set(queueName+ CommonConst.splitor+CommonConst.RECIVE,Mode.RECIVE_YES+"");
         RedisShard.returnJedisObject(jedis);
     }
 
