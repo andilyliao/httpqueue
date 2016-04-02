@@ -6,6 +6,7 @@ import org.httpqueue.protocolbean.Mode;
 import org.httpqueue.util.CommonConst;
 import org.httpqueue.util.PropertiesStr;
 import org.httpqueue.util.redis.RedisShard;
+import redis.clients.jedis.Jedis;
 import redis.clients.jedis.ShardedJedis;
 
 /**
@@ -73,7 +74,15 @@ public class MemoryOPS implements IMemoryOPS {
         String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(pubset,seq);
         jedis.set(key,body);
         jedis.expire(key,ttl);
+        int recive=Integer.parseInt(jedis.get(queName+ CommonConst.splitor+CommonConst.RECIVE));
         RedisShard.returnJedisObject(jedis);
+        if(recive==Mode.RECIVE_NO) {
+            int hashmod = queName.hashCode() % PropertiesStr.redisclustor.size();
+            Jedis onejedis = RedisShard.getJedis(hashmod);
+            onejedis.publish(CommonConst.RECIVE+CommonConst.splitor+queName,CommonConst.NOTIFY);
+            RedisShard.returnJedisObject(onejedis, hashmod);
+        }
+
     }
 
     @Override
@@ -93,7 +102,14 @@ public class MemoryOPS implements IMemoryOPS {
         String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(pubset,seq);
         jedis.set(key,body);
         jedis.expire(key,ttl);
+        int recive=Integer.parseInt(jedis.get(queName+ CommonConst.splitor+CommonConst.RECIVE));
         RedisShard.returnJedisObject(jedis);
+        if(recive==Mode.RECIVE_NO) {
+            int hashmod = queName.hashCode() % PropertiesStr.redisclustor.size();
+            Jedis onejedis = RedisShard.getJedis(hashmod);
+            onejedis.publish(CommonConst.RECIVE+CommonConst.splitor+queName,CommonConst.NOTIFY);
+            RedisShard.returnJedisObject(onejedis, hashmod);
+        }
     }
 
     @Override
@@ -112,8 +128,13 @@ public class MemoryOPS implements IMemoryOPS {
         String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(pubset,seq);
         jedis.set(key,body);
         jedis.expire(key, PropertiesStr.topicttl);
+        int recive=Integer.parseInt(jedis.get(queName+ CommonConst.splitor+CommonConst.RECIVE));
         RedisShard.returnJedisObject(jedis);
+        if(recive==Mode.RECIVE_NO) {
+            int hashmod = queName.hashCode() % PropertiesStr.redisclustor.size();
+            Jedis onejedis = RedisShard.getJedis(hashmod);
+            onejedis.publish(CommonConst.RECIVE+CommonConst.splitor+queName,CommonConst.NOTIFY);
+            RedisShard.returnJedisObject(onejedis, hashmod);
+        }
     }
-
-
 }

@@ -68,4 +68,10 @@ public class RedisShard {
     public static JedisPool getJedisPool(int hashmod){
         return redispools.get(hashmod);
     }
+    public static void returnJedisObject(Jedis jedis,int hashmod){
+        redispools.get(hashmod).returnResourceObject(jedis);
+    }
+    public static void returnJedisObject(Jedis jedis,JedisPool jedispool){
+        jedispool.returnResourceObject(jedis);
+    }
 }

@@ -8,6 +8,7 @@ public class CommonConst {
     public static final String PUBSET="PUBSET";//pubset前缀
     public static final String OFFSET="OFFSET";//offset前缀
     public static final String RECIVE="RECIVE";//消费者是否还在持续获取数据
+    public static final String NOTIFY="HI";//用作通知的字符串
     //queue模式字符串字面量
     public static final String TYPE="TYPE";//Mode中queue模式作为值
 
