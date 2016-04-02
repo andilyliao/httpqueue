@@ -1,0 +1,31 @@
+1、每个消息队列都需要有建立和注册过程，由生产者建立，由消费者注册使用
+
+2.1、direct队列建立的时候，需要建立元数据以及pubset和offset
+元数据格式：
+    hash类型  key:queueName
+    field一共有3个：CommonConst.TYPE、 DirectQueue.HASDISK、DirectQueue.TTL
+pubset格式：String类型  key：queueName+ CommonConst.splitor+CommonConst.PUBSET
+offset格式：String类型  key：queueName+ CommonConst.splitor+CommonConst.OFFSET
+
+2.2、fanout队列建立的时候，需要建立元数据以及pubset,fanout建立队列的时候没有offset，消费者注册的时候自行建立自己的offset
+元数据格式：
+    hash类型  key:queueName
+    field一共有3个：CommonConst.TYPE、 DirectQueue.HASDISK、DirectQueue.TTL
+pubset格式：String类型  key：queueName+ CommonConst.splitor+CommonConst.PUBSET
+
+2.3、topic队列建立的时候，需要建立元数据以及pubset,fanout建立队列的时候没有offset，消费者注册的时候自行建立自己的offset
+元数据格式：
+    hash类型  key:queueName
+    field仅有一个：CommonConst.TYPE
+pubset格式：String类型  key：queueName+ CommonConst.splitor+CommonConst.PUBSET
+
+
+3.1、消费者注册direct队列，没有什么作为，后面加入监控部分
+
+3.2、消费者注册fanout队列，需要建立自己的offset,并返回pubset
+offset格式：
+     String类型   key：queueName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID
+
+3.3、消费者注册topic队列，需要建立自己的offset，并返回pubset
+offset格式：
+     String类型   key：queueName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID

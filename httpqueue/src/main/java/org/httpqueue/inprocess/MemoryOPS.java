@@ -106,7 +106,6 @@ public class MemoryOPS implements IMemoryOPS {
             RedisShard.returnJedisObject(jedis);
             throw new Exception("This queue isn't a topic queue,please check! queueName is: "+queName);
         }
-        int ttl=Integer.parseInt(jedis.hget(queName, DirectQueue.TTL));
         Long pubset=jedis.incr(queName+ CommonConst.splitor+CommonConst.PUBSET);
         String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(pubset,seq);
         jedis.set(key,body);
