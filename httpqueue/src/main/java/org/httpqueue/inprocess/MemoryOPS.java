@@ -1,5 +1,6 @@
 package org.httpqueue.inprocess;
 
+import org.apache.log4j.Logger;
 import org.httpqueue.inprocess.intf.IMemoryOPS;
 import org.httpqueue.protocolbean.DirectQueue;
 import org.httpqueue.protocolbean.Mode;
@@ -13,6 +14,7 @@ import redis.clients.jedis.ShardedJedis;
  * Created by andilyliao on 16-3-31.
  */
 public class MemoryOPS implements IMemoryOPS {
+    private static Logger log = Logger.getLogger(MemoryOPS.class);
     @Override
     public void createDirectQueue(String queueName, int ttl,int hasdisk) throws Exception {
         ShardedJedis jedis=RedisShard.getJedisObject();
@@ -20,13 +22,18 @@ public class MemoryOPS implements IMemoryOPS {
             RedisShard.returnJedisObject(jedis);
             throw new Exception("This queue is allready exsit,please check! queueName is: "+queueName);
         }
-        jedis.hset(queueName, CommonConst.TYPE, Mode.MODE_DIRECT+"");
-        jedis.hset(queueName, DirectQueue.HASDISK,hasdisk+"");
-        jedis.hset(queueName, DirectQueue.TTL,ttl+"");
-        jedis.set(queueName+ CommonConst.splitor+CommonConst.PUBSET,"0");
-        jedis.set(queueName+ CommonConst.splitor+CommonConst.OFFSET,"0");
-        jedis.set(queueName+ CommonConst.splitor+CommonConst.RECIVE,Mode.RECIVE_YES+"");
-        RedisShard.returnJedisObject(jedis);
+        try {
+            jedis.hset(queueName, CommonConst.TYPE, Mode.MODE_DIRECT+"");
+            jedis.hset(queueName, DirectQueue.HASDISK,hasdisk+"");
+            jedis.hset(queueName, DirectQueue.TTL,ttl+"");
+            jedis.set(queueName+ CommonConst.splitor+CommonConst.PUBSET,"0");
+            jedis.set(queueName+ CommonConst.splitor+CommonConst.OFFSET,"0");
+            jedis.set(queueName+ CommonConst.splitor+CommonConst.RECIVE,Mode.RECIVE_YES+"");
+        }catch(Exception e){
+            log.error("system error:",e);
+        }finally {
+            RedisShard.returnJedisObject(jedis);
+        }
     }
 
     @Override
@@ -36,12 +43,17 @@ public class MemoryOPS implements IMemoryOPS {
             RedisShard.returnJedisObject(jedis);
             throw new Exception("This queue is allready exsit,please check! queueName is: "+queueName);
         }
-        jedis.hset(queueName, CommonConst.TYPE, Mode.MODE_FANOUT+"");
-        jedis.hset(queueName, DirectQueue.HASDISK,hasdisk+"");
-        jedis.hset(queueName, DirectQueue.TTL,ttl+"");
-        jedis.set(queueName+ CommonConst.splitor+CommonConst.PUBSET,"0");
-        jedis.set(queueName+ CommonConst.splitor+CommonConst.RECIVE,Mode.RECIVE_YES+"");
-        RedisShard.returnJedisObject(jedis);
+        try {
+            jedis.hset(queueName, CommonConst.TYPE, Mode.MODE_FANOUT + "");
+            jedis.hset(queueName, DirectQueue.HASDISK, hasdisk + "");
+            jedis.hset(queueName, DirectQueue.TTL, ttl + "");
+            jedis.set(queueName + CommonConst.splitor + CommonConst.PUBSET, "0");
+            jedis.set(queueName + CommonConst.splitor + CommonConst.RECIVE, Mode.RECIVE_YES + "");
+        }catch(Exception e){
+            log.error("system error:",e);
+        }finally {
+            RedisShard.returnJedisObject(jedis);
+        }
     }
 
     @Override
@@ -51,10 +63,15 @@ public class MemoryOPS implements IMemoryOPS {
             RedisShard.returnJedisObject(jedis);
             throw new Exception("This queue is allready exsit,please check! queueName is: "+queueName);
         }
-        jedis.hset(queueName, CommonConst.TYPE, Mode.MODE_TOPIC+"");
-        jedis.set(queueName+ CommonConst.splitor+CommonConst.PUBSET,"0");
-        jedis.set(queueName+ CommonConst.splitor+CommonConst.RECIVE,Mode.RECIVE_YES+"");
-        RedisShard.returnJedisObject(jedis);
+        try {
+            jedis.hset(queueName, CommonConst.TYPE, Mode.MODE_TOPIC+"");
+            jedis.set(queueName+ CommonConst.splitor+CommonConst.PUBSET,"0");
+            jedis.set(queueName+ CommonConst.splitor+CommonConst.RECIVE,Mode.RECIVE_YES+"");
+        }catch(Exception e){
+            log.error("system error:",e);
+        }finally {
+            RedisShard.returnJedisObject(jedis);
+        }
     }
 
     @Override
@@ -69,18 +86,30 @@ public class MemoryOPS implements IMemoryOPS {
             RedisShard.returnJedisObject(jedis);
             throw new Exception("This queue isn't a direct queue,please check! queueName is: "+queName);
         }
-        int ttl=Integer.parseInt(jedis.hget(queName, DirectQueue.TTL));
-        Long pubset=jedis.incr(queName+ CommonConst.splitor+CommonConst.PUBSET);
-        String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(pubset,seq);
-        jedis.set(key,body);
-        jedis.expire(key,ttl);
-        int recive=Integer.parseInt(jedis.get(queName+ CommonConst.splitor+CommonConst.RECIVE));
-        RedisShard.returnJedisObject(jedis);
+        int recive=Mode.RECIVE_NO;
+        try {
+            int ttl=Integer.parseInt(jedis.hget(queName, DirectQueue.TTL));
+            Long pubset=jedis.incr(queName+ CommonConst.splitor+CommonConst.PUBSET);
+            String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(pubset,seq);
+            jedis.set(key,body);
+            jedis.expire(key,ttl);
+            recive=Integer.parseInt(jedis.get(queName+ CommonConst.splitor+CommonConst.RECIVE));
+        }catch(Exception e){
+            log.error("system error:",e);
+        }finally {
+            RedisShard.returnJedisObject(jedis);
+        }
         if(recive==Mode.RECIVE_NO) {
             int hashmod = queName.hashCode() % PropertiesStr.redisclustor.size();
             Jedis onejedis = RedisShard.getJedis(hashmod);
+            try {
             onejedis.publish(CommonConst.RECIVE+CommonConst.splitor+queName,CommonConst.NOTIFY);
-            RedisShard.returnJedisObject(onejedis, hashmod);
+            }catch(Exception e){
+                log.error("system error:",e);
+            }finally {
+                RedisShard.returnJedisObject(onejedis, hashmod);
+            }
+
         }
 
     }
@@ -97,18 +126,29 @@ public class MemoryOPS implements IMemoryOPS {
             RedisShard.returnJedisObject(jedis);
             throw new Exception("This queue isn't a fanout queue,please check! queueName is: "+queName);
         }
-        int ttl=Integer.parseInt(jedis.hget(queName, DirectQueue.TTL));
-        Long pubset=jedis.incr(queName+ CommonConst.splitor+CommonConst.PUBSET);
-        String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(pubset,seq);
-        jedis.set(key,body);
-        jedis.expire(key,ttl);
-        int recive=Integer.parseInt(jedis.get(queName+ CommonConst.splitor+CommonConst.RECIVE));
-        RedisShard.returnJedisObject(jedis);
+        int recive=Mode.RECIVE_NO;
+        try {
+            int ttl=Integer.parseInt(jedis.hget(queName, DirectQueue.TTL));
+            Long pubset=jedis.incr(queName+ CommonConst.splitor+CommonConst.PUBSET);
+            String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(pubset,seq);
+            jedis.set(key,body);
+            jedis.expire(key,ttl);
+            recive=Integer.parseInt(jedis.get(queName+ CommonConst.splitor+CommonConst.RECIVE));
+        }catch(Exception e){
+            log.error("system error:",e);
+        }finally {
+            RedisShard.returnJedisObject(jedis);
+        }
         if(recive==Mode.RECIVE_NO) {
             int hashmod = queName.hashCode() % PropertiesStr.redisclustor.size();
             Jedis onejedis = RedisShard.getJedis(hashmod);
-            onejedis.publish(CommonConst.RECIVE+CommonConst.splitor+queName,CommonConst.NOTIFY);
-            RedisShard.returnJedisObject(onejedis, hashmod);
+            try {
+                onejedis.publish(CommonConst.RECIVE+CommonConst.splitor+queName,CommonConst.NOTIFY);
+            }catch(Exception e){
+                log.error("system error:",e);
+            }finally {
+                RedisShard.returnJedisObject(onejedis, hashmod);
+            }
         }
     }
 
@@ -124,17 +164,28 @@ public class MemoryOPS implements IMemoryOPS {
             RedisShard.returnJedisObject(jedis);
             throw new Exception("This queue isn't a topic queue,please check! queueName is: "+queName);
         }
-        Long pubset=jedis.incr(queName+ CommonConst.splitor+CommonConst.PUBSET);
-        String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(pubset,seq);
-        jedis.set(key,body);
-        jedis.expire(key, PropertiesStr.topicttl);
-        int recive=Integer.parseInt(jedis.get(queName+ CommonConst.splitor+CommonConst.RECIVE));
-        RedisShard.returnJedisObject(jedis);
+        int recive=Mode.RECIVE_NO;
+        try {
+            Long pubset=jedis.incr(queName+ CommonConst.splitor+CommonConst.PUBSET);
+            String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(pubset,seq);
+            jedis.set(key,body);
+            jedis.expire(key, PropertiesStr.topicttl);
+            recive=Integer.parseInt(jedis.get(queName+ CommonConst.splitor+CommonConst.RECIVE));
+        }catch(Exception e){
+            log.error("system error:",e);
+        }finally {
+            RedisShard.returnJedisObject(jedis);
+        }
         if(recive==Mode.RECIVE_NO) {
             int hashmod = queName.hashCode() % PropertiesStr.redisclustor.size();
             Jedis onejedis = RedisShard.getJedis(hashmod);
-            onejedis.publish(CommonConst.RECIVE+CommonConst.splitor+queName,CommonConst.NOTIFY);
-            RedisShard.returnJedisObject(onejedis, hashmod);
+            try {
+                onejedis.publish(CommonConst.RECIVE+CommonConst.splitor+queName,CommonConst.NOTIFY);
+            }catch(Exception e){
+                log.error("system error:",e);
+            }finally {
+                RedisShard.returnJedisObject(onejedis, hashmod);
+            }
         }
     }
 }
