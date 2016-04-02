@@ -35,3 +35,9 @@ offset格式：
      String类型   key：queueName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID
 
 4、销毁队列，后续需要继续做
+
+5.1、生产者发布消息，需要计算pubset以及seq的叠加位置:puboffset*100000+seq
+
+5.2、生产者发布消息，消息格式为：
+    String类型   key：queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(pubset,seq)
+    并且要设置ttl，topic的ttl由系统默认配置，其他模式的队列由建立队列的时候设定
