@@ -188,4 +188,17 @@ public class MemoryOPS implements IMemoryOPS {
             }
         }
     }
+
+    @Override
+    public int getQueMode(String queName) throws Exception {
+        ShardedJedis jedis=RedisShard.getJedisObject();
+        try{
+            return Integer.parseInt(jedis.hget(queName, CommonConst.TYPE));
+        }catch(Exception e){
+            log.error("system error:",e);
+        }finally {
+            RedisShard.returnJedisObject(jedis);
+        }
+        throw new Exception("system error:");
+    }
 }

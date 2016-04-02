@@ -11,4 +11,6 @@ public interface IMemoryOPS {
     public void inputDirectMessage(String queName,String body,int seq)throws Exception;
     public void inputFanoutMessage(String queName,String body,int seq)throws Exception;
     public void inputTopicMessage(String queName,String body,int seq)throws Exception;
+
+    public int getQueMode(String queName)throws Exception;
 }
