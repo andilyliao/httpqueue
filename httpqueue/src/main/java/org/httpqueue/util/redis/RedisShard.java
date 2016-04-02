@@ -15,8 +15,8 @@ import static org.httpqueue.util.PropertiesStr.redisclustor;
  * Created by andilyliao on 16-4-2.
  */
 public class RedisShard {
-    public static ShardedJedisPool shardedredispool=null;
-    public static Map<String,JedisPool> redispools=null;
+    private static ShardedJedisPool shardedredispool=null;
+    private static Map<Integer,JedisPool> redispools=null;
     public static JedisPoolConfig jedisPoolConfig(){
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         jedisPoolConfig.setMaxTotal(PropertiesStr.maxTotal);
@@ -24,6 +24,13 @@ public class RedisShard {
         jedisPoolConfig.setMaxWaitMillis(PropertiesStr.maxWaitMillis);
         jedisPoolConfig.setTestOnBorrow(true);
         return jedisPoolConfig;
+    }
+    public static void initRedisShard() {
+        List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>();
+        for (String host: redisclustor.keySet()) {
+            JedisShardInfo si = new JedisShardInfo(host, redisclustor.get("host"),host);
+        }
+        shardedredispool = new ShardedJedisPool(jedisPoolConfig(), shards);
     }
     public static ShardedJedis getJedisObject(){
         return shardedredispool.getResource();
@@ -35,16 +42,15 @@ public class RedisShard {
         shardedredispool.destroy();
     }
     public static void initJedisPool(){
-        redispools=new HashMap<String,JedisPool>();
+        redispools=new HashMap<Integer,JedisPool>();
+        int hashmod=0;
         for (String host: redisclustor.keySet()) {
-            redispools.put(host,new JedisPool(jedisPoolConfig(),host, redisclustor.get("host")));
+            redispools.put(hashmod,new JedisPool(jedisPoolConfig(),host, redisclustor.get("host")));
+            hashmod++;
         }
     }
-    public static void initRedisShard() {
-        List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>();
-        for (String host: redisclustor.keySet()) {
-            JedisShardInfo si = new JedisShardInfo(host, redisclustor.get("host"),host);
-        }
-        shardedredispool = new ShardedJedisPool(jedisPoolConfig(), shards);
+    public static JedisPool getJedisPool(int hashmod){
+        return redispools.get(hashmod);
     }
+
 }
