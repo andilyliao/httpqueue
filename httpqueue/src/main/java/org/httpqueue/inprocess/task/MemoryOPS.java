@@ -1,7 +1,7 @@
-package org.httpqueue.inprocess;
+package org.httpqueue.inprocess.task;
 
 import org.apache.log4j.Logger;
-import org.httpqueue.inprocess.intf.IMemoryOPS;
+import org.httpqueue.inprocess.task.intf.IMemoryOPS;
 import org.httpqueue.protocolbean.DirectQueue;
 import org.httpqueue.protocolbean.Mode;
 import org.httpqueue.util.CommonConst;

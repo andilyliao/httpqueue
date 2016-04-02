@@ -1,6 +1,6 @@
-package org.httpqueue.inprocess;
+package org.httpqueue.inprocess.task;
 
-import org.httpqueue.inprocess.intf.IDiskOPS;
+import org.httpqueue.inprocess.task.intf.IDiskOPS;
 
 /**
  * Created by andilyliao on 16-3-31.

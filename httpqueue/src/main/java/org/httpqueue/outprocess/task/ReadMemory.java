@@ -1,8 +1,7 @@
-package org.httpqueue.outprocess;
+package org.httpqueue.outprocess.task;
 
 import org.apache.log4j.Logger;
-import org.httpqueue.outprocess.intf.IReadMemory;
-import org.httpqueue.protocolbean.DirectQueue;
+import org.httpqueue.outprocess.task.intf.IReadMemory;
 import org.httpqueue.protocolbean.MessageBody;
 import org.httpqueue.protocolbean.Mode;
 import org.httpqueue.util.CommonConst;

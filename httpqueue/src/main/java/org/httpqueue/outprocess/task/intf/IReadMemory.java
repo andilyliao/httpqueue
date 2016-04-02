@@ -1,4 +1,4 @@
-package org.httpqueue.outprocess.intf;
+package org.httpqueue.outprocess.task.intf;
 
 import org.httpqueue.protocolbean.MessageBody;
 
