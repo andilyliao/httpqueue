@@ -12,10 +12,12 @@ public class MessageBody {
     public MessageBody(){
 
     }
-    public MessageBody(long putset,long offset,String body){
+    public MessageBody(long putset,long offset,String body,int seq,int totleseq){
         this.putset=putset;
         this.offset=offset;
         this.body=body;
+        this.seq=seq;
+        this.totleseq=totleseq;
 
     }
     public long getOffset() {

@@ -82,7 +82,7 @@ public class ReadMemory implements IReadMemory {
         }finally {
             RedisShard.returnJedisObject(jedis);
         }
-        return new MessageBody(putset,reoffset,body);
+        return new MessageBody(putset,reoffset,body,getseq,gettotleseq);
     }
 
     @Override
@@ -116,7 +116,7 @@ public class ReadMemory implements IReadMemory {
         }finally {
             RedisShard.returnJedisObject(jedis);
         }
-        return new MessageBody(putset,reoffset,body);
+        return new MessageBody(putset,reoffset,body,getseq,gettotleseq);
     }
 
     @Override
@@ -150,7 +150,7 @@ public class ReadMemory implements IReadMemory {
         }finally {
             RedisShard.returnJedisObject(jedis);
         }
-        return new MessageBody(putset,reoffset,body);
+        return new MessageBody(putset,reoffset,body,getseq,gettotleseq);
     }
 
     @Override
