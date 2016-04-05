@@ -59,6 +59,7 @@ public class InProcessor implements IInProcessor {
                 IInputPublish inputPublish=new InputPublish();
                 int hastransaction=inputHead.getTr();
                 int seq=inputHead.getS();
+                int totleseq=inputHead.getTs();
                 switch (hashdisk){
                     case Mode.HASHDISK_WITHDISK:
                         switch (hastransaction){
@@ -66,7 +67,7 @@ public class InProcessor implements IInProcessor {
                                 inputPublish.inputMessageWithDisk(queueName,body);
                                 break;
                             case Mode.HASTRANSACTION_TRANSACTION:
-                                inputPublish.inputMessageWithDisk(queueName,body,seq);
+                                inputPublish.inputMessageWithDisk(queueName,body,seq,totleseq);
                                 break;
                             default:
                                 throw new Exception("Header doesn't has hastransaction param");
@@ -78,7 +79,7 @@ public class InProcessor implements IInProcessor {
                                 inputPublish.inputMessageWithoutDisk(queueName,body);
                                 break;
                             case Mode.HASTRANSACTION_TRANSACTION:
-                                inputPublish.inputMessageWithoutDisk(queueName,body,seq);
+                                inputPublish.inputMessageWithoutDisk(queueName,body,seq,totleseq);
                                 break;
                             default:
                                 throw new Exception("Header doesn't has hastransaction param");

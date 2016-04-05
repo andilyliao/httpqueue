@@ -17,6 +17,8 @@ public class InputHead  {
     private int tr;
     //事务中数据序号
     private int s;
+    //事务中数据的总数
+    private int ts;
 
 
     public int getM() {
@@ -65,5 +67,13 @@ public class InputHead  {
 
     public void setTy(int ty) {
         this.ty = ty;
+    }
+
+    public int getTs() {
+        return ts;
+    }
+
+    public void setTs(int ts) {
+        this.ts = ts;
     }
 }

@@ -33,7 +33,7 @@ public class HttpServerInboundHandler extends ChannelInboundHandlerAdapter {
         res.setStatus(Mode.RESSTATUS_OK);
         String queueName ="testQueue";
         try {
-            //curl -post http://localhost:8844/queue -d '{"head":{"ty":1,"m":0,"t":100,"d":0,"tr":0,"s":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
+            //curl -post http://localhost:8844/queue -d '{"head":{"ty":1,"m":0,"t":100,"d":0,"tr":0,"s":0,"ts":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
             //curl -post http://localhost:8844/queue -d '{"head":{"ty":1,"m":0,"t":100,"d":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
             if (msg instanceof HttpRequest) {
                 request = (HttpRequest) msg;
@@ -59,7 +59,8 @@ public class HttpServerInboundHandler extends ChannelInboundHandlerAdapter {
                 int hashdisk = h.getH();
                 int hastransaction = h.getTr();
                 int seq = h.getS();
-                log.debug("Type is "+type+"mode is: " + mode + " ttl is: " + ttl + " hashdisk is: " + hashdisk + " hastransaction is: "+hastransaction+" seq is: " + seq);
+                int totleseq=h.getTs();
+                log.debug("Type is "+type+"mode is: " + mode + " ttl is: " + ttl + " hashdisk is: " + hashdisk + " hastransaction is: "+hastransaction+" seq is: " + seq+" totleseq is: "+totleseq);
                 IInProcessor inProcessor=new InProcessor();
                 inProcessor.process(queueName,h,body);
             }

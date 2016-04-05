@@ -6,13 +6,17 @@ package org.httpqueue.protocolbean;
 public class MessageBody {
     private long offset=0;
     private long putset=0;
+    private int seq=0;
+    private int totleseq=0;
     private String body="";
     public MessageBody(){
 
     }
     public MessageBody(long putset,long offset,String body){
+        this.putset=putset;
         this.offset=offset;
         this.body=body;
+
     }
     public long getOffset() {
         return offset;
@@ -36,5 +40,21 @@ public class MessageBody {
 
     public void setPutset(long putset) {
         this.putset = putset;
+    }
+
+    public int getTotleseq() {
+        return totleseq;
+    }
+
+    public void setTotleseq(int totleseq) {
+        this.totleseq = totleseq;
+    }
+
+    public int getSeq() {
+        return seq;
+    }
+
+    public void setSeq(int seq) {
+        this.seq = seq;
     }
 }

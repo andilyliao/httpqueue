@@ -10,29 +10,29 @@ import org.httpqueue.protocolbean.Mode;
 public class InputPublish implements IInputPublish {
 
     @Override
-    public void inputMessageWithDisk(String queName, String body,  int seq) throws Exception {
-        inputMessageWithoutDisk(queName,body,seq);
+    public void inputMessageWithDisk(String queName, String body,  int seq,int totleseq) throws Exception {
+        inputMessageWithoutDisk(queName,body,seq,totleseq);
         //TODO
     }
 
     @Override
     public void inputMessageWithDisk(String queName, String body) throws Exception {
-        inputMessageWithDisk(queName,body,0);
+        inputMessageWithDisk(queName,body,0,0);
     }
 
     @Override
-    public void inputMessageWithoutDisk(String queName, String body,  int seq) throws Exception {
+    public void inputMessageWithoutDisk(String queName, String body,  int seq,int totleseq) throws Exception {
         IMemoryOPS iMemoryOPS=new MemoryOPS();
         int quemode=iMemoryOPS.getQueMode(queName);
         switch (quemode){
             case Mode.MODE_DIRECT:
-                iMemoryOPS.inputDirectMessage(queName,body,seq);
+                iMemoryOPS.inputDirectMessage(queName,body,seq,totleseq);
                 break;
             case Mode.MODE_FANOUT:
-                iMemoryOPS.inputFanoutMessage(queName,body,seq);
+                iMemoryOPS.inputFanoutMessage(queName,body,seq,totleseq);
                 break;
             case Mode.MODE_TOPIC:
-                iMemoryOPS.inputTopicMessage(queName,body,seq);
+                iMemoryOPS.inputTopicMessage(queName,body,seq,totleseq);
                 break;
             default:
                 throw new Exception("Que: "+queName+" doesn't have mode param!");
@@ -41,6 +41,6 @@ public class InputPublish implements IInputPublish {
 
     @Override
     public void inputMessageWithoutDisk(String queName, String body) throws Exception {
-        inputMessageWithoutDisk(queName,body,0);
+        inputMessageWithoutDisk(queName,body,0,0);
     }
 }

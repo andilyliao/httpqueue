@@ -65,9 +65,16 @@ public class ReadMemory implements IReadMemory {
         long reoffset=0;
         long putset=0;
         String body="";
+        String[] bodyseqandtotle;
+        int getseq=0;
+        int gettotleseq=0;
         try {
             String key=queName+CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
-            body=jedis.get(key);
+            bodyseqandtotle=jedis.get(key).split(CommonConst.splitor);
+            getseq=Integer.parseInt(bodyseqandtotle[1]);
+            gettotleseq=Integer.parseInt(bodyseqandtotle[2]);
+            body=bodyseqandtotle[0];
+
             reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET);
             putset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
         }catch(Exception e){
@@ -93,9 +100,15 @@ public class ReadMemory implements IReadMemory {
         long reoffset=0;
         long putset=0;
         String body="";
+        String[] bodyseqandtotle;
+        int getseq=0;
+        int gettotleseq=0;
         try {
             String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
-            body=jedis.get(key);
+            bodyseqandtotle=jedis.get(key).split(CommonConst.splitor);
+            getseq=Integer.parseInt(bodyseqandtotle[1]);
+            gettotleseq=Integer.parseInt(bodyseqandtotle[2]);
+            body=bodyseqandtotle[0];
             reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
             putset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
         }catch(Exception e){
@@ -121,9 +134,15 @@ public class ReadMemory implements IReadMemory {
         long reoffset=0;
         long putset=0;
         String body="";
+        String[] bodyseqandtotle;
+        int getseq=0;
+        int gettotleseq=0;
         try {
             String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
-            body=jedis.get(key);
+            bodyseqandtotle=jedis.get(key).split(CommonConst.splitor);
+            getseq=Integer.parseInt(bodyseqandtotle[1]);
+            gettotleseq=Integer.parseInt(bodyseqandtotle[2]);
+            body=bodyseqandtotle[0];
             reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
             putset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
         }catch(Exception e){

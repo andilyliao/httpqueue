@@ -75,7 +75,7 @@ public class MemoryOPS implements IMemoryOPS {
     }
 
     @Override
-    public void inputDirectMessage(String queName, String body,int seq) throws Exception {
+    public void inputDirectMessage(String queName, String body,int seq,int totleseq) throws Exception {
         ShardedJedis jedis=RedisShard.getJedisObject();
         if(!jedis.exists(queName)){
             RedisShard.returnJedisObject(jedis);
@@ -91,7 +91,7 @@ public class MemoryOPS implements IMemoryOPS {
             int ttl=Integer.parseInt(jedis.hget(queName, DirectQueue.TTL));
             Long pubset=jedis.incr(queName+ CommonConst.splitor+CommonConst.PUBSET);
             String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(pubset,seq);
-            jedis.set(key,body);
+            jedis.set(key,body+ CommonConst.splitor+seq+ CommonConst.splitor+totleseq);
             jedis.expire(key,ttl);
             recive=Integer.parseInt(jedis.get(queName+ CommonConst.splitor+CommonConst.RECIVE));
         }catch(Exception e){
@@ -115,7 +115,7 @@ public class MemoryOPS implements IMemoryOPS {
     }
 
     @Override
-    public void inputFanoutMessage(String queName, String body,int seq) throws Exception {
+    public void inputFanoutMessage(String queName, String body,int seq,int totleseq) throws Exception {
         ShardedJedis jedis=RedisShard.getJedisObject();
         if(!jedis.exists(queName)){
             RedisShard.returnJedisObject(jedis);
@@ -131,7 +131,7 @@ public class MemoryOPS implements IMemoryOPS {
             int ttl=Integer.parseInt(jedis.hget(queName, DirectQueue.TTL));
             Long pubset=jedis.incr(queName+ CommonConst.splitor+CommonConst.PUBSET);
             String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(pubset,seq);
-            jedis.set(key,body);
+            jedis.set(key,body+ CommonConst.splitor+seq+ CommonConst.splitor+totleseq);
             jedis.expire(key,ttl);
             recive=Integer.parseInt(jedis.get(queName+ CommonConst.splitor+CommonConst.RECIVE));
         }catch(Exception e){
@@ -153,7 +153,7 @@ public class MemoryOPS implements IMemoryOPS {
     }
 
     @Override
-    public void inputTopicMessage(String queName, String body,int seq) throws Exception {
+    public void inputTopicMessage(String queName, String body,int seq,int totleseq) throws Exception {
         ShardedJedis jedis=RedisShard.getJedisObject();
         if(!jedis.exists(queName)){
             RedisShard.returnJedisObject(jedis);
@@ -168,7 +168,7 @@ public class MemoryOPS implements IMemoryOPS {
         try {
             Long pubset=jedis.incr(queName+ CommonConst.splitor+CommonConst.PUBSET);
             String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(pubset,seq);
-            jedis.set(key,body);
+            jedis.set(key,body+ CommonConst.splitor+seq+ CommonConst.splitor+totleseq);
             jedis.expire(key, PropertiesStr.topicttl);
             recive=Integer.parseInt(jedis.get(queName+ CommonConst.splitor+CommonConst.RECIVE));
         }catch(Exception e){

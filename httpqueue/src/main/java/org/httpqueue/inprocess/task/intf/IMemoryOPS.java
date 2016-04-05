@@ -8,9 +8,9 @@ public interface IMemoryOPS {
     public void createDirectQueue(String queueName, int ttl,int hasdisk)throws Exception;
     public void createFanoutQueue(String queueName, int ttl,int hasdisk)throws Exception;
     public void createTopic(String queueName)throws Exception;
-    public void inputDirectMessage(String queName,String body,int seq)throws Exception;
-    public void inputFanoutMessage(String queName,String body,int seq)throws Exception;
-    public void inputTopicMessage(String queName,String body,int seq)throws Exception;
+    public void inputDirectMessage(String queName,String body,int seq,int totleseq)throws Exception;
+    public void inputFanoutMessage(String queName,String body,int seq,int totleseq)throws Exception;
+    public void inputTopicMessage(String queName,String body,int seq,int totleseq)throws Exception;
 
     public int getQueMode(String queName)throws Exception;
 }
