@@ -87,8 +87,8 @@ public class HttpServerOutboundHandler extends ChannelInboundHandlerAdapter {
             }
             ctx.write(response);
             ctx.flush();
-            log.debug("-------------------------------------------------------");
         }
+        log.debug("-------------------------------------------------------");
 
     }
 
