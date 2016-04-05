@@ -1,5 +1,7 @@
 package org.httpqueue.util;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -18,7 +20,7 @@ public class PropertiesStr {
     //通知消息链接的地址
     public static int notify;
     //redis链接
-    public static HashMap<String,Integer> redisclustor;
+    public static HashMap<String,Integer> redisclustor=new HashMap<String,Integer>();
     //topic消息过期时间
     public static int topicttl=10;
     /**
@@ -28,6 +30,7 @@ public class PropertiesStr {
     public static int maxIdle=10;
     public static int maxWaitMillis=10001;
     public static int redisTimeout=1000;
+    private static Logger log = Logger.getLogger(PropertiesStr.class);
     public void initProperties() throws IOException {
         Properties prop = new Properties();
         InputStream in = this.getClass().getResourceAsStream("/httpqueue.properties");
@@ -36,7 +39,9 @@ public class PropertiesStr {
         PropertiesStr.outBound=Integer.parseInt(prop.getProperty("OutBound"));
         PropertiesStr.manager=Integer.parseInt(prop.getProperty("Manager"));
         PropertiesStr.notify=Integer.parseInt(prop.getProperty("Notify"));
+
         String[] redishostsandports=prop.getProperty("redishost").split(",");
+        log.debug(redishostsandports.length);
         for(int i=0;i<redishostsandports.length;i++){
             String[] onehostport=redishostsandports[i].split(":");
             redisclustor.put(onehostport[0],Integer.parseInt(onehostport[1]));

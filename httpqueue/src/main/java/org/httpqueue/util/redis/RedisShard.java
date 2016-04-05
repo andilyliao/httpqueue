@@ -28,7 +28,7 @@ public class RedisShard {
     public static void initRedisShard() {
         List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>();
         for (String host: redisclustor.keySet()) {
-            JedisShardInfo si = new JedisShardInfo(host, redisclustor.get("host"),host);
+            JedisShardInfo si = new JedisShardInfo(host, redisclustor.get(host),host);
         }
         shardedredispool = new ShardedJedisPool(jedisPoolConfig(), shards);
     }
@@ -46,7 +46,7 @@ public class RedisShard {
         redispools=new HashMap<Integer,JedisPool>();
         int hashmod=0;
         for (String host: redisclustor.keySet()) {
-            redispools.put(hashmod,new JedisPool(jedisPoolConfig(),host, redisclustor.get("host")));
+            redispools.put(hashmod,new JedisPool(jedisPoolConfig(),host, redisclustor.get(host)));
             hashmod++;
         }
     }
