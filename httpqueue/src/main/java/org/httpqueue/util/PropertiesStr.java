@@ -44,7 +44,7 @@ public class PropertiesStr {
         log.debug(redishostsandports.length);
         for(int i=0;i<redishostsandports.length;i++){
             String[] onehostport=redishostsandports[i].split(":");
-            redisclustor.put(onehostport[0],Integer.parseInt(onehostport[1]));
+            redisclustor.put(redishostsandports[i],Integer.parseInt(onehostport[1]));
         }
         PropertiesStr.maxTotal=Integer.parseInt(prop.getProperty("maxTotal"));
         PropertiesStr.maxIdle=Integer.parseInt(prop.getProperty("maxIdle"));

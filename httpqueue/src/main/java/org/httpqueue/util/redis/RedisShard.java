@@ -1,5 +1,6 @@
 package org.httpqueue.util.redis;
 
+import org.apache.log4j.Logger;
 import org.httpqueue.util.PropertiesStr;
 import redis.clients.jedis.*;
 
@@ -14,6 +15,7 @@ import static org.httpqueue.util.PropertiesStr.redisclustor;
  * Created by andilyliao on 16-4-2.
  */
 public class RedisShard {
+    private static Logger log = Logger.getLogger(RedisShard.class);
     private static ShardedJedisPool shardedredispool=null;
     private static Map<Integer,JedisPool> redispools=null;
     public static JedisPoolConfig jedisPoolConfig(){
@@ -28,10 +30,14 @@ public class RedisShard {
     public static void initRedisShard() {
 
         List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>();
-        for (String host: redisclustor.keySet()) {
-            JedisShardInfo si = new JedisShardInfo(host, redisclustor.get(host),host);
+        log.debug("shard redis are:------------------------------{");
+        for (String hostandport: redisclustor.keySet()) {
+            log.debug(hostandport);
+            String[] onehostport=hostandport.split(":");
+            JedisShardInfo si = new JedisShardInfo(onehostport[0], redisclustor.get(hostandport),hostandport);
             shards.add(si);
         }
+        log.debug("}------------------------------");
         shardedredispool = new ShardedJedisPool(jedisPoolConfig(), shards);
     }
     public static void distoryRedisShard(){
@@ -47,10 +53,14 @@ public class RedisShard {
     public static void initJedisPool(){
         redispools=new HashMap<Integer,JedisPool>();
         int hashmod=0;
-        for (String host: redisclustor.keySet()) {
-            redispools.put(hashmod,new JedisPool(jedisPoolConfig(),host, redisclustor.get(host)));
+        log.debug("one redis are:------------------------------{");
+        for (String hostandport: redisclustor.keySet()) {
+            log.debug(hostandport);
+            String[] onehostport=hostandport.split(":");
+            redispools.put(hashmod,new JedisPool(jedisPoolConfig(),onehostport[0], redisclustor.get(hostandport)));
             hashmod++;
         }
+        log.debug("}------------------------------");
     }
     public static void distoryRedisPools(){
         for (Integer i: redispools.keySet()) {
