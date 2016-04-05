@@ -7,6 +7,7 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.*;
+import io.netty.handler.codec.http.multipart.HttpPostRequestDecoder;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.httpqueue.outprocess.OutProcessor;
@@ -22,6 +23,8 @@ public class HttpServerOutboundHandler extends ChannelInboundHandlerAdapter {
     private static Log log = LogFactory.getLog(HttpServerOutboundHandler.class);
 
     private HttpRequest request;
+
+    private String qnametest="debugtestque";
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg)
@@ -39,10 +42,12 @@ public class HttpServerOutboundHandler extends ChannelInboundHandlerAdapter {
             request = (HttpRequest) msg;
             String uri = request.uri();
             queueName = uri.substring(1, uri.length());
+            qnametest=queueName;
             log.debug("Queue Name is: " + queueName);
         }
         if (msg instanceof HttpContent) {
             try {
+                log.debug("qNametest is: "+qnametest);
                 HttpContent content = (HttpContent) msg;
                 ByteBuf buf = content.content();
                 String message = buf.toString(io.netty.util.CharsetUtil.UTF_8);
