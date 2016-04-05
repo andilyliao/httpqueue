@@ -8,16 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="daa7c68c-8bbd-469e-b698-28c88a300389" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/InProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/InProcessor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/task/InputPublish.java" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/task/InputPublish.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/task/MemoryOPS.java" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/task/MemoryOPS.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/task/intf/IInputPublish.java" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/task/intf/IInputPublish.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/task/intf/IMemoryOPS.java" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/task/intf/IMemoryOPS.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/httpqueue/outprocess/task/ReadMemory.java" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/outprocess/task/ReadMemory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/httpqueue/protocolbean/InputHead.java" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/protocolbean/InputHead.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/httpqueue/protocolbean/MessageBody.java" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/protocolbean/MessageBody.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/httpqueue/server/HttpServerInboundHandler.java" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/server/HttpServerInboundHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/httpqueue/util/CommonConst.java" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/util/CommonConst.java" />
     </list>
     <ignored path="httpqueue.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1373,7 +1363,7 @@
       <workItem from="1459420024011" duration="6444000" />
       <workItem from="1459477023602" duration="15012000" />
       <workItem from="1459561958784" duration="25799000" />
-      <workItem from="1459829791097" duration="2459000" />
+      <workItem from="1459829791097" duration="2467000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1459477229789</created>
@@ -1591,7 +1581,13 @@
       <option name="project" value="LOCAL" />
       <updated>1459831506573</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="add">
+      <created>1459832936443</created>
+      <option name="number" value="00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1459832936443</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1600,7 +1596,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59786000" />
+    <option name="totallyTimeSpent" value="59794000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="1056" extended-state="6" />
@@ -1670,6 +1666,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.31602374">
           <caret line="21" column="24" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1759,6 +1756,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5954416">
           <caret line="37" column="65" selection-start-line="37" selection-start-column="65" selection-end-line="37" selection-end-column="65" />
+          <folding />
         </state>
       </provider>
     </entry>
