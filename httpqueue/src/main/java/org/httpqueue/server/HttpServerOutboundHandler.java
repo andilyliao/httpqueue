@@ -7,7 +7,6 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.*;
-import io.netty.handler.codec.http.multipart.HttpPostRequestDecoder;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.httpqueue.outprocess.OutProcessor;

@@ -9,6 +9,7 @@
     curl http://localhost:8845/queue -d '{"head":{"qn":"mydirectqueue","id":"uuid","ty":1,"h":0,"o":1,"s":0}}'
 二、fanout模式
   1、生产者建立que
+
   2、生产者发消息
   3、消费者注册que
   4、消费者接收消息

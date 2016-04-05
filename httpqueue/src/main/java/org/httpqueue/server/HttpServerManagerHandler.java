@@ -9,11 +9,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.httpqueue.outprocess.OutProcessor;
-import org.httpqueue.outprocess.intf.IOutProcessor;
-import org.httpqueue.protocolbean.JsonMessage;
 import org.httpqueue.protocolbean.Mode;
-import org.httpqueue.protocolbean.OutputHead;
 import org.httpqueue.protocolbean.Result;
 
 import static io.netty.handler.codec.http.HttpHeaderNames.*;
