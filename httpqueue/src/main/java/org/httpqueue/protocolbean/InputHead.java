@@ -5,6 +5,8 @@ package org.httpqueue.protocolbean;
  */
 //{head:{m:0,t:100,d:0,tr:0,s:0}
 public class InputHead  {
+    //队列名
+    private String qn="testQueue";
     //任务类型
     private int ty;
     //消息方式
@@ -75,5 +77,13 @@ public class InputHead  {
 
     public void setTs(int ts) {
         this.ts = ts;
+    }
+
+    public String getQn() {
+        return qn;
+    }
+
+    public void setQn(String qn) {
+        this.qn = qn;
     }
 }

@@ -26,9 +26,11 @@ public class RedisShard {
     }
     //分布式
     public static void initRedisShard() {
+
         List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>();
         for (String host: redisclustor.keySet()) {
             JedisShardInfo si = new JedisShardInfo(host, redisclustor.get(host),host);
+            shards.add(si);
         }
         shardedredispool = new ShardedJedisPool(jedisPoolConfig(), shards);
     }

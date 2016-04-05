@@ -70,11 +70,12 @@ public class ReadMemory implements IReadMemory {
         int gettotleseq=0;
         try {
             String key=queName+CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
+            log.debug("key: "+key+" jedis: "+jedis);
             bodyseqandtotle=jedis.get(key).split(CommonConst.splitor);
             getseq=Integer.parseInt(bodyseqandtotle[1]);
             gettotleseq=Integer.parseInt(bodyseqandtotle[2]);
             body=bodyseqandtotle[0];
-
+            log.debug("body: "+body+" getseq: "+getseq+" gettotoleseq: "+gettotleseq);
             reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET);
             putset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
         }catch(Exception e){

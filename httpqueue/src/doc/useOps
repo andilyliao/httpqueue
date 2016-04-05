@@ -1,0 +1,19 @@
+一、direct模式
+  1、生产者建立que
+    curl http://localhost:8844/queue -d '{"head":{"qn":"mydirectqueue","ty":0,"m":0,"t":86400,"h":0,"tr":0,"s":0,"ts":0}}'
+  2、生产者发消息
+    curl http://localhost:8844/queue -d '{"head":{"qn":"mydirectqueue","ty":1,"m":0,"t":86400,"h":0,"tr":0,"s":0,"ts":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
+  3、消费者注册que
+    curl http://localhost:8845/queue -d '{"head":{"qn":"mydirectqueue","id":"uuid","ty":0,"h":0,"o":0,"s":0}}'
+  4、消费者接收消息
+    curl http://localhost:8845/queue -d '{"head":{"qn":"mydirectqueue","id":"uuid","ty":1,"h":0,"o":1,"s":0}}'
+二、fanout模式
+  1、生产者建立que
+  2、生产者发消息
+  3、消费者注册que
+  4、消费者接收消息
+三、topic模式
+  1、生产者建立que
+  2、生产者发消息
+  3、消费者注册que
+  4、消费者接收消息

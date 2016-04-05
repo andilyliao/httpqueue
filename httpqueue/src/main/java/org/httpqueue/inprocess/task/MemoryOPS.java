@@ -18,6 +18,8 @@ public class MemoryOPS implements IMemoryOPS {
     @Override
     public void createDirectQueue(String queueName, int ttl,int hasdisk) throws Exception {
         ShardedJedis jedis=RedisShard.getJedisObject();
+        log.debug("======createDirectQueue=======: "+queueName+" "+ttl+" "+hasdisk);
+        jedis.set("aaa","aaa");
         if(jedis.exists(queueName)){
             RedisShard.returnJedisObject(jedis);
             throw new Exception("This queue is allready exsit,please check! queueName is: "+queueName);
@@ -30,7 +32,7 @@ public class MemoryOPS implements IMemoryOPS {
             jedis.set(queueName+ CommonConst.splitor+CommonConst.OFFSET,"0");
             jedis.set(queueName+ CommonConst.splitor+CommonConst.RECIVE,Mode.RECIVE_YES+"");
         }catch(Exception e){
-            log.error("system error:",e);
+            log.error("system error:"+queueName+" "+ttl+" "+hasdisk,e);
         }finally {
             RedisShard.returnJedisObject(jedis);
         }

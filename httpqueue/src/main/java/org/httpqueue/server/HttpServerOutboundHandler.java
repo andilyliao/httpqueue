@@ -31,15 +31,18 @@ public class HttpServerOutboundHandler extends ChannelInboundHandlerAdapter {
         res.setStatus(Mode.RESSTATUS_OK);
         MessageBody body=null;
         String queueName ="testQueue";
-        try {
-            //curl -post http://localhost:8845/queue -d '{"head":{"id":"uuid","ty":1,"h":0,"o":100,"s":10}}'
-            if (msg instanceof HttpRequest) {
-                request = (HttpRequest) msg;
-                String uri = request.uri();
-                queueName = uri.substring(1, uri.length());
-                log.debug("Queue Name is: " + queueName);
-            }
-            if (msg instanceof HttpContent) {
+
+            //curl http://localhost:8845/queue -d '{"head":{"qn":"mydirectqueue","id":"uuid","ty":1,"h":0,"o":100,"s":10}}'
+            //注册que
+            //消费que
+        if (msg instanceof HttpRequest) {
+            request = (HttpRequest) msg;
+            String uri = request.uri();
+            queueName = uri.substring(1, uri.length());
+            log.debug("Queue Name is: " + queueName);
+        }
+        if (msg instanceof HttpContent) {
+            try {
                 HttpContent content = (HttpContent) msg;
                 ByteBuf buf = content.content();
                 String message = buf.toString(io.netty.util.CharsetUtil.UTF_8);
@@ -49,33 +52,38 @@ public class HttpServerOutboundHandler extends ChannelInboundHandlerAdapter {
                 String head = jm.getHead();
                 log.debug("InputHead message is: " + head);
                 OutputHead h = JSON.parseObject(head, OutputHead.class);
-                int type=h.getTy();
+                int type = h.getTy();
                 int hashdisk = h.getH();
-                int offset=h.getO();
+                int offset = h.getO();
                 int seq = h.getS();
-                String clientID=h.getId();
-                log.debug("Id is "+clientID+" type is "+type+ " hashdisk is: " + hashdisk + " offset is: "+offset+" seq is: " + seq);
-                IOutProcessor outProcessor=new OutProcessor();
-                body=outProcessor.process(clientID,queueName,h);
-                String bodystr=JSON.toJSONString(body);
+                String clientID = h.getId();
+                queueName = h.getQn();
+                log.debug("Id is " + clientID + " type is " + type + " hashdisk is: " + hashdisk + " offset is: " + offset + " seq is: " + seq);
+                IOutProcessor outProcessor = new OutProcessor();
+                body = outProcessor.process(clientID, queueName, h);
+                String bodystr = JSON.toJSONString(body);
+                log.debug("body: " + bodystr);
                 res.setBody(bodystr);
+            } catch (Exception e) {
+                res.setCode(Mode.RESCODE_SYSTEMERROR);
+                res.setStatus(Mode.RESSTATUS_ERROR);
+                log.error("system error:", e);
             }
-        }catch (Exception e){
-            res.setCode(Mode.RESCODE_SYSTEMERROR);
-            res.setStatus(Mode.RESSTATUS_ERROR);
-            log.error("system error:",e);
+            String result = JSON.toJSONString(res);
+            log.debug("result: " + result);
+            FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1,
+                        OK, Unpooled.wrappedBuffer(result.getBytes("UTF-8")));
+            log.debug("response: " + response.content().readableBytes());
+            response.headers().set(CONTENT_TYPE, "text/plain");
+            response.headers().setInt(CONTENT_LENGTH,
+                        response.content().readableBytes());
+            if (HttpHeaderUtil.isKeepAlive(request)) {
+                response.headers().set(CONNECTION, KEEP_ALIVE);
+            }
+            ctx.write(response);
+            ctx.flush();
+            log.debug("-------------------------------------------------------");
         }
-        String result=JSON.toJSONString(res);
-        FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1,
-                OK, Unpooled.wrappedBuffer(result.getBytes("UTF-8")));
-        response.headers().set(CONTENT_TYPE, "text/plain");
-        response.headers().setInt(CONTENT_LENGTH,
-                response.content().readableBytes());
-        if (HttpHeaderUtil.isKeepAlive(request)) {
-            response.headers().set(CONNECTION, KEEP_ALIVE);
-        }
-        ctx.write(response);
-        ctx.flush();
 
     }
 

@@ -32,16 +32,19 @@ public class HttpServerInboundHandler extends ChannelInboundHandlerAdapter {
         res.setCode(Mode.RESCODE_OK);
         res.setStatus(Mode.RESSTATUS_OK);
         String queueName ="testQueue";
-        try {
-            //curl -post http://localhost:8844/queue -d '{"head":{"ty":1,"m":0,"t":100,"d":0,"tr":0,"s":0,"ts":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
-            //curl -post http://localhost:8844/queue -d '{"head":{"ty":1,"m":0,"t":100,"d":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
-            if (msg instanceof HttpRequest) {
-                request = (HttpRequest) msg;
-                String uri = request.uri();
-                queueName = uri.substring(1, uri.length());
-                log.debug("Queue Name is: " + queueName);
-            }
-            if (msg instanceof HttpContent) {
+
+            //curl http://localhost:8844/queue -d '{"head":{"ty":1,"m":0,"t":100,"h":0,"tr":0,"s":0,"ts":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
+            //curl http://localhost:8844/queue -d '{"head":{"ty":1,"m":0,"t":100,"h":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
+            //建立que curl http://localhost:8844/queue -d '{"head":{"ty":1,"m":0,"t":100,"h":0,"tr":0,"s":0,"ts":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
+            //生产que curl http://localhost:8844/queue -d '{"head":{"ty":1,"m":0,"t":100,"h":0,"tr":0,"s":0,"ts":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
+        if (msg instanceof HttpRequest) {
+            request = (HttpRequest) msg;
+            String uri = request.uri();
+            queueName = uri.substring(1, uri.length());
+            log.debug("Queue Name is: " + queueName);
+        }
+        if (msg instanceof HttpContent) {
+            try {
                 HttpContent content = (HttpContent) msg;
                 ByteBuf buf = content.content();
                 String message = buf.toString(io.netty.util.CharsetUtil.UTF_8);
@@ -53,33 +56,37 @@ public class HttpServerInboundHandler extends ChannelInboundHandlerAdapter {
                 log.debug("InputHead message is: " + head);
                 log.debug("MessageBody message is: " + body);
                 InputHead h = JSON.parseObject(head, InputHead.class);
-                int type=h.getTy();
+                int type = h.getTy();
                 int mode = h.getM();
                 int ttl = h.getT();
                 int hashdisk = h.getH();
                 int hastransaction = h.getTr();
                 int seq = h.getS();
-                int totleseq=h.getTs();
-                log.debug("Type is "+type+"mode is: " + mode + " ttl is: " + ttl + " hashdisk is: " + hashdisk + " hastransaction is: "+hastransaction+" seq is: " + seq+" totleseq is: "+totleseq);
-                IInProcessor inProcessor=new InProcessor();
-                inProcessor.process(queueName,h,body);
+                int totleseq = h.getTs();
+                queueName = h.getQn();
+                log.debug("Type is " + type + "mode is: " + mode + " ttl is: " + ttl + " hashdisk is: " + hashdisk + " hastransaction is: " + hastransaction + " seq is: " + seq + " totleseq is: " + totleseq);
+                IInProcessor inProcessor = new InProcessor();
+                log.debug("queueName is: " + queueName + " head is: " + h + " body is: " + body);
+                inProcessor.process(queueName, h, body);
+            } catch (Exception e) {
+                res.setCode(Mode.RESCODE_SYSTEMERROR);
+                res.setStatus(Mode.RESSTATUS_ERROR);
+                log.error("system error:", e);
             }
-        }catch (Exception e){
-            res.setCode(Mode.RESCODE_SYSTEMERROR);
-            res.setStatus(Mode.RESSTATUS_ERROR);
-            log.error("system error:",e);
+            String result = JSON.toJSONString(res);
+            log.debug("result is: " + result);
+            FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1,
+                    OK, Unpooled.wrappedBuffer(result.getBytes("UTF-8")));
+            response.headers().set(CONTENT_TYPE, "text/plain");
+            response.headers().setInt(CONTENT_LENGTH,
+                    response.content().readableBytes());
+            if (HttpHeaderUtil.isKeepAlive(request)) {
+                response.headers().set(CONNECTION, KEEP_ALIVE);
+            }
+            ctx.write(response);
+            ctx.flush();
+            log.debug("--------------------------------------");
         }
-        String result=JSON.toJSONString(res);
-        FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1,
-                OK, Unpooled.wrappedBuffer(result.getBytes("UTF-8")));
-        response.headers().set(CONTENT_TYPE, "text/plain");
-        response.headers().setInt(CONTENT_LENGTH,
-                response.content().readableBytes());
-        if (HttpHeaderUtil.isKeepAlive(request)) {
-            response.headers().set(CONNECTION, KEEP_ALIVE);
-        }
-        ctx.write(response);
-        ctx.flush();
     }
 
     @Override

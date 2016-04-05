@@ -4,6 +4,8 @@ package org.httpqueue.protocolbean;
  * Created by andilyliao on 16-4-1.
  */
 public class OutputHead {
+    //队列名
+    private String qn="testQueue";
     //任务类型
     private int ty;
     //是否从持久化读取
@@ -53,5 +55,13 @@ public class OutputHead {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getQn() {
+        return qn;
+    }
+
+    public void setQn(String qn) {
+        this.qn = qn;
     }
 }
