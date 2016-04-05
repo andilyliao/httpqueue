@@ -63,17 +63,19 @@ public class ReadMemory implements IReadMemory {
             throw new Exception("This queue isn't a direct queue,please check! queueName is: "+queName);
         }
         long reoffset=0;
+        long putset=0;
         String body="";
         try {
             String key=queName+CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
             body=jedis.get(key);
             reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET);
+            putset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
         }catch(Exception e){
             log.error("system error:",e);
         }finally {
             RedisShard.returnJedisObject(jedis);
         }
-        return new MessageBody(reoffset,body);
+        return new MessageBody(putset,reoffset,body);
     }
 
     @Override
@@ -89,17 +91,19 @@ public class ReadMemory implements IReadMemory {
             throw new Exception("This queue isn't a direct queue,please check! queueName is: "+queName);
         }
         long reoffset=0;
+        long putset=0;
         String body="";
         try {
             String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
             body=jedis.get(key);
             reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
+            putset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
         }catch(Exception e){
             log.error("system error:",e);
         }finally {
             RedisShard.returnJedisObject(jedis);
         }
-        return new MessageBody(reoffset,body);
+        return new MessageBody(putset,reoffset,body);
     }
 
     @Override
@@ -115,17 +119,19 @@ public class ReadMemory implements IReadMemory {
             throw new Exception("This queue isn't a direct queue,please check! queueName is: "+queName);
         }
         long reoffset=0;
+        long putset=0;
         String body="";
         try {
             String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
             body=jedis.get(key);
             reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
+            putset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
         }catch(Exception e){
             log.error("system error:",e);
         }finally {
             RedisShard.returnJedisObject(jedis);
         }
-        return new MessageBody(reoffset,body);
+        return new MessageBody(putset,reoffset,body);
     }
 
     @Override

@@ -5,11 +5,12 @@ package org.httpqueue.protocolbean;
  */
 public class MessageBody {
     private long offset=0;
+    private long putset=0;
     private String body="";
     public MessageBody(){
 
     }
-    public MessageBody(long offset,String body){
+    public MessageBody(long putset,long offset,String body){
         this.offset=offset;
         this.body=body;
     }
@@ -27,5 +28,13 @@ public class MessageBody {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public long getPutset() {
+        return putset;
+    }
+
+    public void setPutset(long putset) {
+        this.putset = putset;
     }
 }
