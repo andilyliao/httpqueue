@@ -132,6 +132,10 @@ public class ReadMemory implements IReadMemory {
             RedisShard.returnJedisObject(jedis);
             throw new Exception("This queue isn't a direct queue,please check! queueName is: "+queName);
         }
+        if(!jedis.exists(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID)){
+            RedisShard.returnJedisObject(jedis);
+            throw new Exception("This client is not regist yet: "+clientID);
+        }
         long reoffset=0;
         long putset=0;
         String body="";
@@ -139,11 +143,14 @@ public class ReadMemory implements IReadMemory {
         int getseq=0;
         int gettotleseq=0;
         try {
+            //TODO 消费者消费的数据如果ttl过期了，就无法对自己的offset+1 这个是bug
             String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
+            log.debug("key is: "+key);
             bodyseqandtotle=jedis.get(key).split(CommonConst.splitor);
             getseq=Integer.parseInt(bodyseqandtotle[1]);
             gettotleseq=Integer.parseInt(bodyseqandtotle[2]);
             body=bodyseqandtotle[0];
+            log.debug(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
             reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
             putset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
         }catch(Exception e){

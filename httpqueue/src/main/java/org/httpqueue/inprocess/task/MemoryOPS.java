@@ -171,6 +171,7 @@ public class MemoryOPS implements IMemoryOPS {
             Long pubset=jedis.incr(queName+ CommonConst.splitor+CommonConst.PUBSET);
             String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(pubset,seq);
             jedis.set(key,body+ CommonConst.splitor+seq+ CommonConst.splitor+totleseq);
+            log.debug("topic ttl is: "+PropertiesStr.topicttl);
             jedis.expire(key, PropertiesStr.topicttl);
             recive=Integer.parseInt(jedis.get(queName+ CommonConst.splitor+CommonConst.RECIVE));
         }catch(Exception e){

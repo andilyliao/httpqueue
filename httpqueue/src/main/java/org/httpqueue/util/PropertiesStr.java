@@ -22,7 +22,7 @@ public class PropertiesStr {
     //redis链接
     public static HashMap<String,Integer> redisclustor=new HashMap<String,Integer>();
     //topic消息过期时间
-    public static int topicttl=10;
+    public static int topicttl=300;
     /**
      * redis池
      */
