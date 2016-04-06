@@ -1,4 +1,4 @@
-package org.client.publisher.util;
+package org.client.publisher.util.config;
 
 import org.apache.log4j.Logger;
 

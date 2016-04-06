@@ -1,4 +1,4 @@
-package org.client.publisher.util;
+package org.client.publisher.util.messageconfig;
 
 /**
  * Created by andilyliao on 16-4-6.

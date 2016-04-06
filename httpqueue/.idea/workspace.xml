@@ -7,9 +7,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="daa7c68c-8bbd-469e-b698-28c88a300389" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/MutilMessage.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/PersistQueuePublisher.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/TopicQueuePublisher.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/messageconfig/Message.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/MemoryDirectQueueConfig.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/MemoryFanoutQueueConfig.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/PersistDirectQueueConfig.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/PersistFanoutQueueConfig.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/TopicQueueConfig.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/QueueConfig.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/org/client/publisher/Publisher.java" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/MemoryQueuePublisher.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/Config.java" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/config/Config.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/Message.java" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/messageconfig/Message.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/MutilMessage.java" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/messageconfig/MutilMessage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/httpqueue/protocolbean/Mode.class" afterPath="$PROJECT_DIR$/target/classes/org/httpqueue/protocolbean/Mode.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/Message.java" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/Message.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/client/publisher/intf/IPublisher.java" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/intf/IPublisher.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/testpublish/PublishTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/testpublish/PublishTest.java" />
     </list>
     <ignored path="httpqueue.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,37 +51,47 @@
         <entry file="file://$PROJECT_DIR$/src/doc/useOps">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="139" />
+              <caret line="3" column="99" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="99" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Publisher.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/Publisher.java">
+      <file leaf-file-name="MemoryQueuePublisher.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/MemoryQueuePublisher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="25" column="101" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="101" />
+            <state vertical-scroll-proportion="0.8010118">
+              <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
               <folding>
-                <element signature="e#515#516#0" expanded="true" />
-                <element signature="e#549#550#0" expanded="true" />
+                <element signature="e#430#431#0" expanded="true" />
+                <element signature="e#464#465#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Message.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/Message.java">
+      <file leaf-file-name="TopicQueuePublisher.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/TopicQueuePublisher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.16020235">
-              <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PersistQueuePublisher.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/PersistQueuePublisher.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="MutilMessage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/MutilMessage.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/messageconfig/MutilMessage.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
@@ -80,52 +104,48 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/intf/IPublisher.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+              <caret line="10" column="61" selection-start-line="10" selection-start-column="61" selection-end-line="10" selection-end-column="61" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QueueConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/QueueConfig.java">
+      <file leaf-file-name="MemoryDirectQueueConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/MemoryDirectQueueConfig.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="publisher.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/publisher.properties">
+      <file leaf-file-name="TopicQueueConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/TopicQueueConfig.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="7" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="7" />
+              <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Config.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/Config.java">
+      <file leaf-file-name="PersistDirectQueueConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/PersistDirectQueueConfig.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PublishTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/org/testpublish/PublishTest.java">
+      <file leaf-file-name="PersistFanoutQueueConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/PersistFanoutQueueConfig.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -153,20 +173,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/outprocess/intf/IReadMemory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/outprocess/ReadMemory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/MemoryOPS.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/task/InputCreate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/outprocess/task/intf/IReadMemory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/outprocess/task/intf/IOutputConsume.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/outprocess/task/intf/IOutputRegist.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/outprocess/task/OutputRegist.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/outprocess/intf/IOutProcessor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/outprocess/OutProcessor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/outprocess/task/OutputConsume.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/consumer/Consumer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/publisher/Publisher.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/publisher/intf/IPublisher.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/intf/IConsumer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/manager/Manager.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/NotifyListenter.java" />
@@ -198,12 +204,26 @@
         <option value="$PROJECT_DIR$/src/main/resources/publisher.properties" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/util/Config.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/testpublish/PublishTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/util/QueueConfig.java" />
         <option value="$PROJECT_DIR$/src/doc/useOps" />
-        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/intf/IPublisher.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/Publisher.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/util/MutilMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/util/Message.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/util/MemoryQueueConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/util/MemoryDirectQueueConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/util/MemoryFanoutQueueConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/util/PersistDirectQueueConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/util/PersistFanoutQueueConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/util/TopicQueueConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/util/QueueConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/PersistDirectQueueConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/MemoryDirectQueueConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/MemoryFanoutQueueConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/PersistFanoutQueueConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/TopicQueueConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/intf/IPublisher.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/PersistQueuePublisher.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/MemoryQueuePublisher.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/TopicQueuePublisher.java" />
       </list>
     </option>
   </component>
@@ -726,6 +746,94 @@
               <option name="myItemId" value="util" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="queueconfig" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="httpqueue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="httpqueue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="publisher" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="messageconfig" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="httpqueue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="httpqueue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="publisher" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -916,15 +1024,8 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="org.testpub" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources" />
-      <recent name="$PROJECT_DIR$/src/main/java" />
-      <recent name="$PROJECT_DIR$/src/main/java/org/httpqueue/server" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.client.publisher" />
       <recent name="org.testconsume" />
       <recent name="org.httpqueue.server" />
     </key>
@@ -934,6 +1035,14 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/java" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/java" />
+      <recent name="$PROJECT_DIR$/src/main/java/org/httpqueue/server" />
     </key>
   </component>
   <component name="RunManager" selected="Application.HttpServer">
@@ -1484,13 +1593,7 @@
       <workItem from="1459477023602" duration="15012000" />
       <workItem from="1459561958784" duration="25799000" />
       <workItem from="1459829791097" duration="18277000" />
-      <workItem from="1459928037865" duration="5134000" />
-    </task>
-    <task id="LOCAL-00002" summary="test">
-      <created>1459477852902</created>
-      <option name="number" value="00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1459477852902</updated>
+      <workItem from="1459928037865" duration="6698000" />
     </task>
     <task id="LOCAL-00003" summary="add">
       <created>1459479354791</created>
@@ -1780,7 +1883,13 @@
       <option name="project" value="LOCAL" />
       <updated>1459939487516</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="add">
+      <created>1459939620144</created>
+      <option name="number" value="00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1459939620144</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1789,7 +1898,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80738000" />
+    <option name="totallyTimeSpent" value="82302000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="1056" extended-state="6" />
@@ -1874,48 +1983,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/task/DiskOPS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/outprocess/task/ReadDisk.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15447155">
-          <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/outprocess/task/intf/IReadMemory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43393147">
-          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/outprocess/intf/IOutProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="26" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/intf/IInProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21696573">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/task/intf/IInputCreate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30995107">
-          <caret line="10" column="79" selection-start-line="6" selection-start-column="4" selection-end-line="10" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/outprocess/task/intf/IOutputRegist.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18597063">
@@ -1985,6 +2052,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.32478634">
           <caret line="12" column="81" selection-start-line="12" selection-start-column="81" selection-end-line="12" selection-end-column="81" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1992,6 +2060,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.24358974">
           <caret line="9" column="87" selection-start-line="9" selection-start-column="87" selection-end-line="9" selection-end-column="87" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2007,6 +2076,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.2991453">
           <caret line="48" column="27" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2215,7 +2285,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/Config.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/config/Config.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
@@ -2225,18 +2295,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/intf/IPublisher.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/messageconfig/Message.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/QueueConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -2244,23 +2306,12 @@
     <entry file="file://$PROJECT_DIR$/src/doc/useOps">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="139" />
+          <caret line="3" column="99" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="99" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/Publisher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="101" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="101" />
-          <folding>
-            <element signature="e#515#516#0" expanded="true" />
-            <element signature="e#549#550#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/MutilMessage.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/messageconfig/MutilMessage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
@@ -2268,11 +2319,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/Message.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/TopicQueueConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/PersistDirectQueueConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/PersistFanoutQueueConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/MemoryFanoutQueueConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16020235">
-          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+          <caret line="5" column="36" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="36" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/MemoryDirectQueueConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/intf/IPublisher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="61" selection-start-line="10" selection-start-column="61" selection-end-line="10" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/PersistQueuePublisher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/TopicQueuePublisher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/MemoryQueuePublisher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8010118">
+          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+          <folding>
+            <element signature="e#430#431#0" expanded="true" />
+            <element signature="e#464#465#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
