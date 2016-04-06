@@ -10,9 +10,9 @@ import org.client.publisher.util.queueconfig.MemoryDirectQueueConfig;
  * Created by andilyliao on 16-4-2.
  */
 //
-public class PersistQueuePublisher implements IPublisher {
+public class MemoryFanoutQueuePublisher implements IPublisher {
     private Config config;
-    public PersistQueuePublisher(Config config){
+    public MemoryFanoutQueuePublisher(Config config){
         this.config=config;
     }
 
@@ -21,7 +21,9 @@ public class PersistQueuePublisher implements IPublisher {
         this.config=config;
     }
     //curl http://localhost:8844/queue -d '{"head":{"qn":"mydirectqueue","ty":0,"m":0,"t":86400,"h":0}}'
+    public void createFanoutQueue(MemoryDirectQueueConfig queueConfig)throws Exception{
 
+    }
 //curl http://localhost:8844/queue -d '{"head":{"qn":"mydirectqueue","ty":1,"h":0,"tr":0,"s":0,"ts":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
     @Override
     public void publishMessage(Message message) throws Exception {
