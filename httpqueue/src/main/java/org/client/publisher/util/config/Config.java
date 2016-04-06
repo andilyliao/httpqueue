@@ -12,7 +12,7 @@ import java.util.Properties;
  */
 public class Config extends HashMap<String,String>{
     private static Logger log = Logger.getLogger(Config.class);
-    public static final String HTTPQUEUE_SERVER="servers";
+    public static final String HTTPQUEUE_SERVER="urls";
     //服务地址
     public Config(){
 
