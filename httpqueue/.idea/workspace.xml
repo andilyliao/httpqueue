@@ -7,23 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="daa7c68c-8bbd-469e-b698-28c88a300389" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/PersistQueuePublisher.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/TopicQueuePublisher.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/messageconfig/Message.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/MemoryDirectQueueConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/MemoryFanoutQueueConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/PersistDirectQueueConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/PersistFanoutQueueConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/TopicQueueConfig.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/QueueConfig.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/org/client/publisher/Publisher.java" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/MemoryQueuePublisher.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/Config.java" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/config/Config.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/Message.java" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/messageconfig/Message.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/MutilMessage.java" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/util/messageconfig/MutilMessage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/httpqueue/protocolbean/Mode.class" afterPath="$PROJECT_DIR$/target/classes/org/httpqueue/protocolbean/Mode.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/client/publisher/intf/IPublisher.java" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/intf/IPublisher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/testpublish/PublishTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/testpublish/PublishTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/client/publisher/MemoryQueuePublisher.java" afterPath="$PROJECT_DIR$/src/main/java/org/client/publisher/MemoryQueuePublisher.java" />
     </list>
     <ignored path="httpqueue.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,11 +46,11 @@
       <file leaf-file-name="MemoryQueuePublisher.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/MemoryQueuePublisher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8010118">
-              <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.6408094">
+              <caret line="27" column="57" selection-start-line="27" selection-start-column="57" selection-end-line="27" selection-end-column="57" />
               <folding>
-                <element signature="e#430#431#0" expanded="true" />
-                <element signature="e#464#465#0" expanded="true" />
+                <element signature="e#500#501#0" expanded="true" />
+                <element signature="e#534#535#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -222,8 +208,8 @@
         <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/TopicQueueConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/intf/IPublisher.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/PersistQueuePublisher.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/MemoryQueuePublisher.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/TopicQueuePublisher.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/publisher/MemoryQueuePublisher.java" />
       </list>
     </option>
   </component>
@@ -1593,13 +1579,7 @@
       <workItem from="1459477023602" duration="15012000" />
       <workItem from="1459561958784" duration="25799000" />
       <workItem from="1459829791097" duration="18277000" />
-      <workItem from="1459928037865" duration="6698000" />
-    </task>
-    <task id="LOCAL-00003" summary="add">
-      <created>1459479354791</created>
-      <option name="number" value="00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1459479354791</updated>
+      <workItem from="1459928037865" duration="6735000" />
     </task>
     <task id="LOCAL-00004" summary="add">
       <created>1459481135177</created>
@@ -1889,7 +1869,13 @@
       <option name="project" value="LOCAL" />
       <updated>1459939620144</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="add">
+      <created>1459941186083</created>
+      <option name="number" value="00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1459941186083</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1898,7 +1884,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82302000" />
+    <option name="totallyTimeSpent" value="82339000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="1056" extended-state="6" />
@@ -2385,11 +2371,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/MemoryQueuePublisher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8010118">
-          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.6408094">
+          <caret line="27" column="57" selection-start-line="27" selection-start-column="57" selection-end-line="27" selection-end-column="57" />
           <folding>
-            <element signature="e#430#431#0" expanded="true" />
-            <element signature="e#464#465#0" expanded="true" />
+            <element signature="e#500#501#0" expanded="true" />
+            <element signature="e#534#535#0" expanded="true" />
           </folding>
         </state>
       </provider>

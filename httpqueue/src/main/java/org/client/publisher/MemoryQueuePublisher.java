@@ -5,6 +5,7 @@ import org.client.publisher.intf.IPublisher;
 import org.client.publisher.util.config.Config;
 import org.client.publisher.util.messageconfig.Message;
 import org.client.publisher.util.queueconfig.MemoryDirectQueueConfig;
+import org.client.publisher.util.queueconfig.MemoryFanoutQueueConfig;
 
 /**
  * Created by andilyliao on 16-4-2.
@@ -24,7 +25,7 @@ public class MemoryQueuePublisher implements IPublisher {
     public void createDirectQueue(MemoryDirectQueueConfig queueConfig)throws Exception{
 
     }
-    public void createFanoutQueue(MemoryDirectQueueConfig queueConfig)throws Exception{
+    public void createFanoutQueue(MemoryFanoutQueueConfig queueConfig)throws Exception{
 
     }
 //curl http://localhost:8844/queue -d '{"head":{"qn":"mydirectqueue","ty":1,"h":0,"tr":0,"s":0,"ts":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
