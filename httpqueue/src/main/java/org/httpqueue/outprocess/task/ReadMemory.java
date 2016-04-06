@@ -68,6 +68,7 @@ public class ReadMemory implements IReadMemory {
         String[] bodyseqandtotle;
         int getseq=0;
         int gettotleseq=0;
+        int ishasdata=Mode.DATA_YES;
         try {
             String key=queName+CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
             log.debug("key: "+key+" jedis: "+jedis);
@@ -79,11 +80,12 @@ public class ReadMemory implements IReadMemory {
             reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET);
             putset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
         }catch(Exception e){
+            ishasdata=Mode.DATA_NO;
             log.error("system error:",e);
         }finally {
             RedisShard.returnJedisObject(jedis);
         }
-        return new MessageBody(putset,reoffset,body,getseq,gettotleseq);
+        return new MessageBody(ishasdata,putset,reoffset,body,getseq,gettotleseq);
     }
 
     @Override
@@ -108,6 +110,7 @@ public class ReadMemory implements IReadMemory {
         String[] bodyseqandtotle;
         int getseq=0;
         int gettotleseq=0;
+        int ishasdata=Mode.DATA_YES;
         try {
             String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
             bodyseqandtotle=jedis.get(key).split(CommonConst.splitor);
@@ -117,11 +120,12 @@ public class ReadMemory implements IReadMemory {
             reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
             putset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
         }catch(Exception e){
+            ishasdata=Mode.DATA_NO;
             log.error("system error:",e);
         }finally {
             RedisShard.returnJedisObject(jedis);
         }
-        return new MessageBody(putset,reoffset,body,getseq,gettotleseq);
+        return new MessageBody(ishasdata,putset,reoffset,body,getseq,gettotleseq);
     }
 
     @Override
@@ -146,6 +150,7 @@ public class ReadMemory implements IReadMemory {
         String[] bodyseqandtotle;
         int getseq=0;
         int gettotleseq=0;
+        int ishasdata=Mode.DATA_YES;
         try {
             //TODO 消费者消费的数据如果ttl过期了，就无法对自己的offset+1 这个是bug
             String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
@@ -158,11 +163,12 @@ public class ReadMemory implements IReadMemory {
             reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
             putset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
         }catch(Exception e){
+            ishasdata=Mode.DATA_NO;
             log.error("system error:",e);
         }finally {
             RedisShard.returnJedisObject(jedis);
         }
-        return new MessageBody(putset,reoffset,body,getseq,gettotleseq);
+        return new MessageBody(ishasdata,putset,reoffset,body,getseq,gettotleseq);
     }
 
     @Override

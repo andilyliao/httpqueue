@@ -31,4 +31,7 @@ public class Mode {
     //消费者是否正在获取数据状态 0：都在获取数据  1：已经有消费者不再获取数据
     public final static int RECIVE_YES=0;
     public final static int RECIVE_NO=1;
+    //队列中是否有数据 0:没有  1：有并且获取到
+    public final static int DATA_NO=0;
+    public final static int DATA_YES=1;
 }

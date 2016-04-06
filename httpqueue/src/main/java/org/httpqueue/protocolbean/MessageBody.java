@@ -4,6 +4,8 @@ package org.httpqueue.protocolbean;
  * Created by andilyliao on 16-4-2.
  */
 public class MessageBody {
+    //队列中是否有数据
+    private int isHasDate=0;
     private long offset=0;
     private long putset=0;
     private int seq=0;
@@ -12,7 +14,8 @@ public class MessageBody {
     public MessageBody(){
 
     }
-    public MessageBody(long putset,long offset,String body,int seq,int totleseq){
+    public MessageBody(int isHasDate,long putset,long offset,String body,int seq,int totleseq){
+        this.isHasDate=isHasDate;
         this.putset=putset;
         this.offset=offset;
         this.body=body;
@@ -58,5 +61,13 @@ public class MessageBody {
 
     public void setSeq(int seq) {
         this.seq = seq;
+    }
+
+    public int getIsHasDate() {
+        return isHasDate;
+    }
+
+    public void setIsHasDate(int isHasDate) {
+        this.isHasDate = isHasDate;
     }
 }
