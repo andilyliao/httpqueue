@@ -21,7 +21,7 @@ import java.util.Map;
 /**
  * Created by andilyliao on 16-4-6.
  */
-abstract class Publish {
+public abstract class Publish {
     private static Logger log = Logger.getLogger(Publish.class);
 
     public String send(String url, Map<String,String> map, String encoding) throws Exception {
