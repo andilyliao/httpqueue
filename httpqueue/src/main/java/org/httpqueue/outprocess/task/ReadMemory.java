@@ -98,6 +98,10 @@ public class ReadMemory implements IReadMemory {
             RedisShard.returnJedisObject(jedis);
             throw new Exception("This queue isn't a direct queue,please check! queueName is: "+queName);
         }
+        if(!jedis.exists(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID)){
+            RedisShard.returnJedisObject(jedis);
+            throw new Exception("This client is not regist yet: "+clientID);
+        }
         long reoffset=0;
         long putset=0;
         String body="";
