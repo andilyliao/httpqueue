@@ -9,5 +9,5 @@ import org.httpqueue.protocolbean.OutputHead;
  * Created by andilyliao on 16-4-2.
  */
 public interface IConsumer {
-    public void initPublisher(Config config)throws Exception;
+    public void initConsumer(Config config)throws Exception;
 }

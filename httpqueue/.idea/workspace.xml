@@ -13,9 +13,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/client/consumer/PersistDirectQueueConsumer.java" afterPath="$PROJECT_DIR$/src/main/java/org/client/consumer/PersistDirectQueueConsumer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/client/consumer/PersistFanoutQueueConsumer.java" afterPath="$PROJECT_DIR$/src/main/java/org/client/consumer/PersistFanoutQueueConsumer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/client/consumer/TopicQueueConsumer.java" afterPath="$PROJECT_DIR$/src/main/java/org/client/consumer/TopicQueueConsumer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/client/consumer/util/config/Config.java" afterPath="$PROJECT_DIR$/src/main/java/org/client/consumer/util/config/Config.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/client/consumer/util/result/CommonRes.java" afterPath="$PROJECT_DIR$/src/main/java/org/client/consumer/util/result/CommonRes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/consumer.properties" afterPath="$PROJECT_DIR$/src/main/resources/consumer.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/client/consumer/intf/IConsumer.java" afterPath="$PROJECT_DIR$/src/main/java/org/client/consumer/intf/IConsumer.java" />
     </list>
     <ignored path="httpqueue.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,11 +37,58 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="Config.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/util/config/Config.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="30" column="64" selection-start-line="30" selection-start-column="64" selection-end-line="30" selection-end-column="64" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#464#481#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MemoryDirectQueueConsumer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/MemoryDirectQueueConsumer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="28" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IConsumer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/intf/IConsumer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MemoryFanoutQueueConsumer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/MemoryFanoutQueueConsumer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="PersistDirectQueueConsumer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/PersistDirectQueueConsumer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -55,7 +100,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/PersistFanoutQueueConsumer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -63,36 +108,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TopicQueueConsumer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TopicQueueConsumer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/TopicQueueConsumer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.36795774">
+              <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommonRes.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/util/result/CommonRes.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Config.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/util/config/Config.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.09683099">
-              <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#464#481#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -123,26 +145,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="33" column="5" selection-start-line="13" selection-start-column="4" selection-end-line="33" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MsgRes.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/util/result/MsgRes.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommonRes.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/result/CommonRes.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="5" selection-start-line="6" selection-start-column="4" selection-end-line="23" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -212,16 +214,16 @@
         <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/util/queueconfig/MemoryFanoutQueueConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/util/queueconfig/PersistFanoutQueueConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/DirectFanoutQueueConsumer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/intf/IConsumer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/intf/Consume.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/util/result/CommonRes.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/util/config/Config.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/consumer.properties" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/MemoryDirectQueueConsumer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/intf/IConsumer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/MemoryFanoutQueueConsumer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/PersistDirectQueueConsumer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/PersistFanoutQueueConsumer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/TopicQueueConsumer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/util/result/CommonRes.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/util/config/Config.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/consumer.properties" />
       </list>
     </option>
   </component>
@@ -1720,13 +1722,7 @@
       <workItem from="1459561958784" duration="25799000" />
       <workItem from="1459829791097" duration="18277000" />
       <workItem from="1459928037865" duration="11221000" />
-      <workItem from="1459993689815" duration="15562000" />
-    </task>
-    <task id="LOCAL-00013" summary="add">
-      <created>1459568239450</created>
-      <option name="number" value="00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1459568239450</updated>
+      <workItem from="1459993689815" duration="16433000" />
     </task>
     <task id="LOCAL-00014" summary="add">
       <created>1459570081479</created>
@@ -2016,7 +2012,13 @@
       <option name="project" value="LOCAL" />
       <updated>1460019514721</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="add">
+      <created>1460020052332</created>
+      <option name="number" value="00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1460020052332</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2025,7 +2027,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102387000" />
+    <option name="totallyTimeSpent" value="103258000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-4" width="1920" height="1084" extended-state="6" />
@@ -2110,51 +2112,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/inprocess/InProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/outprocess/OutProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25632378">
-          <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/messageconfig/MutilMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/PersistDirectQueueConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/PersistFanoutQueueConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16020235">
-          <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/util/queueconfig/MemoryFanoutQueueConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16020235">
-          <caret line="5" column="36" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/protocolbean/InputHead.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3979764">
@@ -2378,14 +2335,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/intf/IConsumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="61" selection-start-line="11" selection-start-column="61" selection-end-line="11" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/client/publisher/intf/Publish.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.06338028">
@@ -2427,56 +2376,6 @@
         <state vertical-scroll-proportion="0.26408452">
           <caret line="21" column="39" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="39" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/MemoryDirectQueueConsumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="76" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="76" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/MemoryFanoutQueueConsumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/PersistDirectQueueConsumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/PersistFanoutQueueConsumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/TopicQueueConsumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2528,13 +2427,190 @@
         </state>
       </provider>
     </entry>
+    <entry file="uml://MODULES/mdl-httpqueue">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>MODULES</ID>
+          <OriginalElement>mdl-httpqueue</OriginalElement>
+          <nodes>
+            <node x="" y="">mdl-httpqueue</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="89.0" y="16.0" />
+          <SelectedNodes />
+          <Categories />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/org">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>org</OriginalElement>
+          <nodes>
+            <node x="" y="">org.apache</node>
+            <node x="" y="">org.client</node>
+            <node x="" y="">org.omg</node>
+            <node x="" y="">org.xml</node>
+            <node x="" y="">org.jcp</node>
+            <node x="" y="">org.ietf</node>
+            <node x="" y="">org.testconsume</node>
+            <node x="" y="">org.testpublish</node>
+            <node x="" y="">org.hamcrest</node>
+            <node x="" y="">org.junit</node>
+            <node x="" y="">org.httpqueue</node>
+            <node x="" y="">org.w3c</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="228.0" y="211.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/org.client.consumer.util.queueconfig.MemoryDirectQueueConfig">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>org.client.consumer.util.queueconfig.MemoryDirectQueueConfig</OriginalElement>
+          <nodes>
+            <node x="" y="">org.client.consumer.util.queueconfig.MemoryDirectQueueConfig</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="109.0" y="16.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://SpringLocalModels/org.client.consumer.util.queueconfig.MemoryDirectQueueConfig">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>SpringLocalModels</ID>
+          <OriginalElement>org.client.consumer.util.queueconfig.MemoryDirectQueueConfig</OriginalElement>
+          <nodes>
+            <node x="" y="">org.client.consumer.util.queueconfig.MemoryDirectQueueConfig</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="104.0" y="11.5" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Show filesets as groups</Category>
+          </Categories>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/org.client.consumer.MemoryDirectQueueConsumer">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>org.client.consumer.MemoryDirectQueueConsumer</OriginalElement>
+          <nodes>
+            <node x="" y="">org.client.consumer.MemoryDirectQueueConsumer</node>
+            <node x="" y="">org.client.consumer.intf.IConsumer</node>
+            <node x="" y="">org.client.consumer.intf.Consume</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="117.0" y="57.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://SpringLocalModels/org.client.consumer.MemoryDirectQueueConsumer">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>SpringLocalModels</ID>
+          <OriginalElement>org.client.consumer.MemoryDirectQueueConsumer</OriginalElement>
+          <nodes>
+            <node x="" y="">org.client.consumer.MemoryDirectQueueConsumer</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="112.0" y="11.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Show filesets as groups</Category>
+          </Categories>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/util/config/Config.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.09683099">
-          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="64" selection-start-line="30" selection-start-column="64" selection-end-line="30" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#464#481#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/MemoryDirectQueueConsumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="28" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/intf/IConsumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/MemoryFanoutQueueConsumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/PersistDirectQueueConsumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/PersistFanoutQueueConsumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/client/consumer/TopicQueueConsumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36795774">
+          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

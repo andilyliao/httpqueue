@@ -9,7 +9,7 @@ import org.client.publisher.util.config.Config;
  */
 public class PersistFanoutQueueConsumer extends Consume implements IConsumer {
     @Override
-    public void initPublisher(Config config) throws Exception {
+    public void initConsumer(Config config) throws Exception {
 
     }
 }
