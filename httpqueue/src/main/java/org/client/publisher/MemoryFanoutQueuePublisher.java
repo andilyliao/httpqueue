@@ -5,6 +5,7 @@ import org.client.publisher.intf.IPublisher;
 import org.client.publisher.util.config.Config;
 import org.client.publisher.util.messageconfig.Message;
 import org.client.publisher.util.queueconfig.MemoryDirectQueueConfig;
+import org.client.publisher.util.result.CommonRes;
 
 /**
  * Created by andilyliao on 16-4-2.
@@ -21,12 +22,12 @@ public class MemoryFanoutQueuePublisher implements IPublisher {
         this.config=config;
     }
     //curl http://localhost:8844/queue -d '{"head":{"qn":"mydirectqueue","ty":0,"m":0,"t":86400,"h":0}}'
-    public void createFanoutQueue(MemoryDirectQueueConfig queueConfig)throws Exception{
-
+    public CommonRes createFanoutQueue(MemoryDirectQueueConfig queueConfig)throws Exception{
+        return new CommonRes();
     }
 //curl http://localhost:8844/queue -d '{"head":{"qn":"mydirectqueue","ty":1,"h":0,"tr":0,"s":0,"ts":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
     @Override
-    public String publishMessage(Message message) throws Exception {
-        return "";
+    public CommonRes publishMessage(Message message) throws Exception {
+        return new CommonRes();
     }
 }

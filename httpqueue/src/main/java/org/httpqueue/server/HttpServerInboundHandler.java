@@ -44,6 +44,7 @@ public class HttpServerInboundHandler extends ChannelInboundHandlerAdapter {
             log.debug("Queue Name is: " + queueName);
         }
         if (msg instanceof HttpContent) {
+            long start=System.currentTimeMillis();
             try {
                 HttpContent content = (HttpContent) msg;
                 ByteBuf buf = content.content();
@@ -68,6 +69,7 @@ public class HttpServerInboundHandler extends ChannelInboundHandlerAdapter {
                 IInProcessor inProcessor = new InProcessor();
                 log.debug("queueName is: " + queueName + " head is: " + h + " body is: " + body);
                 inProcessor.process(queueName, h, body);
+//                System.out.println(System.currentTimeMillis()-start);
             } catch (Exception e) {
                 res.setCode(Mode.RESCODE_SYSTEMERROR);
                 res.setStatus(Mode.RESSTATUS_ERROR);
@@ -85,6 +87,7 @@ public class HttpServerInboundHandler extends ChannelInboundHandlerAdapter {
             }
             ctx.write(response);
             ctx.flush();
+            System.out.println(System.currentTimeMillis()-start);
         }
         log.debug("--------------------------------------");
     }

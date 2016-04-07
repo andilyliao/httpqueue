@@ -1,5 +1,6 @@
 package org.client.publisher.intf;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -11,6 +12,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
+import org.client.publisher.util.result.CommonRes;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -18,6 +20,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by andilyliao on 16-4-6.
@@ -55,26 +60,77 @@ public abstract class Publish {
         response.close();
         return body;
     }
-//    public static void main(String[] args) throws Exception {
-//        String url = "http://127.0.0.1:8844";
+    public static void main(String[] args) throws Exception {
+        String url = "http://127.0.0.1:8844";
+        String url1 = "http://127.0.0.1:18844";
 //        String json = "{\"head\":{\"qn\":\"aaa\",\"ty\":0,\"m\":0,\"t\":"+10000+",\"h\":0}}";
-//        String body = "";
-//        CloseableHttpClient client = HttpClients.createDefault();
-//        HttpPost httpPost;
-//        httpPost = new HttpPost(url);
-//        httpPost.setEntity(new StringEntity(json,"utf-8"));
-//        httpPost.setHeader("Content-type", "application/json");
-//        //执行请求操作，并拿到结果（同步阻塞）
-//        CloseableHttpResponse response = client.execute(httpPost);
-//        //获取结果实体
-//        HttpEntity entity = response.getEntity();
-//        if (entity != null) {
-//            //按指定编码转换结果实体为String类型
-//            body = EntityUtils.toString(entity, "utf-8");
-//        }
-//        EntityUtils.consume(entity);
-//        //释放链接
-//        response.close();
-//        System.out.println(body);
-//    }
+        String json = "{\"head\":{\"qn\":\"aaa\",\"ty\":1,\"h\":0,\"tr\":0,\"s\":0,\"ts\":0},\"body\":\"aaa\"}";
+
+        final CloseableHttpClient client = HttpClients.createDefault();
+        final HttpPost httpPost;
+        httpPost = new HttpPost(url);
+        httpPost.setEntity(new StringEntity(json,"utf-8"));
+        httpPost.setHeader("Content-type", "application/json");
+
+
+        final CloseableHttpClient client1 = HttpClients.createDefault();
+        final HttpPost httpPost1;
+        httpPost1 = new HttpPost(url1);
+        httpPost1.setEntity(new StringEntity(json,"utf-8"));
+        httpPost1.setHeader("Content-type", "application/json");
+        //执行请求操作，并拿到结果（同步阻塞）
+        ExecutorService exec= Executors.newCachedThreadPool();
+        final CountDownLatch latch=new CountDownLatch(10000);
+        long start=System.currentTimeMillis();
+
+        for(int i=0;i<10000;i++) {
+            final int finalI = i;
+            exec.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        CloseableHttpResponse response=null;
+                        String body = "";
+                        if(finalI%2==0) {
+                            response= client.execute(httpPost);
+                            HttpEntity entity = response.getEntity();
+                            if (entity != null) {
+                                //按指定编码转换结果实体为String类型
+                                body = EntityUtils.toString(entity, "utf-8");
+                            }
+                            EntityUtils.consume(entity);
+                            //释放链接
+                            response.close();
+//            System.out.println(body);
+                            CommonRes cr = JSON.parseObject(body, CommonRes.class);
+//            System.out.println("---------------------" + cr.getCode() + "   " + cr.getStatus());
+                        }else{
+                            response= client1.execute(httpPost1);
+                            HttpEntity entity = response.getEntity();
+                            if (entity != null) {
+                                //按指定编码转换结果实体为String类型
+                                body = EntityUtils.toString(entity, "utf-8");
+                            }
+                            EntityUtils.consume(entity);
+                            //释放链接
+                            response.close();
+//            System.out.println(body);
+                            CommonRes cr = JSON.parseObject(body, CommonRes.class);
+//            System.out.println("---------------------" + cr.getCode() + "   " + cr.getStatus());
+                        }
+                        latch.countDown();
+                        //获取结果实体
+
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+        }
+        System.out.println(System.currentTimeMillis()-start);
+        latch.await();
+        System.out.println(System.currentTimeMillis()-start);
+    }
 }
