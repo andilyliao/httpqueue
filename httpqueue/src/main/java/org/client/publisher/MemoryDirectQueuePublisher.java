@@ -44,4 +44,6 @@ public class MemoryDirectQueuePublisher extends Publish implements IPublisher {
     public String publishMessage(Message message) throws Exception {
         return "";
     }
+
+
 }

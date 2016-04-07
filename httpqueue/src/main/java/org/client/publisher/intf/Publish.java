@@ -55,4 +55,26 @@ public abstract class Publish {
         response.close();
         return body;
     }
+//    public static void main(String[] args) throws Exception {
+//        String url = "http://127.0.0.1:8844";
+//        String json = "{\"head\":{\"qn\":\"aaa\",\"ty\":0,\"m\":0,\"t\":"+10000+",\"h\":0}}";
+//        String body = "";
+//        CloseableHttpClient client = HttpClients.createDefault();
+//        HttpPost httpPost;
+//        httpPost = new HttpPost(url);
+//        httpPost.setEntity(new StringEntity(json,"utf-8"));
+//        httpPost.setHeader("Content-type", "application/json");
+//        //执行请求操作，并拿到结果（同步阻塞）
+//        CloseableHttpResponse response = client.execute(httpPost);
+//        //获取结果实体
+//        HttpEntity entity = response.getEntity();
+//        if (entity != null) {
+//            //按指定编码转换结果实体为String类型
+//            body = EntityUtils.toString(entity, "utf-8");
+//        }
+//        EntityUtils.consume(entity);
+//        //释放链接
+//        response.close();
+//        System.out.println(body);
+//    }
 }

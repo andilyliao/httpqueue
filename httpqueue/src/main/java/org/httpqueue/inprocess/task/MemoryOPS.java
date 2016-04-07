@@ -19,7 +19,6 @@ public class MemoryOPS implements IMemoryOPS {
     public void createDirectQueue(String queueName, int ttl,int hasdisk) throws Exception {
         ShardedJedis jedis=RedisShard.getJedisObject();
         log.debug("======createDirectQueue=======: "+queueName+" "+ttl+" "+hasdisk);
-        jedis.set("aaa","aaa");
         if(jedis.exists(queueName)){
             RedisShard.returnJedisObject(jedis);
             throw new Exception("This queue is allready exsit,please check! queueName is: "+queueName);
