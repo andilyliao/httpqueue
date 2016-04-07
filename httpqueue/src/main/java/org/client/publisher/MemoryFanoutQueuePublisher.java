@@ -26,7 +26,7 @@ public class MemoryFanoutQueuePublisher implements IPublisher {
     }
 //curl http://localhost:8844/queue -d '{"head":{"qn":"mydirectqueue","ty":1,"h":0,"tr":0,"s":0,"ts":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
     @Override
-    public void publishMessage(Message message) throws Exception {
-
+    public String publishMessage(Message message) throws Exception {
+        return "";
     }
 }

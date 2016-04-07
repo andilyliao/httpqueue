@@ -19,25 +19,29 @@ import java.util.Map;
 public class MemoryDirectQueuePublisher extends Publish implements IPublisher {
     private static Logger log = Logger.getLogger(MemoryDirectQueuePublisher.class);
     private Config config;
-    public MemoryDirectQueuePublisher(Config config){
-        this.config=config;
+
+    public MemoryDirectQueuePublisher(Config config) {
+        this.config = config;
     }
 
     @Override
     public void initPublisher(Config config) throws Exception {
-        this.config=config;
+        this.config = config;
     }
-    //curl http://localhost:8844/queue -d '{"head":{"qn":"mydirectqueue","ty":0,"m":0,"t":86400,"h":0}}'
-    public void createDirectQueue(MemoryDirectQueueConfig queueConfig)throws Exception{
-        String url="http://xxxx";
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("code", "js");
-        String body = send(url, map,"utf-8");
-        log.debug(body);
-    }
-//curl http://localhost:8844/queue -d '{"head":{"qn":"mydirectqueue","ty":1,"h":0,"tr":0,"s":0,"ts":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
-    @Override
-    public void publishMessage(Message message) throws Exception {
 
+    //curl http://localhost:8844/queue -d '{"head":{"qn":"mydirectqueue","ty":0,"m":0,"t":86400,"h":0}}'
+    public String createDirectQueue(MemoryDirectQueueConfig queueConfig) throws Exception {
+        String queueName = queueConfig.getQueueName();
+        int ttl = queueConfig.getTtl();
+        String url = this.config.urlMap.get(queueName.hashCode() % this.config.urlMap.size());
+        String json = "{\"head\":{\"qn\":\""+queueName+"\",\"ty\":0,\"m\":0,\"t\":"+ttl+",\"h\":0}}";
+        String body = send(url, json, "utf-8");
+        return body;
+    }
+
+    //curl http://localhost:8844/queue -d '{"head":{"qn":"mydirectqueue","ty":1,"h":0,"tr":0,"s":0,"ts":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
+    @Override
+    public String publishMessage(Message message) throws Exception {
+        return "";
     }
 }

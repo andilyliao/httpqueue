@@ -9,5 +9,5 @@ import org.client.publisher.util.queueconfig.MemoryDirectQueueConfig;
  */
 public interface IPublisher {
     public void initPublisher(Config config)throws Exception;
-    public void publishMessage(Message message)throws Exception;
+    public String publishMessage(Message message)throws Exception;
 }
