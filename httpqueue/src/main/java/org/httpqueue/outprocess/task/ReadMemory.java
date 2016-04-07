@@ -52,6 +52,8 @@ public class ReadMemory implements IReadMemory {
 
     @Override
     public MessageBody outputDirect(String queName, int offset, int seq) throws Exception {
+        //加入业务逻辑，消费过需要删除数据
+        //获取不到数据的时候看当前的pubset是否大于需要取数据的offset，如果pubset大于请求的offset，设置reoffset为pubset，如果pubset小于等于请求的offset则返回无数据的错误信息
         ShardedJedis jedis=RedisShard.getJedisObject();
         if(!jedis.exists(queName)){
             RedisShard.returnJedisObject(jedis);

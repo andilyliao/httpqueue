@@ -4,17 +4,17 @@ import org.apache.log4j.Logger;
 import org.client.consumer.intf.Consume;
 import org.client.consumer.intf.IConsumer;
 import org.client.consumer.util.config.Config;
-import org.client.consumer.util.queueconfig.MemoryDirectQueueConfig;
+import org.client.consumer.util.queueconfig.QueueConfig;
 
 
 /**
  * Created by andilyliao on 16-4-7.
  */
-public class MemoryDirectQueueConsumer extends Consume implements IConsumer {
-    private static Logger log = Logger.getLogger(MemoryDirectQueueConsumer.class);
+public class QueueConsumer extends Consume implements IConsumer {
+    private static Logger log = Logger.getLogger(QueueConsumer.class);
     private Config config;
-    private MemoryDirectQueueConfig queueConfig;
-    public MemoryDirectQueueConsumer(Config config) {
+    private QueueConfig queueConfig;
+    public QueueConsumer(Config config) {
         this.config = config;
     }
     @Override
