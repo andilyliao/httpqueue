@@ -5,14 +5,13 @@ import org.client.consumer.intf.Consume;
 import org.client.consumer.intf.IConsumer;
 import org.client.consumer.util.config.Config;
 import org.client.consumer.util.queueconfig.MemoryDirectQueueConfig;
-import org.client.publisher.MemoryDirectQueuePublisher;
 
 
 /**
  * Created by andilyliao on 16-4-7.
  */
 public class MemoryDirectQueueConsumer extends Consume implements IConsumer {
-    private static Logger log = Logger.getLogger(MemoryDirectQueuePublisher.class);
+    private static Logger log = Logger.getLogger(MemoryDirectQueueConsumer.class);
     private Config config;
     private MemoryDirectQueueConfig queueConfig;
     public MemoryDirectQueueConsumer(Config config) {
