@@ -44,7 +44,7 @@ public class HttpServerInboundHandler extends ChannelInboundHandlerAdapter {
             log.debug("Queue Name is: " + queueName);
         }
         if (msg instanceof HttpContent) {
-            long start=System.currentTimeMillis();
+            long start=System.nanoTime();
             try {
                 HttpContent content = (HttpContent) msg;
                 ByteBuf buf = content.content();
@@ -87,7 +87,7 @@ public class HttpServerInboundHandler extends ChannelInboundHandlerAdapter {
             }
             ctx.write(response);
             ctx.flush();
-            System.out.println(System.currentTimeMillis()-start);
+            System.out.println(System.nanoTime()-start);
         }
         log.debug("--------------------------------------");
     }

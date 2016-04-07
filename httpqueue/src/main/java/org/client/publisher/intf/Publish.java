@@ -62,7 +62,7 @@ public abstract class Publish {
     }
     public static void main(String[] args) throws Exception {
         String url = "http://127.0.0.1:8844";
-        String url1 = "http://127.0.0.1:18844";
+        String url1 = "http://127.0.0.1:8844";
 //        String json = "{\"head\":{\"qn\":\"aaa\",\"ty\":0,\"m\":0,\"t\":"+10000+",\"h\":0}}";
         String json = "{\"head\":{\"qn\":\"aaa\",\"ty\":1,\"h\":0,\"tr\":0,\"s\":0,\"ts\":0},\"body\":\"aaa\"}";
 
