@@ -17,14 +17,12 @@ public class ReadMemory implements IReadMemory {
     @Override
     public void registDirectQueue(String queueName) throws Exception {
         //TODO 目前没有任务，后面需要做每个队列的注册消费者数量的监控
-        //TODO regist需要返回当前的pubset，以及offset
         //TODO 如果注册过需要处理注册过的逻辑
     }
 
     @Override
     public int registFanoutQueue(String clientID,String queueName) throws Exception {
         //TODO 后面需要做每个队列的注册消费者数量的监控
-        //TODO regist需要返回当前的pubset，offset=0
         //TODO 如果注册过需要处理注册过的逻辑
         ShardedJedis jedis = RedisShard.getJedisObject();
         String pubset="0";
@@ -42,7 +40,6 @@ public class ReadMemory implements IReadMemory {
     @Override
     public int registTopic(String clientID,String queueName) throws Exception {
         //TODO 后面需要做每个队列的注册消费者数量的监控
-        //TODO regist需要返回当前的pubset，虽然返回offset，但是offset=pubset
         //TODO 如果注册过需要处理注册过的逻辑
         ShardedJedis jedis=RedisShard.getJedisObject();
         String pubset="0";
