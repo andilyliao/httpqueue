@@ -77,9 +77,9 @@ public class ReadMemory implements IReadMemory {
         int ishasdata=Mode.DATA_YES;
         try {
             String key=queName+CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
+            pubset = Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
             log.debug("key: "+key+" jedis: "+jedis);
             if(!jedis.exists(key)){//获取不到数据的时候看当前的pubset是否大于需要取数据的offset，如果pubset大于请求的offset，循环知道找到当前应该消费的存在的key，并且更新offset，如果pubset小于等于请求的offset则返回无数据的错误信息
-                pubset = Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
                 if(pubset<=offset){
                     return new MessageBody(Mode.DATA_NO,pubset,pubset,"",getseq,gettotleseq);//没有新数据，返回当前的pubset
                 }
@@ -100,7 +100,6 @@ public class ReadMemory implements IReadMemory {
             }else {
                 reoffset = Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.OFFSET));
             }
-            pubset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
             jedis.del(key);
         }catch(Exception e){
             ishasdata=Mode.DATA_NO;

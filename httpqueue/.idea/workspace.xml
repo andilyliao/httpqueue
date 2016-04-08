@@ -105,8 +105,8 @@
       <file leaf-file-name="ReadMemory.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/outprocess/task/ReadMemory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18945102">
-              <caret line="74" column="21" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.23035522">
+              <caret line="79" column="34" selection-start-line="79" selection-start-column="34" selection-end-line="79" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -1829,13 +1829,7 @@
       <workItem from="1459829791097" duration="18277000" />
       <workItem from="1459928037865" duration="11221000" />
       <workItem from="1459993689815" duration="21479000" />
-      <workItem from="1460090076593" duration="1628000" />
-    </task>
-    <task id="LOCAL-00020" summary="add">
-      <created>1459577326582</created>
-      <option name="number" value="00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1459577326582</updated>
+      <workItem from="1460090076593" duration="2440000" />
     </task>
     <task id="LOCAL-00021" summary="add">
       <created>1459577652157</created>
@@ -2125,7 +2119,13 @@
       <option name="project" value="LOCAL" />
       <updated>1460090251221</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="add">
+      <created>1460091709519</created>
+      <option name="number" value="00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1460091709519</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2134,7 +2134,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="109932000" />
+    <option name="totallyTimeSpent" value="110744000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-4" width="1920" height="1084" extended-state="6" />
@@ -2699,8 +2699,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/outprocess/task/ReadMemory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18945102">
-          <caret line="74" column="21" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.23035522">
+          <caret line="79" column="34" selection-start-line="79" selection-start-column="34" selection-end-line="79" selection-end-column="34" />
           <folding />
         </state>
       </provider>
