@@ -56,8 +56,8 @@ public class ReadMemory implements IReadMemory {
 
     @Override
     public MessageBody outputDirect(String queName, int offset, int seq) throws Exception {
-        //加入业务逻辑，消费过需要删除数据
-        //获取不到数据的时候看当前的pubset是否大于需要取数据的offset，如果pubset大于请求的offset，设置reoffset为pubset，如果pubset小于等于请求的offset则返回无数据的错误信息
+        //第一次消费不知道offset需要从多少开始的时候，设置为0就好，系统会找到匹配的数据，如果是事务，第0个取不到说明即便取数据也不完整，于是直接取下一个
+
         ShardedJedis jedis=RedisShard.getJedisObject();
         if(!jedis.exists(queName)){
             RedisShard.returnJedisObject(jedis);
@@ -69,7 +69,7 @@ public class ReadMemory implements IReadMemory {
             throw new Exception("This queue isn't a direct queue,please check! queueName is: "+queName);
         }
         long reoffset=0;
-        long putset=0;
+        long pubset=0;
         String body="";
         String[] bodyseqandtotle;
         int getseq=0;
@@ -78,20 +78,37 @@ public class ReadMemory implements IReadMemory {
         try {
             String key=queName+CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
             log.debug("key: "+key+" jedis: "+jedis);
+            if(!jedis.exists(key)){//获取不到数据的时候看当前的pubset是否大于需要取数据的offset，如果pubset大于请求的offset，循环知道找到当前应该消费的存在的key，并且更新offset，如果pubset小于等于请求的offset则返回无数据的错误信息
+                pubset = Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
+                if(pubset<=offset){
+                    return new MessageBody(Mode.DATA_NO,pubset,pubset,"",getseq,gettotleseq);//没有新数据，返回当前的pubset
+                }
+                //如果有新数据则寻找新数据
+                do{
+                    long offsettmp=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET);
+                    key=queName+CommonConst.splitor+CommonConst.puboffsetAndSeq(offsettmp,seq);
+                }while(!jedis.exists(key));
+            }
             bodyseqandtotle=jedis.get(key).split(CommonConst.splitor);
             getseq=Integer.parseInt(bodyseqandtotle[1]);
             gettotleseq=Integer.parseInt(bodyseqandtotle[2]);
             body=bodyseqandtotle[0];
             log.debug("body: "+body+" getseq: "+getseq+" gettotoleseq: "+gettotleseq);
-            reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET);
-            putset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
+            //如果数据是事务数据，则事务没有取完前是不能offset+1的
+            if(getseq>=gettotleseq) {
+                reoffset = jedis.incr(queName + CommonConst.splitor + CommonConst.OFFSET);
+            }else {
+                reoffset = Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.OFFSET));
+            }
+            pubset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
+            jedis.del(key);
         }catch(Exception e){
             ishasdata=Mode.DATA_NO;
             log.error("system error:",e);
         }finally {
             RedisShard.returnJedisObject(jedis);
         }
-        return new MessageBody(ishasdata,putset,reoffset,body,getseq,gettotleseq);
+        return new MessageBody(ishasdata,pubset,reoffset,body,getseq,gettotleseq);
     }
 
     @Override
@@ -111,7 +128,7 @@ public class ReadMemory implements IReadMemory {
             throw new Exception("This client is not regist yet: "+clientID);
         }
         long reoffset=0;
-        long putset=0;
+        long pubset=0;
         String body="";
         String[] bodyseqandtotle;
         int getseq=0;
@@ -124,14 +141,14 @@ public class ReadMemory implements IReadMemory {
             gettotleseq=Integer.parseInt(bodyseqandtotle[2]);
             body=bodyseqandtotle[0];
             reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
-            putset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
+            pubset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
         }catch(Exception e){
             ishasdata=Mode.DATA_NO;
             log.error("system error:",e);
         }finally {
             RedisShard.returnJedisObject(jedis);
         }
-        return new MessageBody(ishasdata,putset,reoffset,body,getseq,gettotleseq);
+        return new MessageBody(ishasdata,pubset,reoffset,body,getseq,gettotleseq);
     }
 
     @Override
@@ -151,7 +168,7 @@ public class ReadMemory implements IReadMemory {
             throw new Exception("This client is not regist yet: "+clientID);
         }
         long reoffset=0;
-        long putset=0;
+        long pubset=0;
         String body="";
         String[] bodyseqandtotle;
         int getseq=0;
@@ -167,14 +184,14 @@ public class ReadMemory implements IReadMemory {
             body=bodyseqandtotle[0];
             log.debug(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
             reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
-            putset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
+            pubset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
         }catch(Exception e){
             ishasdata=Mode.DATA_NO;
             log.error("system error:",e);
         }finally {
             RedisShard.returnJedisObject(jedis);
         }
-        return new MessageBody(ishasdata,putset,reoffset,body,getseq,gettotleseq);
+        return new MessageBody(ishasdata,pubset,reoffset,body,getseq,gettotleseq);
     }
 
     @Override
