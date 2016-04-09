@@ -6,6 +6,7 @@ package org.client.consumer.util.result;
 public class CommonRes {
     private int code=0;
     private int status=0;
+    private String body="";
 
     public int getCode() {
         return code;
@@ -21,5 +22,13 @@ public class CommonRes {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
     }
 }

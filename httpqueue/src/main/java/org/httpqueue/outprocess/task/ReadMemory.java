@@ -55,7 +55,7 @@ public class ReadMemory implements IReadMemory {
     }
 
     @Override
-    public MessageBody outputDirect(String queName, int offset, int seq) throws Exception {
+    public MessageBody outputDirect(String queName, long offset, int seq) throws Exception {
         //第一次消费不知道offset需要从多少开始的时候，设置为0就好，系统会找到匹配的数据，如果是事务，第0个取不到说明即便取数据也不完整，于是直接取下一个
 
         ShardedJedis jedis=RedisShard.getJedisObject();
@@ -78,16 +78,22 @@ public class ReadMemory implements IReadMemory {
         try {
             String key=queName+CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
             pubset = Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
+            reoffset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.OFFSET));
             log.debug("key: "+key+" jedis: "+jedis);
-            if(!jedis.exists(key)){//获取不到数据的时候看当前的pubset是否大于需要取数据的offset，如果pubset大于请求的offset，循环知道找到当前应该消费的存在的key，并且更新offset，如果pubset小于等于请求的offset则返回无数据的错误信息
+            while(!jedis.exists(key)){//获取不到数据的时候看当前的pubset是否大于需要取数据的offset，如果pubset大于请求的offset，循环知道找到当前应该消费的存在的key，并且更新offset，如果pubset小于等于请求的offset则返回无数据的错误信息
                 if(pubset<=offset){
+                    log.debug("There will be no data for return!");
                     return new MessageBody(Mode.DATA_NO,pubset,pubset,"",getseq,gettotleseq);//没有新数据，返回当前的pubset
                 }
+                if(offset<reoffset){
+                    log.debug("Input offset is too old,please add 1 and then call this method again!");
+                    return new MessageBody(Mode.DATA_NO,pubset,reoffset,"",getseq,gettotleseq);//没有新数据，返回当前的pubset
+                }
+                log.debug("Offset was too old,system will be add 1 for it!");
                 //如果有新数据则寻找新数据
-                do{
-                    long offsettmp=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET);
-                    key=queName+CommonConst.splitor+CommonConst.puboffsetAndSeq(offsettmp,seq);
-                }while(!jedis.exists(key));
+                long offsettmp=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET);
+                offset=offsettmp;
+                key=queName+CommonConst.splitor+CommonConst.puboffsetAndSeq(offsettmp,seq);
             }
             bodyseqandtotle=jedis.get(key).split(CommonConst.splitor);
             getseq=Integer.parseInt(bodyseqandtotle[1]);
@@ -111,7 +117,7 @@ public class ReadMemory implements IReadMemory {
     }
 
     @Override
-    public MessageBody outputFanout(String clientID, String queName, int offset, int seq) throws Exception {
+    public MessageBody outputFanout(String clientID, String queName, long offset, int seq) throws Exception {
         ShardedJedis jedis=RedisShard.getJedisObject();
         if(!jedis.exists(queName)){
             RedisShard.returnJedisObject(jedis);
@@ -151,7 +157,7 @@ public class ReadMemory implements IReadMemory {
     }
 
     @Override
-    public MessageBody outputTopic(String clientID, String queName, int offset, int seq) throws Exception {
+    public MessageBody outputTopic(String clientID, String queName, long offset, int seq) throws Exception {
         ShardedJedis jedis=RedisShard.getJedisObject();
         if(!jedis.exists(queName)){
             RedisShard.returnJedisObject(jedis);
