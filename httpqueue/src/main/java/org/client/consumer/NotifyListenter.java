@@ -4,7 +4,13 @@ package org.client.consumer;
  * Created by andilyliao on 16-4-2.
  */
 import org.apache.log4j.Logger;
+import org.client.consumer.util.config.Config;
+import org.client.consumer.util.config.Contral;
 import redis.clients.jedis.JedisPubSub;
+import redis.clients.jedis.Queable;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 订阅监听类
@@ -12,9 +18,16 @@ import redis.clients.jedis.JedisPubSub;
  */
 public class NotifyListenter extends JedisPubSub {
     private static Logger log = Logger.getLogger(NotifyListenter.class);
+    private Contral contral=null;
+    private int pingnum=10;
     // 取得订阅的消息后的处理
     public void onMessage(String channel, String message) {
         log.debug(channel + "=" + message);
+        if(QueueConsumer.NOTIFY.equals(message)){
+            this.contral.getCountDownLatch().countDown();
+            this.contral.setCountDownLatch(new CountDownLatch(1));
+            this.contral.getPingnum().addAndGet(pingnum);
+        }
     }
 
     // 初始化订阅时候的处理
@@ -40,5 +53,26 @@ public class NotifyListenter extends JedisPubSub {
     // 取得按表达式的方式订阅的消息后的处理
     public void onPMessage(String pattern, String channel, String message) {
         log.debug(pattern + "=" + channel + "=" + message);
+        if(QueueConsumer.NOTIFY.equals(message)){
+            this.contral.getCountDownLatch().countDown();
+            this.contral.setCountDownLatch(new CountDownLatch(1));
+            this.contral.getPingnum().addAndGet(pingnum);
+        }
+    }
+
+    public Contral getContral() {
+        return contral;
+    }
+
+    public void setContral(Contral contral) {
+        this.contral = contral;
+    }
+
+    public int getPingnum() {
+        return pingnum;
+    }
+
+    public void setPingnum(int pingnum) {
+        this.pingnum = pingnum;
     }
 }
