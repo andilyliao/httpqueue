@@ -21,6 +21,8 @@ public class PropertiesStr {
     public static int notify;
     //redis链接
     public static HashMap<String,Integer> redisclustor=new HashMap<String,Integer>();
+    //listener链接
+    public static HashMap<String,Integer> listenerclustor=new HashMap<String,Integer>();
     //topic消息过期时间
     public static int topicttl=300;
     /**
@@ -45,6 +47,13 @@ public class PropertiesStr {
         for(int i=0;i<redishostsandports.length;i++){
             String[] onehostport=redishostsandports[i].split(":");
             redisclustor.put(redishostsandports[i],Integer.parseInt(onehostport[1]));
+        }
+        //listenerhost
+        String[] listenerhosts=prop.getProperty("listenerhost").split(",");
+        log.debug(listenerhosts.length);
+        for(int i=0;i<listenerhosts.length;i++){
+            String[] onelistenerhostport=listenerhosts[i].split(":");
+            listenerclustor.put(listenerhosts[i],Integer.parseInt(onelistenerhostport[1]));
         }
         PropertiesStr.maxTotal=Integer.parseInt(prop.getProperty("maxTotal"));
         PropertiesStr.maxIdle=Integer.parseInt(prop.getProperty("maxIdle"));

@@ -13,6 +13,7 @@ import java.util.Properties;
 public class Config extends HashMap<String,String> {
     private static Logger log = Logger.getLogger(Config.class);
     public static final String HTTPQUEUE_SERVER="urls";
+    public static final String PINGNUM="pingnum";
     public static HashMap<Integer,String> urlMap=new HashMap<Integer, String>();
     //服务地址
     public Config(){
@@ -30,6 +31,7 @@ public class Config extends HashMap<String,String> {
             urlMap.put(i,onehostport);
             log.debug("http server url is: "+i+" "+onehostport);
         }
+        this.put(PINGNUM,prop.getProperty(PINGNUM));
         log.debug("}----------------------------http server host and port");
     }
 }

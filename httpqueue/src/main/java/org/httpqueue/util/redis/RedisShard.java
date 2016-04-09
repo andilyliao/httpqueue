@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.httpqueue.util.PropertiesStr.redisclustor;
-
+import static org.httpqueue.util.PropertiesStr.listenerclustor;
 /**
  * Created by andilyliao on 16-4-2.
  */
@@ -54,10 +54,10 @@ public class RedisShard {
         redispools=new HashMap<Integer,JedisPool>();
         int hashmod=0;
         log.debug("one redis are:------------------------------{");
-        for (String hostandport: redisclustor.keySet()) {
+        for (String hostandport: listenerclustor.keySet()) {
             log.debug(hostandport);
             String[] onehostport=hostandport.split(":");
-            redispools.put(hashmod,new JedisPool(jedisPoolConfig(),onehostport[0], redisclustor.get(hostandport)));
+            redispools.put(hashmod,new JedisPool(jedisPoolConfig(),onehostport[0], listenerclustor.get(hostandport)));
             hashmod++;
         }
         log.debug("}------------------------------");

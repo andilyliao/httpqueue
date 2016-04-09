@@ -55,6 +55,7 @@ public abstract class Consume {
     }
 
     public static void main(String[] args) throws Exception {
+
         String url = "http://127.0.0.1:8845";
 //        String json = "{\"head\":{\"qn\":\"mydirectqueue\",\"id\":\"uuid\",\"ty\":0,\"h\":0}}";
         String json ="{\"head\":{\"qn\":\"mydirectqueue\",\"id\":\"uuid\",\"ty\":1,\"h\":0,\"o\":0,\"s\":0}}";
