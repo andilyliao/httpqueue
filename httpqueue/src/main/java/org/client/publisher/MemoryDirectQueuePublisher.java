@@ -50,11 +50,13 @@ public class MemoryDirectQueuePublisher extends Publish implements IPublisher {
         String queueName = this.queueConfig.getQueueName();
         String msg=message.getBody();
         String url = this.config.urlMap.get(queueName.hashCode() % this.config.urlMap.size());
-        String json = "{\"head\":{\"qn\":\""+queueName+"\",\"ty\":1,\"h\":0,\"tr\":0,\"s\":0,\"ts\":0},\"body\":"+msg+"}";
+        String json = "{\"head\":{\"qn\":\""+queueName+"\",\"ty\":1,\"h\":0,\"tr\":0,\"s\":0,\"ts\":0},\"body\":\""+msg+"\"}";
         String body = send(url, json, "utf-8");
         CommonRes cr=JSON.parseObject(body, CommonRes.class);
         return cr;
     }
-
+    public void initQueueWithoutCreate(MemoryDirectQueueConfig queueConfig)throws Exception {
+        this.queueConfig=queueConfig;
+    }
 
 }

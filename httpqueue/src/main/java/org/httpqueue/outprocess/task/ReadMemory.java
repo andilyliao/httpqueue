@@ -83,7 +83,8 @@ public class ReadMemory implements IReadMemory {
             while(!jedis.exists(key)){//获取不到数据的时候看当前的pubset是否大于需要取数据的offset，如果pubset大于请求的offset，循环知道找到当前应该消费的存在的key，并且更新offset，如果pubset小于等于请求的offset则返回无数据的错误信息
                 if(pubset<=offset){
                     log.debug("There will be no data for return!");
-                    return new MessageBody(Mode.DATA_NO,pubset,pubset,"",getseq,gettotleseq);//没有新数据，返回当前的pubset
+                    jedis.set(queName+ CommonConst.splitor+CommonConst.RECIVE,Mode.RECIVE_NO+"");
+                    return new MessageBody(Mode.DATA_NO,pubset,offset,"",getseq,gettotleseq);//没有新数据，返回当前的offset
                 }
                 if(offset<reoffset){
                     log.debug("Input offset is too old,please add 1 and then call this method again!");

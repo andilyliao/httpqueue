@@ -26,4 +26,16 @@ public class PublishTest {
         publisher.publishMessage(message);
 
     }
+    @Test
+    public void testpubdata()throws Exception{
+        Config config=new Config("/publisher.properties");
+        MemoryDirectQueuePublisher publisher=new MemoryDirectQueuePublisher(config);
+        MemoryDirectQueueConfig memoryDirectQueueConfig=new MemoryDirectQueueConfig();
+        memoryDirectQueueConfig.setQueueName("myque");
+        memoryDirectQueueConfig.setTtl(memoryDirectQueueConfig.ONE_DAY);
+        publisher.initQueueWithoutCreate(memoryDirectQueueConfig);
+        Message message=new Message();
+        message.setBody("aaaaa");
+        publisher.publishMessage(message);
+    }
 }

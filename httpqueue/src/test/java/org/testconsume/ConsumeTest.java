@@ -19,11 +19,17 @@ public class ConsumeTest {
         Config config=new Config("/consumer.properties");
         IConsumer iConsumer=new QueueConsumer(config);
         QueueConfig queueConfig=new QueueConfig();
-        queueConfig.setQueueName("aaa");
+        queueConfig.setQueueName("myque");
+        System.out.println("start...........");
         CommonRes commonRes = iConsumer.registConsumer(queueConfig);
         MsgRes msgRes=new MsgRes();
         while(true) {
+            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            System.out.println("========================: "+msgRes.getOffset());
             msgRes = iConsumer.consumeMsg(msgRes);//消费一条
+            System.out.println("========================: "+msgRes.getOffset());
+            System.out.println("------------------------: "+msgRes.getBody());
+            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         }
     }
 }

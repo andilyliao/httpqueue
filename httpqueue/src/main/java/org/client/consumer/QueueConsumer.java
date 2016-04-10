@@ -44,6 +44,7 @@ public class QueueConsumer extends Consume implements IConsumer {
 //curl http://localhost:8845/queue -d '{"head":{"qn":"mydirectqueue","id":"uuid","ty":0,"h":0}}'
     @Override
     public CommonRes registConsumer(QueueConfig queueConfig) throws Exception {
+        System.out.println("000000000000000000");
         this.queueConfig=queueConfig;
         final String queueName = queueConfig.getQueueName();
         String uid=queueConfig.getUid();
@@ -54,6 +55,7 @@ public class QueueConsumer extends Consume implements IConsumer {
         final NotifyListenter notifyListenter =new NotifyListenter();
         notifyListenter.setContral(this.contral);
         notifyListenter.setPingnum(Integer.parseInt(this.config.get(Config.PINGNUM)));
+
         Thread t=new Thread(new Runnable() {
             @Override
             public void run() {

@@ -22,11 +22,12 @@ public class NotifyListenter extends JedisPubSub {
     private int pingnum=10;
     // 取得订阅的消息后的处理
     public void onMessage(String channel, String message) {
-        log.debug(channel + "=" + message);
+        System.out.println(channel + "=" + message);
         if(QueueConsumer.NOTIFY.equals(message)){
             this.contral.getCountDownLatch().countDown();
             this.contral.setCountDownLatch(new CountDownLatch(1));
             this.contral.getPingnum().addAndGet(pingnum);
+            System.out.println("pingnum =" + pingnum);
         }
     }
 
@@ -52,11 +53,12 @@ public class NotifyListenter extends JedisPubSub {
 
     // 取得按表达式的方式订阅的消息后的处理
     public void onPMessage(String pattern, String channel, String message) {
-        log.debug(pattern + "=" + channel + "=" + message);
+        System.out.println(pattern + "=" + channel + "=" + message);
         if(QueueConsumer.NOTIFY.equals(message)){
             this.contral.getCountDownLatch().countDown();
             this.contral.setCountDownLatch(new CountDownLatch(1));
             this.contral.getPingnum().addAndGet(pingnum);
+            System.out.println("pingnum =" + pingnum);
         }
     }
 
