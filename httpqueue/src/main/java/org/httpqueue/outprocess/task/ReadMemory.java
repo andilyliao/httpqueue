@@ -142,12 +142,36 @@ public class ReadMemory implements IReadMemory {
         int ishasdata=Mode.DATA_YES;
         try {
             String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
+            pubset = Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
+            reoffset=Long.parseLong(jedis.get(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID));
+            while(!jedis.exists(key)){//获取不到数据的时候看当前的pubset是否大于需要取数据的offset，如果pubset大于请求的offset，循环知道找到当前应该消费的存在的key，并且更新offset，如果pubset小于等于请求的offset则返回无数据的错误信息
+                if(pubset<=offset){
+                    log.debug("There will be no data for return!");
+                    jedis.set(queName+ CommonConst.splitor+CommonConst.RECIVE,Mode.RECIVE_NO+"");
+                    return new MessageBody(Mode.DATA_NO,pubset,offset,"",getseq,gettotleseq);//没有新数据，返回当前的offset
+                }
+                if(offset<reoffset){
+                    log.debug("Input offset is too old,please add 1 and then call this method again!");
+                    return new MessageBody(Mode.DATA_NO,pubset,reoffset,"",getseq,gettotleseq);//没有新数据，返回当前的pubset
+                }
+                log.debug("Offset was too old,system will be add 1 for it!");
+                //如果有新数据则寻找新数据
+                long offsettmp=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
+                offset=offsettmp;
+                key=queName+CommonConst.splitor+CommonConst.puboffsetAndSeq(offsettmp,seq);
+            }
             bodyseqandtotle=jedis.get(key).split(CommonConst.splitor);
             getseq=Integer.parseInt(bodyseqandtotle[1]);
             gettotleseq=Integer.parseInt(bodyseqandtotle[2]);
             body=bodyseqandtotle[0];
-            reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
-            pubset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
+            log.debug("body: "+body+" getseq: "+getseq+" gettotoleseq: "+gettotleseq);
+//            reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
+            if(getseq>=gettotleseq) {
+                reoffset = jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
+            }else {
+                reoffset = Long.parseLong(jedis.get(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID));
+            }
+//            pubset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
         }catch(Exception e){
             ishasdata=Mode.DATA_NO;
             log.error("system error:",e);
@@ -181,16 +205,33 @@ public class ReadMemory implements IReadMemory {
         int gettotleseq=0;
         int ishasdata=Mode.DATA_YES;
         try {
-            //TODO 消费者消费的数据如果ttl过期了，就无法对自己的offset+1 这个是bug
+            //TODO 消费者消费的数据如果ttl过期了，直接将offset设置成当前的pubset
             String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
+            pubset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
+            reoffset=Long.parseLong(jedis.get(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID));
+            while(!jedis.exists(key)){
+                if(pubset<=offset){
+                    log.debug("There will be no data for return!");
+                    jedis.set(queName+ CommonConst.splitor+CommonConst.RECIVE,Mode.RECIVE_NO+"");
+                    return new MessageBody(Mode.DATA_NO,pubset,offset,"",getseq,gettotleseq);//没有新数据，返回当前的offset
+                }
+                offset=pubset;
+                key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(offset,seq);
+                jedis.set(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID, String.valueOf(pubset));
+            }
+
             log.debug("key is: "+key);
             bodyseqandtotle=jedis.get(key).split(CommonConst.splitor);
             getseq=Integer.parseInt(bodyseqandtotle[1]);
             gettotleseq=Integer.parseInt(bodyseqandtotle[2]);
             body=bodyseqandtotle[0];
             log.debug(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
-            reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
-            pubset=Long.parseLong(jedis.get(queName + CommonConst.splitor + CommonConst.PUBSET));
+//            reoffset=jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
+            if(getseq>=gettotleseq) {
+                reoffset = jedis.incr(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID);
+            }else {
+                reoffset = Long.parseLong(jedis.get(queName+ CommonConst.splitor+CommonConst.OFFSET+CommonConst.splitor+clientID));
+            }
         }catch(Exception e){
             ishasdata=Mode.DATA_NO;
             log.error("system error:",e);
