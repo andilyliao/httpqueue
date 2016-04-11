@@ -25,7 +25,7 @@ public class MemoryFanoutQueuePublisher extends Publish implements IPublisher {
     public void initPublisher(Config config) throws Exception {
         this.config=config;
     }
-    //curl http://localhost:8844/queue -d '{"head":{"qn":"mydirectqueue","ty":0,"m":0,"t":86400,"h":0}}'
+    //curl http://localhost:8844/queue -d '{"head":{"qn":"myfanoutqueue","ty":0,"m":1,"t":86400,"h":0}}'
     public CommonRes createFanoutQueue(MemoryFanoutQueueConfig queueConfig)throws Exception{
         this.queueConfig=queueConfig;
         String queueName = queueConfig.getQueueName();
@@ -36,7 +36,7 @@ public class MemoryFanoutQueuePublisher extends Publish implements IPublisher {
         CommonRes cr= JSON.parseObject(body, CommonRes.class);
         return cr;
     }
-//curl http://localhost:8844/queue -d '{"head":{"qn":"mydirectqueue","ty":1,"h":0,"tr":0,"s":0,"ts":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
+//curl http://localhost:8844/queue -d '{"head":{"qn":"myfanoutqueue","ty":1,"tr":0,"s":0,"ts":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
     @Override
     public CommonRes publishMessage(Message message) throws Exception {
         String queueName = this.queueConfig.getQueueName();

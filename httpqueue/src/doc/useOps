@@ -23,18 +23,18 @@
     curl http://localhost:8845/queue -d '{"head":{"qn":"myfanoutqueue","id":"uuid1","ty":1,"h":0,"o":2,"s":0}}'
 三、topic模式
   1、生产者建立que
-    curl http://localhost:8844/queue -d '{"head":{"qn":"mytopicqueue","ty":0,"m":2,"t":86400,"h":0,"tr":0,"s":0,"ts":0}}'
+    curl http://localhost:8844/queue -d '{"head":{"qn":"mytopicqueue","ty":0,"m":2,"h":0}}'
   2、消费者1注册que
     curl http://localhost:8845/queue -d '{"head":{"qn":"mytopicqueue","id":"uuid1","ty":0,"h":0,"o":0,"s":0}}'
   3、生产者发消息
-    curl http://localhost:8844/queue -d '{"head":{"qn":"mytopicqueue","ty":1,"m":2,"t":86400,"h":0,"tr":0,"s":0,"ts":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
+    curl http://localhost:8844/queue -d '{"head":{"qn":"mytopicqueue","ty":1,"tr":0,"s":0,"ts":0},"body":{"aaa":"bbb","ccc":"ddd"}}'
   4、消费者1接收消息
     curl http://localhost:8845/queue -d '{"head":{"qn":"mytopicqueue","id":"uuid1","ty":1,"h":0,"o":1,"s":0}}'
   5、消费者2接收消息
     curl http://localhost:8845/queue -d '{"head":{"qn":"mytopicqueue","id":"uuid2","ty":1,"h":0,"o":1,"s":0}}'
   6、消费者2注册que
   7、生产者发消息
-    curl http://localhost:8844/queue -d '{"head":{"qn":"mytopicqueue","ty":1,"m":2,"t":86400,"h":0,"tr":0,"s":0,"ts":0},"body":{"111":"222","333":"444"}}'
+    curl http://localhost:8844/queue -d '{"head":{"qn":"mytopicqueue","ty":1,"tr":0,"s":0,"ts":0},"body":{"111":"222","333":"444"}}'
   8、消费者1接收消息
     curl http://localhost:8845/queue -d '{"head":{"qn":"mytopicqueue","id":"uuid1","ty":1,"h":0,"o":2,"s":0}}'
   9、消费者2接收消息
