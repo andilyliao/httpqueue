@@ -28,7 +28,7 @@ public class TopicQueuePublisher extends Publish implements IPublisher {
         this.config=config;
     }
     //curl http://localhost:8844/queue -d '{"head":{"qn":"mytopicqueue","ty":0,"m":2,"h":0}}'
-    public CommonRes createFanoutQueue(TopicQueueConfig queueConfig)throws Exception{
+    public CommonRes createTopicQueue(TopicQueueConfig queueConfig)throws Exception{
         this.queueConfig=queueConfig;
         String queueName = queueConfig.getQueueName();
         String url = this.config.urlMap.get(queueName.hashCode() % this.config.urlMap.size());
