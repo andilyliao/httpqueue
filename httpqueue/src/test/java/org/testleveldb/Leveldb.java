@@ -107,7 +107,6 @@ public class Leveldb {
 			try {
 				db.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -117,7 +116,6 @@ public class Leveldb {
 			JniDBFactory.popMemoryPool();
 			System.out.println("-------------------------------------------------------------------------------");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++");
@@ -129,7 +127,6 @@ public class Leveldb {
 		try {
 			System.in.read();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
