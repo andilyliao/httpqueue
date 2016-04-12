@@ -18,7 +18,7 @@ import org.junit.Test;
 
 public class Leveldb {
 
-	private void Test(){
+	private void test(){
 		JniDBFactory.pushMemoryPool(1024 *1024 *  512);
 		DBFactory factory = JniDBFactory.factory;
 		Logger logger = new Logger() {
@@ -123,7 +123,7 @@ public class Leveldb {
 	@Test
 	public void testlevelDB()throws Exception {
 		Leveldb l=new Leveldb();
-		l.Test();
+		l.test();
 		try {
 			System.in.read();
 		} catch (IOException e) {
