@@ -39,7 +39,7 @@ public class PublishTest {
         memoryDirectQueueConfig.setTtl(memoryDirectQueueConfig.ONE_DAY);
         publisher.initQueueWithoutCreate(memoryDirectQueueConfig);
         Message message=new Message();
-        message.setBody("aaaaa");
+        message.setBody("cccc");
         publisher.publishMessage(message);
     }
 
@@ -65,7 +65,7 @@ public class PublishTest {
         memoryFanoutQueueConfig.setTtl(memoryFanoutQueueConfig.ONE_DAY);
         publisher.initQueueWithoutCreate(memoryFanoutQueueConfig);
         Message message=new Message();
-        message.setBody("bbbbb");
+        message.setBody("cccc");
         publisher.publishMessage(message);
     }
     @Test
