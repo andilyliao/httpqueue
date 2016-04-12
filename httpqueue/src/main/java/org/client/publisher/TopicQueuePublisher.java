@@ -31,7 +31,7 @@ public class TopicQueuePublisher extends Publish implements IPublisher {
     public CommonRes createTopicQueue(TopicQueueConfig queueConfig)throws Exception{
         this.queueConfig=queueConfig;
         String queueName = queueConfig.getQueueName();
-        String url = this.config.urlMap.get(queueName.hashCode() % this.config.urlMap.size());
+        String url = this.config.urlMap.get(Math.abs(queueName.hashCode()) % this.config.urlMap.size());
         String json = "{\"head\":{\"qn\":\""+queueName+"\",\"ty\":0,\"m\":2,\"h\":0}}";
         String body = send(url, json, "utf-8");
         CommonRes cr= JSON.parseObject(body, CommonRes.class);
@@ -42,7 +42,7 @@ public class TopicQueuePublisher extends Publish implements IPublisher {
     public CommonRes publishMessage(Message message) throws Exception {
         String queueName = this.queueConfig.getQueueName();
         String msg=message.getBody();
-        String url = this.config.urlMap.get(queueName.hashCode() % this.config.urlMap.size());
+        String url = this.config.urlMap.get(Math.abs(queueName.hashCode()) % this.config.urlMap.size());
         String json = "{\"head\":{\"qn\":\""+queueName+"\",\"ty\":1,\"h\":0,\"tr\":0,\"s\":0,\"ts\":0},\"body\":\""+msg+"\"}";
         String body = send(url, json, "utf-8");
         CommonRes cr=JSON.parseObject(body, CommonRes.class);

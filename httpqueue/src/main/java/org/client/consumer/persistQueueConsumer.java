@@ -29,7 +29,7 @@ public class persistQueueConsumer extends Consume implements IConsumer {
     public CommonRes registConsumer(QueueConfig queueConfig) throws Exception {
         this.queueConfig=queueConfig;
         String queueName = queueConfig.getQueueName();
-        String url = this.config.urlMap.get(queueName.hashCode() % this.config.urlMap.size());
+        String url = this.config.urlMap.get(Math.abs(queueName.hashCode()) % this.config.urlMap.size());
         String json = "";
         String body = send(url, json, "utf-8");
         CommonRes cr= JSON.parseObject(body, CommonRes.class);

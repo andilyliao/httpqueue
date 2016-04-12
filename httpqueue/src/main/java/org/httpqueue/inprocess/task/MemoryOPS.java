@@ -101,7 +101,7 @@ public class MemoryOPS implements IMemoryOPS {
             RedisShard.returnJedisObject(jedis);
         }
         if(recive==Mode.RECIVE_NO) {
-            int hashmod = queName.hashCode() % PropertiesStr.listenerclustor.size();
+            int hashmod = Math.abs(queName.hashCode()) % PropertiesStr.listenerclustor.size();
             Jedis onejedis = RedisShard.getJedis(hashmod);
             try {
             onejedis.publish(CommonConst.RECIVE+CommonConst.splitor+queName,CommonConst.NOTIFY);
@@ -141,7 +141,7 @@ public class MemoryOPS implements IMemoryOPS {
             RedisShard.returnJedisObject(jedis);
         }
         if(recive==Mode.RECIVE_NO) {
-            int hashmod = queName.hashCode() % PropertiesStr.listenerclustor.size();
+            int hashmod = Math.abs(queName.hashCode()) % PropertiesStr.listenerclustor.size();
             Jedis onejedis = RedisShard.getJedis(hashmod);
             try {
                 onejedis.publish(CommonConst.RECIVE+CommonConst.splitor+queName,CommonConst.NOTIFY);
@@ -179,7 +179,7 @@ public class MemoryOPS implements IMemoryOPS {
             RedisShard.returnJedisObject(jedis);
         }
         if(recive==Mode.RECIVE_NO) {
-            int hashmod = queName.hashCode() % PropertiesStr.listenerclustor.size();
+            int hashmod = Math.abs(queName.hashCode()) % PropertiesStr.listenerclustor.size();
             Jedis onejedis = RedisShard.getJedis(hashmod);
             try {
                 onejedis.publish(CommonConst.RECIVE+CommonConst.splitor+queName,CommonConst.NOTIFY);

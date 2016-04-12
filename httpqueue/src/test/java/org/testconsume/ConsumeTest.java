@@ -9,6 +9,7 @@ import org.client.consumer.util.result.MsgRes;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.UUID;
 
 /**
  * Created by andilyliao on 16-4-2.
@@ -19,7 +20,8 @@ public class ConsumeTest {
         Config config=new Config("/consumer.properties");
         IConsumer iConsumer=new QueueConsumer(config);
         QueueConfig queueConfig=new QueueConfig();
-        queueConfig.setQueueName("myque");
+        queueConfig.setQueueName("myque2");
+        queueConfig.setUid(UUID.randomUUID().toString());
         System.out.println("start...........");
         CommonRes commonRes = iConsumer.registConsumer(queueConfig);
         MsgRes msgRes=new MsgRes();

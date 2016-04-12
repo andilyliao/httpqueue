@@ -65,7 +65,7 @@ public class PublishTest {
         memoryFanoutQueueConfig.setTtl(memoryFanoutQueueConfig.ONE_DAY);
         publisher.initQueueWithoutCreate(memoryFanoutQueueConfig);
         Message message=new Message();
-        message.setBody("aaaaa");
+        message.setBody("bbbbb");
         publisher.publishMessage(message);
     }
     @Test
@@ -88,7 +88,7 @@ public class PublishTest {
         topicQueueConfig.setQueueName("myque2");
         publisher.initQueueWithoutCreate(topicQueueConfig);
         Message message=new Message();
-        message.setBody("aaaaa");
+        message.setBody("bbbb");
         publisher.publishMessage(message);
     }
 }

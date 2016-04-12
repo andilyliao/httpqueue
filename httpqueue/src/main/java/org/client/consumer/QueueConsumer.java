@@ -49,8 +49,9 @@ public class QueueConsumer extends Consume implements IConsumer {
         final String queueName = queueConfig.getQueueName();
         String uid=queueConfig.getUid();
 
-        int hashmod = queueName.hashCode() % this.config.listenerclustor.size();
+        int hashmod = Math.abs(queueName.hashCode()) % this.config.listenerclustor.size();
         log.debug("------------: "+hashmod);
+        System.out.println( queueName+"    "+queueName.hashCode()+"   "+hashmod+"   "+this.config.listenerclustor.size());
         final Jedis jedis=Config.getJedis(hashmod);
         final NotifyListenter notifyListenter =new NotifyListenter();
         notifyListenter.setContral(this.contral);
@@ -63,7 +64,7 @@ public class QueueConsumer extends Consume implements IConsumer {
             }
         });
         t.start();
-        String url = this.config.urlMap.get(queueName.hashCode() % this.config.urlMap.size());
+        String url = this.config.urlMap.get(Math.abs(queueName.hashCode()) % this.config.urlMap.size());
         String json = "{\"head\":{\"qn\":\""+queueName+"\",\"id\":\""+uid+"\",\"ty\":0,\"h\":0}}";
         String body = send(url, json, "utf-8");
         CommonRes cr= JSON.parseObject(body, CommonRes.class);
@@ -78,7 +79,7 @@ public class QueueConsumer extends Consume implements IConsumer {
         String uid=queueConfig.getUid();
         long offset=msgRes.getOffset();
         int seq=msgRes.getSeq();
-        String url = this.config.urlMap.get(queueName.hashCode() % this.config.urlMap.size());
+        String url = this.config.urlMap.get(Math.abs(queueName.hashCode()) % this.config.urlMap.size());
         String json = "{\"head\":{\"qn\":\""+queueName+"\",\"id\":\""+uid+"\",\"ty\":1,\"h\":0,\"o\":"+offset+",\"s\":"+seq+"}}";
         String body = send(url, json, "utf-8");
         CommonRes cr= JSON.parseObject(body, CommonRes.class);
