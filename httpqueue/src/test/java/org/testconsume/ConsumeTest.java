@@ -26,12 +26,15 @@ public class ConsumeTest {
         CommonRes commonRes = iConsumer.registConsumer(queueConfig);
         MsgRes msgRes=new MsgRes();
         while(true) {
-            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-            System.out.println("========================: "+msgRes.getOffset());
+//            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+//            System.out.println("========================: "+msgRes.getOffset());
             msgRes = iConsumer.consumeMsg(msgRes);//消费一条
-            System.out.println("========================: "+msgRes.getOffset());
-            System.out.println("------------------------: "+msgRes.getBody());
-            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+//            System.out.println("========================: "+msgRes.getOffset());
+//            System.out.println("------------------------: "+msgRes.getBody());
+//            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            if (msgRes.getBody()!=null&&!msgRes.getBody().equals("")){
+                System.out.println("------------------------: "+msgRes.getBody());
+            }
         }
     }
 }
