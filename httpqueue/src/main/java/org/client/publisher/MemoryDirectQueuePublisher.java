@@ -7,6 +7,7 @@ import org.client.publisher.intf.IPublisher;
 import org.client.publisher.intf.Publish;
 import org.client.publisher.util.config.Config;
 import org.client.publisher.util.messageconfig.Message;
+import org.client.publisher.util.messageconfig.MutilMessage;
 import org.client.publisher.util.queueconfig.MemoryDirectQueueConfig;
 import org.client.publisher.util.queueconfig.MemoryFanoutQueueConfig;
 import org.client.publisher.util.result.CommonRes;
@@ -55,6 +56,7 @@ public class MemoryDirectQueuePublisher extends Publish implements IPublisher {
         CommonRes cr=JSON.parseObject(body, CommonRes.class);
         return cr;
     }
+
     public void initQueueWithoutCreate(MemoryDirectQueueConfig queueConfig)throws Exception {
         this.queueConfig=queueConfig;
     }

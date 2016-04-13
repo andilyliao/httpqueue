@@ -25,6 +25,11 @@ public class PropertiesStr {
     public static HashMap<String,Integer> listenerclustor=new HashMap<String,Integer>();
     //topic消息过期时间
     public static int topicttl=300;
+    //leveldb存储地址
+    public static String storePath="/tmp";
+    //存储缓存大小
+    public static int pushMemoryPool=536870912;
+    public static int cacheSize=104857600;
     /**
      * redis池
      */
@@ -60,6 +65,9 @@ public class PropertiesStr {
         PropertiesStr.maxWaitMillis=Integer.parseInt(prop.getProperty("maxWaitMillis"));
         PropertiesStr.redisTimeout=Integer.parseInt(prop.getProperty("redisTimeout"));
         PropertiesStr.topicttl=Integer.parseInt(prop.getProperty("topicttl"));
+        PropertiesStr.storePath=prop.getProperty("storePath");
+        PropertiesStr.pushMemoryPool=Integer.parseInt(prop.getProperty("pushMemoryPool"));
+        PropertiesStr.cacheSize=Integer.parseInt(prop.getProperty("cacheSize"));
 
 
     }
