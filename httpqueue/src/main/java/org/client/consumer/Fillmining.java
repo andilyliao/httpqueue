@@ -24,20 +24,20 @@ public class Fillmining extends Consume implements IConsumer {
     public void initConsumer(Config config) throws Exception {
         this.config = config;
     }
-//curl http://localhost:8845/queue -d '{"head":{"qn":"mydirectqueue","id":"uuid","ty":0,"h":0}}'
-    @Override
-    public CommonRes registConsumer(QueueConfig queueConfig) throws Exception {
-        this.queueConfig=queueConfig;
-        String queueName = queueConfig.getQueueName();
-        String url = this.config.urlMap.get(Math.abs(queueName.hashCode()) % this.config.urlMap.size());
-        String json = "";
-        String body = send(url, json, "utf-8");
-        CommonRes cr= JSON.parseObject(body, CommonRes.class);
-        return cr;
-    }
+
 //curl http://localhost:8845/queue -d '{"head":{"qn":"mydirectqueue","id":"uuid","ty":1,"h":0,"o":1,"s":0}}'
     @Override
     public MsgRes consumeMsg(MsgRes msgRes) throws Exception {
-        return null;
+        this.queueConfig=queueConfig;
+        String queueName = queueConfig.getQueueName();
+        String uid=queueConfig.getUid();
+        long offset=msgRes.getOffset();
+        int seq=msgRes.getSeq();
+        String url = this.config.urlMap.get(Math.abs(queueName.hashCode()) % this.config.urlMap.size());
+        String json = "{\"head\":{\"qn\":\""+queueName+"\",\"id\":\""+uid+"\",\"ty\":1,\"h\":1,\"o\":"+offset+",\"s\":"+seq+"}}";
+        String body = send(url, json, "utf-8");
+        CommonRes cr= JSON.parseObject(body, CommonRes.class);
+        MsgRes res=JSON.parseObject(cr.getBody(),MsgRes.class);
+        return res;
     }
 }

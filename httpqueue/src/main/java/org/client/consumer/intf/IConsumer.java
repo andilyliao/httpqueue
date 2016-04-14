@@ -10,6 +10,5 @@ import org.client.consumer.util.result.MsgRes;
  */
 public interface IConsumer {
     public void initConsumer(Config config)throws Exception;
-    public CommonRes registConsumer(QueueConfig queueConfig)throws Exception;
     public MsgRes consumeMsg(MsgRes msgRes)throws Exception;
 }
