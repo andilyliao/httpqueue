@@ -1,6 +1,7 @@
 package org.testleveldb;
 
 import org.fusesource.leveldbjni.JniDBFactory;
+import org.httpqueue.util.leveldb.StoreLevelDB;
 import org.iq80.leveldb.*;
 import org.junit.Test;
 
@@ -12,33 +13,11 @@ import java.io.IOException;
  */
 public class StoreTest {
     @Test
-    public void testSave(){
-        JniDBFactory.pushMemoryPool(1024 *1024 *  512);
-        DBFactory factory = JniDBFactory.factory;
-        Logger logger = new Logger() {
-            public void log(String message) {
-                System.out.println(message);
-            }
-        };
-        Options options = new Options();
-        options.createIfMissing(true);
-        options.logger(logger);
-        options.compressionType(CompressionType.NONE);
-        options.cacheSize(100 * 1048576);
-        DB db = null;
-        try {
-            db = factory.open(new File("/opt/xxx/example.db"), options);
-            String value = JniDBFactory.asString(db.get(JniDBFactory
-                    .bytes("Tampa")));
-            System.out.println("=================：" + value);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                db.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    public void testSave() throws IOException {
+        StoreLevelDB.initLevelDB();
+        StoreLevelDB storeLevelDB=new StoreLevelDB();
+        DB db=storeLevelDB.openDB("ooo.db");
+        storeLevelDB.saveData(db,"aaa","bbb");
+        System.out.println(storeLevelDB.getData(db,"aaa"));
     }
 }

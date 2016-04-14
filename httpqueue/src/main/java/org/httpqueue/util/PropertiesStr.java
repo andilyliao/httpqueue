@@ -26,7 +26,7 @@ public class PropertiesStr {
     //topic消息过期时间
     public static int topicttl=300;
     //leveldb存储地址
-    public static String storePath="/tmp";
+    public static String storePath="/tmp/";
     //存储缓存大小
     public static int pushMemoryPool=536870912;
     public static int cacheSize=104857600;

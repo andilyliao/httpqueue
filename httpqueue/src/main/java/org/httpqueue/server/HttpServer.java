@@ -10,6 +10,7 @@ import io.netty.handler.codec.http.HttpResponseEncoder;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.httpqueue.util.PropertiesStr;
+import org.httpqueue.util.leveldb.StoreLevelDB;
 import org.httpqueue.util.redis.RedisShard;
 
 public class HttpServer {
@@ -126,6 +127,7 @@ public class HttpServer {
         propertiesStr.initProperties();
         RedisShard.initRedisShard();
         RedisShard.initJedisPool();
+        StoreLevelDB.initLevelDB();
         Thread inbound=new Thread(new Runnable() {
             @Override
             public void run() {
