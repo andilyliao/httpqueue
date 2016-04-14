@@ -16,9 +16,9 @@ import static io.netty.handler.codec.http.HttpHeaderNames.*;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
-public class HttpServerNotifyHandler extends ChannelInboundHandlerAdapter {
+public class HttpServerLBHAHandler extends ChannelInboundHandlerAdapter {
 
-    private static Log log = LogFactory.getLog(HttpServerNotifyHandler.class);
+    private static Log log = LogFactory.getLog(HttpServerLBHAHandler.class);
 
     private HttpRequest request;
 

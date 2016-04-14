@@ -108,7 +108,7 @@ public class HttpServer {
                             ch.pipeline().addLast(new HttpResponseEncoder());
                             // server端接收到的是httpRequest，所以要使用HttpRequestDecoder进行解码
                             ch.pipeline().addLast(new HttpRequestDecoder());
-                            ch.pipeline().addLast(new HttpServerNotifyHandler());
+                            ch.pipeline().addLast(new HttpServerLBHAHandler());
                         }
                     }).option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
@@ -171,7 +171,7 @@ public class HttpServer {
             @Override
             public void run() {
                 HttpServer serverOut = new HttpServer();
-                log.info("HttpQueue notify Server listening on "+PropertiesStr.outBound+" ...");
+                log.info("HttpQueue lb-ha Server listening on "+PropertiesStr.outBound+" ...");
                 try {
                     serverOut.startoutbound(PropertiesStr.notify);
                 } catch (Exception e) {
