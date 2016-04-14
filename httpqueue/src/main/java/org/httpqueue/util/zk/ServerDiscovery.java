@@ -13,10 +13,10 @@ import java.util.concurrent.CountDownLatch;
 public class ServerDiscovery implements Watcher {
     private static Logger log = Logger.getLogger(ServerDiscovery.class);
 
-    private static final int SESSION_TIMEOUT = 10000;
-    private static final String CONNECTION_STRING = "zookeeper01:2181,zookeeper02:2181,zookeeper03:2181";
-    private static final String ZK_PATH = "/test/";
-    private static final String HOSTNAME=UUID.randomUUID().toString();
+    public static int SESSION_TIMEOUT = 10000;
+    public static String CONNECTION_STRING = "";
+    public static String ZK_PATH = "/httpqueue/";
+    public static String HOSTNAME=UUID.randomUUID().toString();
     private ZooKeeper zk = null;
 
     private CountDownLatch connectedSemaphore = new CountDownLatch(1);

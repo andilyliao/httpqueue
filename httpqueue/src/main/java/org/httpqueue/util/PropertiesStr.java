@@ -1,6 +1,7 @@
 package org.httpqueue.util;
 
 import org.apache.log4j.Logger;
+import org.httpqueue.util.zk.ServerDiscovery;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -69,6 +70,10 @@ public class PropertiesStr {
         PropertiesStr.pushMemoryPool=Integer.parseInt(prop.getProperty("pushMemoryPool"));
         PropertiesStr.cacheSize=Integer.parseInt(prop.getProperty("cacheSize"));
 
+        ServerDiscovery.SESSION_TIMEOUT=Integer.parseInt(prop.getProperty("sessionTimeout"));
+        ServerDiscovery.CONNECTION_STRING=prop.getProperty("connectionString");
+        ServerDiscovery.ZK_PATH=prop.getProperty("zkPath");
+        ServerDiscovery.HOSTNAME=prop.getProperty("HostName");
 
     }
 }
