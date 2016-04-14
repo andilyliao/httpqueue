@@ -1,10 +1,8 @@
 package org.httpqueue.util.leveldb;
 
-import org.apache.log4j.*;
 import org.fusesource.leveldbjni.JniDBFactory;
 import org.httpqueue.util.PropertiesStr;
 import org.iq80.leveldb.*;
-import org.iq80.leveldb.Logger;
 
 import java.io.File;
 import java.io.IOException;
