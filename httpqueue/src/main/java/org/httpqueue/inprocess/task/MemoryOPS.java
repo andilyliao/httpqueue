@@ -76,7 +76,7 @@ public class MemoryOPS implements IMemoryOPS {
     }
 
     @Override
-    public void inputDirectMessage(String queName, String body,int seq,int totleseq) throws Exception {
+    public long inputDirectMessage(String queName, String body,int seq,int totleseq) throws Exception {
         ShardedJedis jedis=RedisShard.getJedisObject();
         if(!jedis.exists(queName)){
             RedisShard.returnJedisObject(jedis);
@@ -88,9 +88,10 @@ public class MemoryOPS implements IMemoryOPS {
             throw new Exception("This queue isn't a direct queue,please check! queueName is: "+queName);
         }
         int recive=Mode.RECIVE_NO;
+        long pubset=0;
         try {
             int ttl=Integer.parseInt(jedis.hget(queName, DirectQueue.TTL));
-            Long pubset=jedis.incr(queName+ CommonConst.splitor+CommonConst.PUBSET);
+            pubset=jedis.incr(queName+ CommonConst.splitor+CommonConst.PUBSET);
             String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(pubset,seq);
             jedis.set(key,body+ CommonConst.splitor+seq+ CommonConst.splitor+totleseq);
             jedis.expire(key,ttl);
@@ -112,11 +113,12 @@ public class MemoryOPS implements IMemoryOPS {
             }
 
         }
+        return pubset;
 
     }
 
     @Override
-    public void inputFanoutMessage(String queName, String body,int seq,int totleseq) throws Exception {
+    public long inputFanoutMessage(String queName, String body,int seq,int totleseq) throws Exception {
         ShardedJedis jedis=RedisShard.getJedisObject();
         if(!jedis.exists(queName)){
             RedisShard.returnJedisObject(jedis);
@@ -128,9 +130,10 @@ public class MemoryOPS implements IMemoryOPS {
             throw new Exception("This queue isn't a fanout queue,please check! queueName is: "+queName);
         }
         int recive=Mode.RECIVE_NO;
+        long pubset=0;
         try {
             int ttl=Integer.parseInt(jedis.hget(queName, DirectQueue.TTL));
-            Long pubset=jedis.incr(queName+ CommonConst.splitor+CommonConst.PUBSET);
+            pubset=jedis.incr(queName+ CommonConst.splitor+CommonConst.PUBSET);
             String key=queName+ CommonConst.splitor+CommonConst.puboffsetAndSeq(pubset,seq);
             jedis.set(key,body+ CommonConst.splitor+seq+ CommonConst.splitor+totleseq);
             jedis.expire(key,ttl);
@@ -151,6 +154,7 @@ public class MemoryOPS implements IMemoryOPS {
                 RedisShard.returnJedisObject(onejedis, hashmod);
             }
         }
+        return pubset;
     }
 
     @Override

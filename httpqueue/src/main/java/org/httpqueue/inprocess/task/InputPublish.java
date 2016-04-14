@@ -16,14 +16,15 @@ public class InputPublish implements IInputPublish {
         IDiskOPS iDiskOPS=new DiskOPS();
         IMemoryOPS iMemoryOPS=new MemoryOPS();
         int quemode=iMemoryOPS.getQueMode(queName);
+        long pubset=0;
         switch (quemode){
             case Mode.MODE_DIRECT:
-                iMemoryOPS.inputDirectMessage(queName,body,seq,totleseq);
-                iDiskOPS.inputDirectMessage(queName,body,seq,totleseq);
+                pubset=iMemoryOPS.inputDirectMessage(queName,body,seq,totleseq);
+                iDiskOPS.inputDirectMessage(queName,body,pubset,seq,totleseq);
                 break;
             case Mode.MODE_FANOUT:
-                iMemoryOPS.inputFanoutMessage(queName,body,seq,totleseq);
-                iDiskOPS.inputFanoutMessage(queName,body,seq,totleseq);
+                pubset=iMemoryOPS.inputFanoutMessage(queName,body,seq,totleseq);
+                iDiskOPS.inputFanoutMessage(queName,body,pubset,seq,totleseq);
                 break;
             default:
                 throw new Exception("Que: "+queName+" doesn't have mode param!");
@@ -40,7 +41,7 @@ public class InputPublish implements IInputPublish {
         IMemoryOPS iMemoryOPS=new MemoryOPS();
         int quemode=iMemoryOPS.getQueMode(queName);
         switch (quemode){
-            case Mode.MODE_DIRECT:
+            case Mode.MODE_DIRECT: iMemoryOPS.inputFanoutMessage(queName,body,seq,totleseq);
                 iMemoryOPS.inputDirectMessage(queName,body,seq,totleseq);
                 break;
             case Mode.MODE_FANOUT:
