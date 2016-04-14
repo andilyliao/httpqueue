@@ -17,8 +17,8 @@ public class InputCreate implements IInputCreate {
 
     @Override
     public void createDirectWithDisk(String queueName,int ttl) throws Exception {
-        createDirectWithoutDisk(queueName,ttl);
-        //TODO
+        IMemoryOPS iMemoryOPS=new MemoryOPS();
+        iMemoryOPS.createDirectQueue(queueName,ttl, Mode.HASHDISK_WITHDISK);
     }
 
     @Override
@@ -35,6 +35,7 @@ public class InputCreate implements IInputCreate {
 
     @Override
     public void createFanoutWithDisk(String queueName,int ttl) throws Exception {
-        createFanoutWithoutDisk(queueName,ttl);
+        IMemoryOPS iMemoryOPS=new MemoryOPS();
+        iMemoryOPS.createFanoutQueue(queueName,ttl, Mode.HASHDISK_WITHDISK);
     }
 }

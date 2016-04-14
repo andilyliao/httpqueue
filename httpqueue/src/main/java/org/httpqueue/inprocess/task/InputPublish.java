@@ -1,5 +1,6 @@
 package org.httpqueue.inprocess.task;
 
+import org.httpqueue.inprocess.task.intf.IDiskOPS;
 import org.httpqueue.inprocess.task.intf.IInputPublish;
 import org.httpqueue.inprocess.task.intf.IMemoryOPS;
 import org.httpqueue.protocolbean.Mode;
@@ -12,7 +13,21 @@ public class InputPublish implements IInputPublish {
     @Override
     public void inputMessageWithDisk(String queName, String body,  int seq,int totleseq) throws Exception {
         inputMessageWithoutDisk(queName,body,seq,totleseq);
-        //TODO
+        IDiskOPS iDiskOPS=new DiskOPS();
+        IMemoryOPS iMemoryOPS=new MemoryOPS();
+        int quemode=iMemoryOPS.getQueMode(queName);
+        switch (quemode){
+            case Mode.MODE_DIRECT:
+                iMemoryOPS.inputDirectMessage(queName,body,seq,totleseq);
+                iDiskOPS.inputDirectMessage(queName,body,seq,totleseq);
+                break;
+            case Mode.MODE_FANOUT:
+                iMemoryOPS.inputFanoutMessage(queName,body,seq,totleseq);
+                iDiskOPS.inputFanoutMessage(queName,body,seq,totleseq);
+                break;
+            default:
+                throw new Exception("Que: "+queName+" doesn't have mode param!");
+        }
     }
 
     @Override
