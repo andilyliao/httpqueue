@@ -24,27 +24,9 @@ public class StoreLevelDB {
                 log.debug(message);
             }
         };
-        DBComparator comparator = new DBComparator() {
-            public int compare(byte[] key1, byte[] key2) {
-                return new String(key1).compareTo(new String(key2));
-            }
-
-            public String name() {
-                return "testque";
-            }
-
-            public byte[] findShortestSeparator(byte[] start, byte[] limit) {
-                return start;
-            }
-
-            public byte[] findShortSuccessor(byte[] key) {
-                return key;
-            }
-        };
         options = new Options();
         options.createIfMissing(true);
         options.logger(logger);
-        options.comparator(comparator);
         options.compressionType(CompressionType.NONE);
         options.cacheSize(PropertiesStr.cacheSize);
     }

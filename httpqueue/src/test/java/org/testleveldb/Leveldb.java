@@ -26,37 +26,37 @@ public class Leveldb {
 				System.out.println(message);
 			}
 		};
-		DBComparator comparator = new DBComparator() {
-			public int compare(byte[] key1, byte[] key2) {
-				return new String(key1).compareTo(new String(key2));
-			}
-
-			public String name() {
-				return "simple";
-			}
-
-			public byte[] findShortestSeparator(byte[] start, byte[] limit) {
-				return start;
-			}
-
-			public byte[] findShortSuccessor(byte[] key) {
-				return key;
-			}
-		};
+//		DBComparator comparator = new DBComparator() {
+//			public int compare(byte[] key1, byte[] key2) {
+//				return new String(key1).compareTo(new String(key2));
+//			}
+//
+//			public String name() {
+//				return "simple";
+//			}
+//
+//			public byte[] findShortestSeparator(byte[] start, byte[] limit) {
+//				return start;
+//			}
+//
+//			public byte[] findShortSuccessor(byte[] key) {
+//				return key;
+//			}
+//		};
 		Options options = new Options();
 		options.createIfMissing(true);
 		options.logger(logger);
-		options.comparator(comparator);
+//		options.comparator(comparator);
 		options.compressionType(CompressionType.NONE);
 		options.cacheSize(100 * 1048576); // 100MB
 		DB db = null;
 
 		try {
-			db = factory.open(new File("/opt/xxx/example.db"), options);
+			db = factory.open(new File("/opt/xxx/aaa.db"), options);
 //			String stats = db.getProperty("leveldb.stats");
 //			System.out.println(stats);
 
-//			db.put(JniDBFactory.bytes("Tampa"), JniDBFactory.bytes("rocks"));
+			db.put(JniDBFactory.bytes("Tampa"), JniDBFactory.bytes("rocks"));
 			String value = JniDBFactory.asString(db.get(JniDBFactory
 					.bytes("Tampa")));
 			System.out.println("=================：" + value);
