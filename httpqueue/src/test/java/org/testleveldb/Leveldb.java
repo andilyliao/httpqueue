@@ -52,55 +52,55 @@ public class Leveldb {
 		DB db = null;
 
 		try {
-			db = factory.open(new File("example"), options);
-			String stats = db.getProperty("leveldb.stats");
-			System.out.println(stats);
+			db = factory.open(new File("/opt/xxx/example.db"), options);
+//			String stats = db.getProperty("leveldb.stats");
+//			System.out.println(stats);
 
-			db.put(JniDBFactory.bytes("Tampa"), JniDBFactory.bytes("rocks"));
+//			db.put(JniDBFactory.bytes("Tampa"), JniDBFactory.bytes("rocks"));
 			String value = JniDBFactory.asString(db.get(JniDBFactory
 					.bytes("Tampa")));
 			System.out.println("=================：" + value);
-			db.delete(JniDBFactory.bytes("Tampa"));
+//			db.delete(JniDBFactory.bytes("Tampa"));
 
-			WriteBatch batch = db.createWriteBatch();
-			batch.delete(JniDBFactory.bytes("Denver"));
-			batch.put(JniDBFactory.bytes("Tampa"), JniDBFactory.bytes("green"));
-			batch.put(JniDBFactory.bytes("London"), JniDBFactory.bytes("red"));
-			db.write(batch);
-			batch.close();
-
-			DBIterator iterator = db.iterator();
-			System.out.println("=================");
-			for (iterator.seekToFirst(); iterator.hasNext(); iterator.next()) {
-				String key = JniDBFactory
-						.asString(iterator.peekNext().getKey());
-				String val = JniDBFactory.asString(iterator.peekNext()
-						.getValue());
-				System.out.println(key + " = " + val);
-			}
-			System.out.println("=================");
-			iterator.close();
-
-			ReadOptions ro = new ReadOptions();
-			ro.snapshot(db.getSnapshot());
-			DBIterator iterator1 = db.iterator(ro);
-			System.out.println("=================");
-			for (iterator1.seekToFirst(); iterator1.hasNext(); iterator1.next()) {
-				String key = JniDBFactory.asString(iterator1.peekNext()
-						.getKey());
-				String val = JniDBFactory.asString(iterator1.peekNext()
-						.getValue());
-				System.out.println(key + " = " + val);
-			}
-			System.out.println("=================");
-			
-			String v = JniDBFactory.asString(db.get(
-					JniDBFactory.bytes("Tampa"), ro));
-			System.out.println("=================：" + v);
-			
-			long[] sizes = db.getApproximateSizes(new Range(JniDBFactory.bytes("a"), JniDBFactory.bytes("k")), new Range(JniDBFactory.bytes("k"), JniDBFactory.bytes("z")));
-			System.out.println("Size: "+sizes[0]+", "+sizes[1]);
-			System.out.println("-------------------------------------------------------------------------------");
+//			WriteBatch batch = db.createWriteBatch();
+//			batch.delete(JniDBFactory.bytes("Denver"));
+//			batch.put(JniDBFactory.bytes("Tampa"), JniDBFactory.bytes("green"));
+//			batch.put(JniDBFactory.bytes("London"), JniDBFactory.bytes("red"));
+//			db.write(batch);
+//			batch.close();
+//
+//			DBIterator iterator = db.iterator();
+//			System.out.println("=================");
+//			for (iterator.seekToFirst(); iterator.hasNext(); iterator.next()) {
+//				String key = JniDBFactory
+//						.asString(iterator.peekNext().getKey());
+//				String val = JniDBFactory.asString(iterator.peekNext()
+//						.getValue());
+//				System.out.println(key + " = " + val);
+//			}
+//			System.out.println("=================");
+//			iterator.close();
+//
+//			ReadOptions ro = new ReadOptions();
+//			ro.snapshot(db.getSnapshot());
+//			DBIterator iterator1 = db.iterator(ro);
+//			System.out.println("=================");
+//			for (iterator1.seekToFirst(); iterator1.hasNext(); iterator1.next()) {
+//				String key = JniDBFactory.asString(iterator1.peekNext()
+//						.getKey());
+//				String val = JniDBFactory.asString(iterator1.peekNext()
+//						.getValue());
+//				System.out.println(key + " = " + val);
+//			}
+//			System.out.println("=================");
+//
+//			String v = JniDBFactory.asString(db.get(
+//					JniDBFactory.bytes("Tampa"), ro));
+//			System.out.println("=================：" + v);
+//
+//			long[] sizes = db.getApproximateSizes(new Range(JniDBFactory.bytes("a"), JniDBFactory.bytes("k")), new Range(JniDBFactory.bytes("k"), JniDBFactory.bytes("z")));
+//			System.out.println("Size: "+sizes[0]+", "+sizes[1]);
+//			System.out.println("-------------------------------------------------------------------------------");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -110,25 +110,20 @@ public class Leveldb {
 				e.printStackTrace();
 			}
 		}
-		try {
-			factory.repair(new File("example"), options);
-			factory.destroy(new File("example"), options);
-			JniDBFactory.popMemoryPool();
-			System.out.println("-------------------------------------------------------------------------------");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			factory.repair(new File("example"), options);
+//			factory.destroy(new File("example"), options);
+//			JniDBFactory.popMemoryPool();
+//			System.out.println("-------------------------------------------------------------------------------");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 	}
 	@Test
 	public void testlevelDB()throws Exception {
 		Leveldb l=new Leveldb();
 		l.test();
-		try {
-			System.in.read();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 }
