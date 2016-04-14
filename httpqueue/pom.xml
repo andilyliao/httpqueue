@@ -57,6 +57,12 @@
             <artifactId>leveldbjni-all</artifactId>
             <version>1.8</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>3.4.6</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
