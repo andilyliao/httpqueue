@@ -13,11 +13,11 @@ import org.client.consumer.util.result.MsgRes;
 /**
  * Created by andilyliao on 16-4-7.
  */
-public class persistQueueConsumer extends Consume implements IConsumer {
-    private static Logger log = Logger.getLogger(persistQueueConsumer.class);
+public class Fillmining extends Consume implements IConsumer {
+    private static Logger log = Logger.getLogger(Fillmining.class);
     private Config config;
     private QueueConfig queueConfig;
-    public persistQueueConsumer(Config config) {
+    public Fillmining(Config config) {
         this.config = config;
     }
     @Override
