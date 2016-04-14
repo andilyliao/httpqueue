@@ -15,7 +15,7 @@ import org.httpqueue.protocolbean.Result;
 import static io.netty.handler.codec.http.HttpHeaderNames.*;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
-
+//TODO 需要做持久化消息的存储路由以、备份以及查询路由
 public class HttpServerLBHAHandler extends ChannelInboundHandlerAdapter {
 
     private static Log log = LogFactory.getLog(HttpServerLBHAHandler.class);

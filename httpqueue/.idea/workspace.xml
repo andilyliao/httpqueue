@@ -10,9 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="daa7c68c-8bbd-469e-b698-28c88a300389" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/org/httpqueue/server/HttpServerNotifyHandler.java" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/server/HttpServerLBHAHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/httpqueue/server/HttpServer.java" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/server/HttpServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/httpqueue/server/HttpServerLBHAHandler.java" afterPath="$PROJECT_DIR$/src/main/java/org/httpqueue/server/HttpServerLBHAHandler.java" />
     </list>
     <ignored path="httpqueue.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,10 +35,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="StoreLevelDB.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StoreLevelDB.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/util/leveldb/StoreLevelDB.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.43644068">
               <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -48,21 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HttpServerLBHAHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/server/HttpServerLBHAHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HttpServer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HttpServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/server/HttpServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.73163843">
-              <caret line="173" column="39" selection-start-line="173" selection-start-column="39" selection-end-line="173" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="136" column="65" selection-start-line="136" selection-start-column="65" selection-end-line="136" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -140,8 +129,8 @@
         <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/intf/IConsumer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/QueueConsumer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/client/consumer/Fillmining.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/server/HttpServerLBHAHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/server/HttpServer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/httpqueue/server/HttpServerLBHAHandler.java" />
       </list>
     </option>
   </component>
@@ -1857,13 +1846,7 @@
       <workItem from="1460433890563" duration="539000" />
       <workItem from="1460434567796" duration="12740000" />
       <workItem from="1460513220825" duration="7770000" />
-      <workItem from="1460604608944" duration="10759000" />
-    </task>
-    <task id="LOCAL-00050" summary="add">
-      <created>1459939487514</created>
-      <option name="number" value="00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1459939487516</updated>
+      <workItem from="1460604608944" duration="11297000" />
     </task>
     <task id="LOCAL-00051" summary="add">
       <created>1459939620144</created>
@@ -2153,7 +2136,13 @@
       <option name="project" value="LOCAL" />
       <updated>1460619161375</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="add">
+      <created>1460620021312</created>
+      <option name="number" value="00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1460620021312</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2189,7 +2178,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="176042000" />
+    <option name="totallyTimeSpent" value="176580000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="1056" extended-state="6" />
@@ -2662,29 +2651,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/util/leveldb/StoreLevelDB.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/server/HttpServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="136" column="65" selection-start-line="136" selection-start-column="65" selection-end-line="136" selection-end-column="65" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/server/HttpServerLBHAHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.107344635">
+          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/server/HttpServer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/httpqueue/util/leveldb/StoreLevelDB.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73163843">
-          <caret line="173" column="39" selection-start-line="173" selection-start-column="39" selection-end-line="173" selection-end-column="39" />
-          <folding />
+        <state vertical-scroll-proportion="0.43644068">
+          <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
